@@ -1,0 +1,232 @@
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum Role {
+  CUSTOMER
+  CSR
+  ADMIN
+}
+
+model User {
+  id                  String       @id @default(cuid())
+  name                String
+  email               String       @unique
+  passwordHash        String
+  role                Role         @default(CUSTOMER)
+  isActive            Boolean      @default(true)
+  mustChangePassword  Boolean      @default(false)
+  failedLoginAttempts Int          @default(0)
+  lockedUntil         DateTime?
+  lastLoginAt         DateTime?
+  createdAt           DateTime     @default(now())
+  updatedAt           DateTime     @updatedAt
+
+  applications        Application[]
+  decisions           CaseDecision[]
+  assignedCases       Application[] @relation("AssignedCSR")
+  auditLogs           AuditLog[]    @relation("ActorAudit")
+  targetedAudits      AuditLog[]    @relation("TargetUserAudit")
+  notifications       Notification[]
+
+  @@index([email])
+}
+
+enum ApplicationStatus {
+  DRAFT
+  INTERVIEW_IN_PROGRESS
+  SUBMITTED
+  IN_REVIEW
+  MORE_INFO_REQUESTED
+  VERIFIED
+  ESCALATED
+}
+
+model Application {
+  id                 String            @id @default(cuid())
+  caseNumber         String            @unique
+  userId             String
+  user               User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  assignedCsrId      String?
+  assignedCsr        User?             @relation("AssignedCSR", fields: [assignedCsrId], references: [id])
+  visaType           String
+  destinationCountry String
+  travelPurpose      String
+  departureDate      DateTime?
+  returnDate         DateTime?
+  status             ApplicationStatus @default(DRAFT)
+  readinessScore     Int               @default(0)
+  readinessDetails   String?
+  createdAt          DateTime          @default(now())
+  updatedAt          DateTime          @updatedAt
+
+  interviewSessions  InterviewSession[]
+  documents          Document[]
+  flags              CaseFlag[]
+  decisions          CaseDecision[]
+  auditLogs          AuditLog[]
+
+  @@index([userId])
+  @@index([status])
+}
+
+model InterviewSession {
+  id                 String            @id @default(cuid())
+  applicationId      String
+  application        Application       @relation(fields: [applicationId], references: [id], onDelete: Cascade)
+  visaType           String
+  currentQuestionId  String?
+  isCompleted        Boolean           @default(false)
+  summaryText        String?
+  completedAt        DateTime?
+  createdAt          DateTime          @default(now())
+  updatedAt          DateTime          @updatedAt
+
+  answers            InterviewAnswer[]
+  flags              CaseFlag[]
+
+  @@index([applicationId])
+}
+
+model InterviewAnswer {
+  id                 String            @id @default(cuid())
+  sessionId          String
+  session            InterviewSession  @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  questionId         String
+  questionKey        String
+  questionText       String
+  answerValue        String
+  isSkipped          Boolean           @default(false)
+  createdAt          DateTime          @default(now())
+  updatedAt          DateTime          @updatedAt
+
+  @@index([sessionId])
+  @@index([questionKey])
+}
+
+enum DocumentStatus {
+  PENDING
+  UPLOADED
+  VERIFIED
+  REJECTED
+}
+
+model Document {
+  id                 String            @id @default(cuid())
+  applicationId      String
+  application        Application       @relation(fields: [applicationId], references: [id], onDelete: Cascade)
+  documentType       String
+  originalFilename   String
+  sanitizedFilename  String
+  filePath           String
+  mimeType           String
+  fileSizeBytes      Int
+  magicBytesVerified Boolean           @default(true)
+  status             DocumentStatus    @default(PENDING)
+  rejectionReason    String?
+  verifiedByUserId   String?
+  verifiedAt         DateTime?
+  createdAt          DateTime          @default(now())
+  updatedAt          DateTime          @updatedAt
+
+  @@index([applicationId])
+  @@index([status])
+}
+
+enum FlagSeverity {
+  INFO
+  WARNING
+  CRITICAL
+}
+
+model CaseFlag {
+  id                 String            @id @default(cuid())
+  applicationId      String
+  application        Application       @relation(fields: [applicationId], references: [id], onDelete: Cascade)
+  sessionId          String?
+  session            InterviewSession? @relation(fields: [sessionId], references: [id], onDelete: SetNull)
+  flagType           String
+  severity           FlagSeverity      @default(WARNING)
+  code               String
+  message            String
+  resolved           Boolean           @default(false)
+  resolvedAt         DateTime?
+  resolvedByUserId   String?
+  createdAt          DateTime          @default(now())
+
+  @@index([applicationId])
+  @@index([code])
+}
+
+model CaseDecision {
+  id                 String            @id @default(cuid())
+  applicationId      String
+  application        Application       @relation(fields: [applicationId], references: [id], onDelete: Cascade)
+  actorId            String
+  actor              User              @relation(fields: [actorId], references: [id])
+  action             String
+  notes              String
+  previousStatus     ApplicationStatus
+  newStatus          ApplicationStatus
+  createdAt          DateTime          @default(now())
+
+  @@index([applicationId])
+}
+
+model AuditLog {
+  id                 String            @id @default(cuid())
+  actorId            String?
+  actor              User?             @relation("ActorAudit", fields: [actorId], references: [id], onDelete: SetNull)
+  targetUserId       String?
+  targetUser         User?             @relation("TargetUserAudit", fields: [targetUserId], references: [id], onDelete: SetNull)
+  applicationId      String?
+  application        Application?      @relation(fields: [applicationId], references: [id], onDelete: SetNull)
+  action             String
+  details            String?
+  ipAddress          String?
+  userAgent          String?
+  createdAt          DateTime          @default(now())
+
+  @@index([actorId])
+  @@index([applicationId])
+  @@index([action])
+}
+
+model Question {
+  id                 String            @id @default(cuid())
+  key                String            @unique
+  visaType           String
+  stepCategory       String
+  orderIndex         Int
+  questionText       String
+  helpText           String?
+  responseType       String
+  options            String?
+  isMandatory        Boolean           @default(true)
+  followUpLogic      String?
+  flagTriggerRule    String?
+  isActive           Boolean           @default(true)
+  createdAt          DateTime          @default(now())
+  updatedAt          DateTime          @updatedAt
+
+  @@index([visaType])
+  @@index([orderIndex])
+}
+
+model Notification {
+  id                 String            @id @default(cuid())
+  userId             String
+  user               User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title              String
+  message            String
+  linkUrl            String?
+  isRead             Boolean           @default(false)
+  createdAt          DateTime          @default(now())
+
+  @@index([userId])
+}

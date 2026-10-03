@@ -1,0 +1,30 @@
+services:
+  traveldesk:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: traveldesk_app
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - DATABASE_URL=file:/app/prisma/dev.db
+      - SESSION_SECRET=traveldesk-docker-production-session-secret-key-2026
+      - NEXT_PUBLIC_APP_URL=http://localhost:3000
+      - NEXT_PUBLIC_DEMO_MODE=true
+      - SEED_DEMO_CASES=false
+      - DEMO_CUSTOMER_EMAIL=customer@harbingergroup.com
+      - DEMO_CUSTOMER_PASSWORD=DemoCustomer2026!
+      - DEMO_CSR_EMAIL=csr@harbingergroup.com
+      - DEMO_CSR_PASSWORD=DemoCSR2026!
+      - DEMO_ADMIN_EMAIL=admin@harbingergroup.com
+      - DEMO_ADMIN_PASSWORD=DemoAdmin2026!
+    volumes:
+      - traveldesk_db:/app/prisma
+      - traveldesk_documents:/app/storage/uploads/documents
+
+volumes:
+  traveldesk_db:
+    name: traveldesk_sqlite_data
+  traveldesk_documents:
+    name: traveldesk_documents_storage

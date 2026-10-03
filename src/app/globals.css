@@ -1,0 +1,155 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --canvas-bg: #00132E;
+    --canvas-bg-alt: #050D1A;
+    --foreground: #D6E3FF;
+    --foreground-muted: #94A3B8;
+    --foreground-subtle: #64748B;
+    
+    /* Surfaces */
+    --surface-container-lowest: #000E24;
+    --surface-container-low: #071C36;
+    --surface-container: #0B2545;
+    --surface-container-high: #133157;
+    --surface-bright: #283A56;
+    
+    /* Glass tokens (Dark default - Section 7.1) */
+    --glass-fill: rgba(255, 255, 255, 0.08);
+    --glass-fill-hover: rgba(255, 255, 255, 0.12);
+    --glass-fill-nested: rgba(0, 0, 0, 0.25);
+    --glass-border: rgba(255, 255, 255, 0.12);
+    --glass-border-focus: rgba(20, 184, 166, 0.6);
+    --glass-top-highlight: inset 0 1px 0 0 rgba(255, 255, 255, 0.20);
+    --glass-blur: 20px;
+    --glass-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
+
+    /* Brand accents */
+    --brand-teal: #14B8A6;
+    --brand-teal-hover: #0D9488;
+    --brand-amber: #F5A524;
+    --brand-emerald: #10B981;
+    --brand-ruby: #EF4444;
+    --brand-blue: #3B82F6;
+    
+    /* Focus Ring */
+    --focus-ring: 0 0 0 2px #00132E, 0 0 0 4px #14B8A6;
+  }
+
+  [data-theme="light"] {
+    --canvas-bg: #F8FAFC;
+    --canvas-bg-alt: #F1F5F9;
+    --foreground: #0F172A;
+    --foreground-muted: #475569;
+    --foreground-subtle: #64748B;
+
+    /* Surfaces */
+    --surface-container-lowest: #FFFFFF;
+    --surface-container-low: #F8FAFC;
+    --surface-container: #F1F5F9;
+    --surface-container-high: #E2E8F0;
+    --surface-bright: #CBD5E1;
+
+    /* Glass tokens (Light mode - Section 7.1 & 7.2) */
+    --glass-fill: rgba(255, 255, 255, 0.78);
+    --glass-fill-hover: rgba(255, 255, 255, 0.90);
+    --glass-fill-nested: rgba(241, 245, 249, 0.65);
+    --glass-border: rgba(226, 232, 240, 0.85);
+    --glass-border-focus: rgba(15, 118, 110, 0.6);
+    --glass-top-highlight: inset 0 1px 0 0 rgba(255, 255, 255, 0.95);
+    --glass-blur: 24px;
+    --glass-shadow: 0 16px 32px -4px rgba(15, 23, 42, 0.06), 0 4px 12px -2px rgba(15, 23, 42, 0.03);
+
+    /* Accessible light semantic colors */
+    --brand-teal: #0F766E;
+    --brand-teal-hover: #0D9488;
+    --brand-amber: #B45309;
+    --brand-emerald: #047857;
+    --brand-ruby: #B91C1C;
+    --brand-blue: #1D4ED8;
+    
+    --focus-ring: 0 0 0 2px #FFFFFF, 0 0 0 4px #0F766E;
+  }
+}
+
+body {
+  background-color: var(--canvas-bg);
+  color: var(--foreground);
+  font-family: var(--font-sans), sans-serif;
+  min-height: 100vh;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Tabular numbers for all financial, duration, time, and telemetry displays */
+.tabular-nums, table, time, .tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Glass Primitives */
+.glass-panel {
+  background: var(--glass-fill);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow), var(--glass-top-highlight);
+  border-radius: 1rem;
+}
+
+.glass-card {
+  background: var(--glass-fill);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow), var(--glass-top-highlight);
+  border-radius: 1rem;
+  transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.glass-card:hover {
+  background: var(--glass-fill-hover);
+  border-color: rgba(20, 184, 166, 0.35);
+  box-shadow: var(--glass-shadow), var(--glass-top-highlight), 0 0 20px -5px rgba(20, 184, 166, 0.15);
+}
+
+.glass-input {
+  background: var(--glass-fill);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  color: var(--foreground);
+  border-radius: 0.75rem;
+  transition: all 0.15s ease-in-out;
+}
+
+.glass-input:focus, .glass-input:focus-visible {
+  outline: none;
+  border-color: var(--brand-teal);
+  box-shadow: var(--focus-ring);
+}
+
+/* Mobile blur optimization (< 768px) */
+@media (max-width: 767px) {
+  :root {
+    --glass-blur: 12px;
+  }
+}
+
+/* Fallback for browsers that do not support backdrop-filter */
+@supports not (backdrop-filter: blur(10px)) {
+  .glass-panel, .glass-card, .glass-input {
+    background-color: var(--surface-container);
+  }
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

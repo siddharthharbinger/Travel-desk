@@ -1,0 +1,76 @@
+[
+  {
+    "id": "q_schengen_purpose",
+    "key": "schengen_purpose",
+    "visaType": "SCHENGEN_BUSINESS",
+    "stepCategory": "TRAVEL_DETAILS",
+    "orderIndex": 1,
+    "questionText": "What is the primary commercial purpose of your travel to Germany?",
+    "helpText": "Schengen C Business visas permit client meetings, consultations, and trade exhibitions, but strictly forbid local productive labor.",
+    "responseType": "SINGLE_CHOICE",
+    "options": "[{\"label\":\"Client Consultations & Contract Negotiations\",\"value\":\"client_meetings\"},{\"label\":\"Internal Corporate Strategy & Knowledge Transfer\",\"value\":\"internal_strategy\"},{\"label\":\"Trade Fair / Industrial Exhibition Attendance\",\"value\":\"trade_fair\"},{\"label\":\"Direct On-Site Productive Employment / Contracting\",\"value\":\"local_employment\"}]",
+    "isMandatory": true,
+    "flagTriggerRule": "{\"field\":\"value\",\"operator\":\"equals\",\"operand\":\"local_employment\",\"flag\":{\"code\":\"FLAG_PERMIT_MISMATCH\",\"severity\":\"CRITICAL\",\"message\":\"Selected purpose involves local productive labor. A Schengen C business visa does not permit local employment; a national work visa (D Visa) is required.\"}}"
+  },
+  {
+    "id": "q_schengen_duration",
+    "key": "schengen_duration_days",
+    "visaType": "SCHENGEN_BUSINESS",
+    "stepCategory": "TRAVEL_DETAILS",
+    "orderIndex": 2,
+    "questionText": "What is the planned total duration of your stay in the Schengen area (in days)?",
+    "helpText": "Short-stay Schengen business visas allow a maximum stay of 90 days within any 180-day rolling window.",
+    "responseType": "NUMBER",
+    "isMandatory": true,
+    "flagTriggerRule": "{\"field\":\"value\",\"operator\":\"greaterThan\",\"operand\":90,\"flag\":{\"code\":\"FLAG_EXCESSIVE_DURATION_SCHENGEN\",\"severity\":\"CRITICAL\",\"message\":\"Requested stay exceeds 90 days. Short-stay Schengen visas are strictly capped at 90 days per 180-day period. Long-stay national visa (D) is required.\"}}"
+  },
+  {
+    "id": "q_passport_expiry",
+    "key": "passport_expiry_date",
+    "visaType": "ALL",
+    "stepCategory": "DOCUMENTATION",
+    "orderIndex": 3,
+    "questionText": "What is the expiration date indicated on your current passport bio-data page?",
+    "helpText": "Enter date in YYYY-MM-DD format as printed on your passport.",
+    "responseType": "DATE",
+    "isMandatory": true,
+    "flagTriggerRule": "{\"type\":\"PASSPORT_VALIDITY_CHECK\"}"
+  },
+  {
+    "id": "q_passport_issue",
+    "key": "passport_issue_date",
+    "visaType": "SCHENGEN_BUSINESS",
+    "stepCategory": "DOCUMENTATION",
+    "orderIndex": 4,
+    "questionText": "What is the issuance date of your current passport?",
+    "helpText": "Under EU Visa Code Article 12, passports must have been issued within the previous 10 years.",
+    "responseType": "DATE",
+    "isMandatory": true,
+    "flagTriggerRule": "{\"type\":\"PASSPORT_10YR_RULE_CHECK\"}"
+  },
+  {
+    "id": "q_prior_refusal",
+    "key": "has_prior_refusal",
+    "visaType": "ALL",
+    "stepCategory": "IMMIGRATION_HISTORY",
+    "orderIndex": 5,
+    "questionText": "Have you ever had a visa application refused by the destination country or Schengen member state?",
+    "helpText": "Full transparency is required on statutory visa filings. Declaring a refusal does not disqualify you but requires official documentation.",
+    "responseType": "BOOLEAN",
+    "isMandatory": true,
+    "flagTriggerRule": "{\"field\":\"value\",\"operator\":\"equals\",\"operand\":\"true\",\"flag\":{\"code\":\"FLAG_PRIOR_REFUSAL\",\"severity\":\"WARNING\",\"message\":\"Applicant reported previous visa refusal. Official consular refusal notice and explanation letter must be submitted for CSR review.\"}}"
+  },
+  {
+    "id": "q_usb1_purpose",
+    "key": "usb1_purpose",
+    "visaType": "US_B1",
+    "stepCategory": "TRAVEL_DETAILS",
+    "orderIndex": 6,
+    "questionText": "What is your primary commercial activity in the United States?",
+    "helpText": "B-1 covers consultations, commercial negotiations, and conferences. U.S. domestic employment requires an H-1B or L-1 petition.",
+    "responseType": "SINGLE_CHOICE",
+    "options": "[{\"label\":\"Attending Industry Conference or Convention\",\"value\":\"conference\"},{\"label\":\"Consulting with Business Associates & Contract Negotiation\",\"value\":\"consulting\"},{\"label\":\"Settling an Estate / Legal Proceedings\",\"value\":\"estate_legal\"},{\"label\":\"Direct Employment Paid by a US Company\",\"value\":\"us_employment\"}]",
+    "isMandatory": true,
+    "flagTriggerRule": "{\"field\":\"value\",\"operator\":\"equals\",\"operand\":\"us_employment\",\"flag\":{\"code\":\"FLAG_PERMIT_MISMATCH\",\"severity\":\"CRITICAL\",\"message\":\"Direct employment in the US cannot be undertaken on a B-1 visa. An employer-sponsored petition (H-1B, L-1, or O-1) approved by USCIS is required.\"}}"
+  }
+]

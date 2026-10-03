@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="web_standard" name="shell-type"/>
+<title>TravelDesk</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&amp;family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<style>
+    @layer base {
+      html, body {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        overscroll-behavior: none;
+      }
+      main > :first-child {
+        margin-top: 0 !important;
+      }
+      main > :last-child {
+        margin-bottom: 0 !important;
+      }
+    }
+    ::-webkit-scrollbar {
+      display: none;
+    }
+    /* Genuine Frosted Glass Tokens */
+    .glass-frost {
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37), inset 0 1px 0 0 rgba(255, 255, 255, 0.2);
+    }
+    .glass-frost-subtle {
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.25);
+    }
+    /* Subtle Glowing Border Animation */
+    @keyframes pulse-ring {
+      0%, 100% {
+        box-shadow: 0 0 20px rgba(20, 184, 166, 0.35), 0 0 35px rgba(139, 92, 246, 0.2);
+        border-color: rgba(79, 219, 200, 0.55);
+      }
+      50% {
+        box-shadow: 0 0 30px rgba(20, 184, 166, 0.55), 0 0 50px rgba(59, 130, 246, 0.3);
+        border-color: rgba(208, 188, 255, 0.75);
+      }
+    }
+    .glow-ring-active {
+      animation: pulse-ring 4s ease-in-out infinite;
+    }
+  </style>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "on-surface": "#d6e3ff",
+            "secondary-fixed": "#e9ddff",
+            "on-tertiary-fixed": "#2a1800",
+            "surface": "#00132e",
+            "inverse-surface": "#d6e3ff",
+            "surface-container-low": "#071c36",
+            "inverse-primary": "#006b5f",
+            "secondary-container": "#571bc1",
+            "surface-container-high": "#182a46",
+            "on-primary-fixed-variant": "#005048",
+            "tertiary": "#ffb957",
+            "error-container": "#93000a",
+            "on-error-container": "#ffdad6",
+            "on-tertiary": "#462b00",
+            "on-secondary": "#3c0091",
+            "primary-fixed": "#71f8e4",
+            "surface-dim": "#00132e",
+            "on-surface-variant": "#bbcac6",
+            "surface-container": "#0c203b",
+            "on-error": "#690005",
+            "on-secondary-container": "#c4abff",
+            "background": "#00132e",
+            "error": "#ffb4ab",
+            "on-primary-fixed": "#00201c",
+            "on-tertiary-fixed-variant": "#643f00",
+            "on-tertiary-container": "#533400",
+            "surface-tint": "#4fdbc8",
+            "outline": "#859490",
+            "on-secondary-fixed-variant": "#5516be",
+            "primary-fixed-dim": "#4fdbc8",
+            "surface-bright": "#283a56",
+            "tertiary-container": "#e1940b",
+            "primary-container": "#14b8a6",
+            "surface-container-lowest": "#000e24",
+            "outline-variant": "#3c4947",
+            "secondary-fixed-dim": "#d0bcff",
+            "secondary": "#d0bcff",
+            "on-primary": "#003731",
+            "primary": "#4fdbc8",
+            "on-primary-container": "#00423b",
+            "on-background": "#d6e3ff",
+            "surface-variant": "#233551",
+            "inverse-on-surface": "#1f314d",
+            "tertiary-fixed": "#ffddb5",
+            "on-secondary-fixed": "#23005c",
+            "tertiary-fixed-dim": "#ffb957",
+            "surface-container-highest": "#233551"
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          spacing: {
+            "space-lg": "1.5rem",
+            "space-sm": "0.75rem",
+            "space-md": "1rem",
+            "space-xs": "0.5rem",
+            "margin-mobile": "1rem",
+            "gutter": "1.5rem",
+            "space-xl": "2.5rem",
+            "margin": "2rem",
+            "gutter-sm": "1rem",
+            "margin-desktop": "3rem",
+            "gutter-lg": "2rem"
+          },
+          fontFamily: {
+            "headline-lg": ["Newsreader", "serif"],
+            "headline-sm": ["DM Sans", "sans-serif"],
+            "body-md": ["DM Sans", "sans-serif"],
+            "body-sm": ["DM Sans", "sans-serif"],
+            "display-lg-mobile": ["Newsreader", "serif"],
+            "label-sm": ["DM Sans", "sans-serif"],
+            "display-md-mobile": ["Newsreader", "serif"],
+            "display-md": ["Newsreader", "serif"],
+            "body-lg": ["DM Sans", "sans-serif"],
+            "title-md": ["DM Sans", "sans-serif"],
+            "display-lg": ["Newsreader", "serif"],
+            "headline-md": ["Newsreader", "serif"],
+            "code-flight": ["DM Sans", "sans-serif"],
+            "label-md": ["DM Sans", "sans-serif"]
+          },
+          fontSize: {
+            "headline-lg": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "500"}],
+            "headline-sm": ["18px", {"lineHeight": "26px", "letterSpacing": "-0.005em", "fontWeight": "600"}],
+            "body-md": ["14px", {"lineHeight": "22px", "letterSpacing": "0.005em", "fontWeight": "400"}],
+            "body-sm": ["12px", {"lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "400"}],
+            "display-lg-mobile": ["34px", {"lineHeight": "42px", "letterSpacing": "-0.015em", "fontWeight": "400"}],
+            "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+            "display-md-mobile": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+            "display-md": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.015em", "fontWeight": "400"}],
+            "body-lg": ["16px", {"lineHeight": "26px", "letterSpacing": "0em", "fontWeight": "400"}],
+            "title-md": ["16px", {"lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "600"}],
+            "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+            "headline-md": ["22px", {"lineHeight": "30px", "letterSpacing": "0em", "fontWeight": "500"}],
+            "code-flight": ["14px", {"lineHeight": "20px", "letterSpacing": "0.08em", "fontWeight": "700"}],
+            "label-md": ["13px", {"lineHeight": "18px", "letterSpacing": "0.02em", "fontWeight": "600"}]
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-surface font-body-md text-on-surface antialiased min-h-screen relative selection:bg-primary-container selection:text-on-primary-container">
+<!-- Deep Ambient Glows -->
+<div class="pointer-events-none fixed inset-0 overflow-hidden z-0">
+<div class="absolute -top-40 -left-40 w-[650px] h-[650px] rounded-full blur-[140px]" style="background: radial-gradient(circle, rgba(20, 184, 166, 0.16) 0%, transparent 70%);"></div>
+<div class="absolute top-1/4 -right-40 w-[550px] h-[550px] rounded-full blur-[150px]" style="background: radial-gradient(circle, rgba(139, 92, 246, 0.16) 0%, transparent 70%);"></div>
+<div class="absolute top-2/3 left-1/4 w-[600px] h-[600px] rounded-full blur-[160px]" style="background: radial-gradient(circle, rgba(59, 130, 246, 0.16) 0%, transparent 70%);"></div>
+</div>
+<!-- Floating Glass Pill Navbar: exactly 64px high, rounded-full px-6 flex items-center justify-between mx-auto max-w-7xl mt-4 border border-white/20 bg-white/10 backdrop-blur-xl -->
+<div class="fixed top-0 inset-x-0 z-50 px-4 sm:px-6 pointer-events-none">
+<header class="pointer-events-auto h-16 max-w-7xl mx-auto mt-4 px-6 rounded-full border border-white/20 bg-white/10 backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.4)] flex items-center justify-between gap-4 transition-all">
+<!-- Left: Attached Harbinger company logo + "TravelDesk" (Newsreader font, ~22px, bold, white) as ONE clean single lockup -->
+<a class="flex items-center gap-3 shrink-0 group focus:outline-none" data-path="visas-and-immigration" href="#">
+<img alt="Harbinger Group" class="h-7 w-auto object-contain brightness-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBxfcwYCeRHcRBwpQC5LLZ_yvWNMi2zm4E4ktV97LOLU0aDcybprZN8ooK2RrvFEkP7DI-yW59fbUhdllbtNltCjnHKQZMfgQU4ngsmH2lFmFNDO8-_jziZ4cZIUKWGkI1xJ9Oo6D3OqPWMTIE7r2j-ebs_yjkq9K_OY0EUFLk67nmIz6tQ1HXoGyR_K1ks1rXTCYx4lH0w0OgPPBk3VIqUJ87r4P58jtxHQlTZ57xM6091Uxor2Cy6ZNTkwtd_FhOrrw"/>
+<span class="font-headline-lg text-[22px] font-bold text-white tracking-tight leading-none group-hover:text-primary transition-colors">TravelDesk</span>
+</a>
+<!-- Center: Exactly four links: "Visas", "Flights", "Hotels", "Travel Info" (text-14px) -->
+<nav class="hidden md:flex items-center gap-1.5 p-1 rounded-full bg-white/5 border border-white/10">
+<a class="px-4 py-1.5 rounded-full font-title-md text-[14px] bg-primary-container text-on-primary-container font-semibold shadow-sm transition-all" data-path="visas-and-immigration" href="#">Visas</a>
+<a class="px-4 py-1.5 rounded-full font-title-md text-[14px] text-on-surface-variant hover:text-on-surface hover:bg-white/10 transition-all" data-path="flight-options" href="#">Flights</a>
+<a class="px-4 py-1.5 rounded-full font-title-md text-[14px] text-on-surface-variant hover:text-on-surface hover:bg-white/10 transition-all" data-path="hotel-stays" href="#">Hotels</a>
+<a class="px-4 py-1.5 rounded-full font-title-md text-[14px] text-on-surface-variant hover:text-on-surface hover:bg-white/10 transition-all" data-path="travel-info" href="#">Travel Info</a>
+</nav>
+<!-- Right: Theme toggle, Notification bell, user avatar ONLY + Dropdown Menu Preview -->
+<div class="flex items-center gap-2.5 shrink-0 relative">
+<!-- Dark / Light Theme Toggle -->
+<button aria-label="Toggle UI Theme" class="h-9 w-9 rounded-full bg-white/10 hover:bg-white/20 border border-white/15 text-on-surface-variant hover:text-on-surface flex items-center justify-center transition-all cursor-pointer" onclick="document.documentElement.classList.toggle('dark');" type="button">
+<span class="material-symbols-outlined text-[18px] dark:hidden">light_mode</span>
+<span class="material-symbols-outlined text-[18px] hidden dark:inline-block text-primary">dark_mode</span>
+</button>
+<!-- Notifications -->
+<button aria-label="Notifications" class="relative h-9 w-9 rounded-full bg-white/10 hover:bg-white/20 border border-white/15 text-on-surface-variant hover:text-on-surface flex items-center justify-center transition-all" type="button">
+<span class="material-symbols-outlined text-[18px]">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 rounded-full bg-tertiary shadow-[0_0_8px_#ffb957]"></span>
+</button>
+<!-- User Avatar Only with Dropdown menu -->
+<div class="relative group">
+<button aria-label="User profile menu" class="w-9 h-9 rounded-full bg-gradient-to-tr from-primary-container to-secondary-container flex items-center justify-center font-bold text-white text-[13px] ring-2 ring-white/25 hover:ring-primary focus:outline-none transition-all cursor-pointer" type="button">
+          VM
+        </button>
+<!-- Dropdown Menu Preview -->
+<div class="absolute right-0 top-full mt-2 w-64 rounded-xl glass-frost p-2 shadow-2xl opacity-0 translate-y-1 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto group-focus-within:opacity-100 group-focus-within:translate-y-0 group-focus-within:pointer-events-auto transition-all duration-200 z-50 border border-white/20">
+<div class="px-3 py-2 border-b border-white/10 mb-1">
+<p class="font-title-md text-[14px] text-on-surface font-semibold">Vikram Malhotra</p>
+<p class="font-body-sm text-[12px] text-primary">Traveler</p>
+</div>
+<a class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-body-md text-[13px] text-on-surface-variant hover:text-on-surface hover:bg-white/10 transition-colors" href="#faq-section">
+<span class="material-symbols-outlined text-[18px]">help_outline</span>
+<span>Help &amp; FAQ</span>
+</a>
+<button class="w-full flex items-center justify-between px-3 py-2 rounded-lg text-body-md text-[13px] text-on-surface-variant hover:text-on-surface hover:bg-white/10 transition-colors text-left" type="button">
+<span class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-[18px]">swap_horiz</span>
+<span>Switch role</span>
+</span>
+<span class="text-[11px] font-semibold text-secondary px-1.5 py-0.5 rounded bg-white/5">CSR / Admin</span>
+</button>
+<div class="h-px bg-white/10 my-1"></div>
+<button class="w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-body-md text-[13px] text-error hover:bg-error/10 transition-colors text-left" type="button">
+<span class="material-symbols-outlined text-[18px]">logout</span>
+<span>Sign out</span>
+</button>
+</div>
+</div>
+</div>
+</header>
+</div>
+<!-- Main Landing Container -->
+<main class="relative z-10 w-full pt-24 min-h-screen">
+<div class="flex flex-col w-full">
+<!-- 1. LANDING HERO with Full-Bleed Aerial European City at Dusk & Twilight Overlay -->
+<section class="relative w-full overflow-hidden min-h-[680px] flex items-center justify-center px-margin-mobile md:px-margin-desktop py-space-xl lg:py-24">
+<div class="absolute inset-0 z-0">
+<img alt="Breathtaking aerial European city dusk view" class="w-full h-full object-cover object-center scale-105" src="https://lh3.googleusercontent.com/aida/AEtjO1Wn74PE2WfJeVmV04BbTjk9JPjNIoJXX19K2sEsqqohIoRo8aH1rCsX0zJy7oe1GXfEIWkSLATzF8Bcuq61YeYTCrOV1CrzOF8MHM-GRB5iRSw1qKHLjas26Dt0y9wS5Gbtk1g9qEw_pHreylo5HXZc96eI-9uKQ4gb4t6tRS8EQGavFCjndawVVJh4lZM11x7_fNIpqUa3jEiV752BVVbgw9CBTA80m2Mz9Zc2lSf_Sz826wHJC9xQoY4"/>
+<!-- Twilight Gradient Overlay: rgba(7, 20, 38, 0.85) to transparent -->
+<div class="absolute inset-0" style="background: linear-gradient(180deg, rgba(7, 20, 38, 0.85) 0%, rgba(7, 20, 38, 0.92) 65%, rgba(0, 19, 46, 0.98) 100%);"></div>
+<div class="absolute inset-0 bg-gradient-to-tr from-primary/10 via-secondary-container/15 to-transparent pointer-events-none"></div>
+</div>
+<div class="relative z-10 max-w-5xl mx-auto flex flex-col items-center text-center">
+<!-- Floating Status Badge -->
+<div class="inline-flex items-center gap-space-xs px-space-md py-1.5 rounded-full glass-frost mb-space-lg transition-transform hover:scale-105 duration-200 cursor-default">
+<span class="flex h-2 w-2 rounded-full bg-primary animate-pulse"></span>
+<span class="font-label-sm text-[12px] uppercase tracking-wider text-primary">Harbinger Enterprise Mobility</span>
+<span class="font-body-sm text-[12px] text-on-surface-variant">• AI-Assisted Pre-Screening with Human Review</span>
+</div>
+<!-- Headline -->
+<h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface tracking-tight max-w-4xl mx-auto mb-space-md leading-[1.12]">
+          Global business mobility, <span class="italic font-headline-lg bg-gradient-to-r from-primary via-surface-tint to-secondary bg-clip-text text-transparent">effortlessly accelerated.</span>
+</h1>
+<!-- Subtitle -->
+<p class="font-body-lg text-body-lg text-on-surface max-w-3xl mx-auto mb-space-xl leading-relaxed opacity-90">
+          Pre-interview diagnostics for Schengen &amp; US visas, corporate flight comparison, and verified hotel stays for seamless travel in 2026.
+        </p>
+<!-- Centered Stitch-Style Glass Prompt Box with Subtle Glowing Border -->
+<div class="w-full max-w-3xl mb-space-md">
+<div class="relative group p-1.5 rounded-full glass-frost glow-ring-active transition-all duration-300">
+<div class="flex items-center gap-space-sm pl-space-md pr-1.5 py-1">
+<span class="material-symbols-outlined text-primary text-[24px]">travel_explore</span>
+<input class="w-full bg-transparent font-body-md text-body-md text-on-surface placeholder:text-on-surface-variant focus:outline-none" id="hero-omni-search" placeholder="Where are you travelling, and why? (e.g., Attending Tech Summit in Munich...)" type="text"/>
+<button aria-label="Initiate Travel Concierge" class="shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-gradient-to-r from-primary-container to-surface-tint text-on-primary shadow-lg hover:scale-105 transition-transform" onclick="triggerSearch()" type="button">
+<span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Frosted Glass Suggestion Chips -->
+<div class="flex flex-wrap items-center justify-center gap-2 max-w-4xl mx-auto mb-space-xl">
+<span class="font-label-sm text-[12px] uppercase text-on-surface-variant tracking-wider mr-1">Frequent:</span>
+<button class="font-label-md text-[13px] px-3.5 py-1.5 rounded-full glass-frost text-on-surface hover:bg-white/15 transition-all shadow-sm flex items-center gap-1.5" onclick="setQuery('Schengen Business Visa (Germany)')">
+<span>🇪🇺</span> <span>Schengen Business Visa (Germany)</span>
+</button>
+<button class="font-label-md text-[13px] px-3.5 py-1.5 rounded-full glass-frost text-on-surface hover:bg-white/15 transition-all shadow-sm flex items-center gap-1.5" onclick="setQuery('US B-1 Conference Visa')">
+<span>🇺🇸</span> <span>US B-1 Conference Visa</span>
+</button>
+<button class="font-label-md text-[13px] px-3.5 py-1.5 rounded-full glass-frost text-on-surface hover:bg-white/15 transition-all shadow-sm flex items-center gap-1.5" onclick="setQuery('Mumbai to Frankfurt Flights')">
+<span>✈️</span> <span>Mumbai to Frankfurt Flights</span>
+</button>
+<button class="font-label-md text-[13px] px-3.5 py-1.5 rounded-full glass-frost text-on-surface hover:bg-white/15 transition-all shadow-sm flex items-center gap-1.5" onclick="setQuery('Munich Hotels')">
+<span>🏨</span> <span>Munich Hotels</span>
+</button>
+</div>
+<!-- Multi-Tab Quick Action Cockpit Card -->
+<div class="w-full max-w-5xl rounded-xl glass-frost p-space-md md:p-space-lg text-left relative overflow-hidden">
+<div class="flex items-center gap-space-xs mb-space-lg border-b border-white/10 pb-space-sm overflow-x-auto">
+<button class="flex items-center gap-space-xs px-space-md py-space-xs rounded-lg font-title-md text-[14px] bg-primary-container text-on-primary-container shadow-sm transition-all" id="tab-btn-visa" onclick="switchCockpitTab('visa')">
+<span class="material-symbols-outlined text-[18px]">verified_user</span>
+<span>Visa Pre-Check</span>
+</button>
+<button class="flex items-center gap-space-xs px-space-md py-space-xs rounded-lg font-title-md text-[14px] text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-all" id="tab-btn-flight" onclick="switchCockpitTab('flight')">
+<span class="material-symbols-outlined text-[18px]">flight</span>
+<span>Flights</span>
+</button>
+<button class="flex items-center gap-space-xs px-space-md py-space-xs rounded-lg font-title-md text-[14px] text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-all" id="tab-btn-hotel" onclick="switchCockpitTab('hotel')">
+<span class="material-symbols-outlined text-[18px]">hotel</span>
+<span>Hotels</span>
+</button>
+</div>
+<!-- Visa Tab Pane -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter items-end" id="pane-visa">
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-[12px] uppercase tracking-wider text-on-surface-variant font-medium">Departure Base</label>
+<div class="flex items-center gap-space-xs p-3 rounded-lg glass-frost-subtle text-on-surface shadow-sm">
+<span class="material-symbols-outlined text-primary text-[20px]">flight_takeoff</span>
+<select class="bg-transparent font-title-md text-[14px] w-full focus:outline-none text-on-surface cursor-pointer">
+<option class="bg-surface-container-high text-on-surface" value="BOM">India (BOM - Mumbai HQ)</option>
+<option class="bg-surface-container-high text-on-surface" value="PNQ">India (PNQ - Pune Campus)</option>
+<option class="bg-surface-container-high text-on-surface" value="DEL">India (DEL - Delhi NCR)</option>
+<option class="bg-surface-container-high text-on-surface" value="BLR">India (BLR - Tech Hub)</option>
+</select>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-[12px] uppercase tracking-wider text-on-surface-variant font-medium">Target Jurisdiction</label>
+<div class="flex items-center gap-space-xs p-3 rounded-lg glass-frost-subtle text-on-surface shadow-sm">
+<span class="material-symbols-outlined text-secondary text-[20px]">public</span>
+<select class="bg-transparent font-title-md text-[14px] w-full focus:outline-none text-on-surface cursor-pointer">
+<option class="bg-surface-container-high text-on-surface" value="DE">Germany (Schengen Business)</option>
+<option class="bg-surface-container-high text-on-surface" value="US">United States (B-1 / B-2)</option>
+<option class="bg-surface-container-high text-on-surface" value="FR">France (Schengen Short-Stay)</option>
+<option class="bg-surface-container-high text-on-surface" value="GB">United Kingdom (Standard Visitor)</option>
+</select>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-[12px] uppercase tracking-wider text-on-surface-variant font-medium">Trip Mandate &amp; Length</label>
+<div class="flex items-center gap-space-xs p-3 rounded-lg glass-frost-subtle text-on-surface shadow-sm">
+<span class="material-symbols-outlined text-tertiary text-[20px]">event_note</span>
+<select class="bg-transparent font-title-md text-[14px] w-full focus:outline-none text-on-surface cursor-pointer">
+<option class="bg-surface-container-high text-on-surface">Client Meetings (Oct 14 – Oct 28, 2026)</option>
+<option class="bg-surface-container-high text-on-surface">Executive Summit (Nov 03 – Nov 08, 2026)</option>
+<option class="bg-surface-container-high text-on-surface">Contract Negotiation (8d)</option>
+<option class="bg-surface-container-high text-on-surface">Knowledge Transfer Sprint (21d)</option>
+</select>
+</div>
+</div>
+<div>
+<a class="w-full flex items-center justify-center gap-space-xs py-3.5 px-space-md rounded-lg bg-gradient-to-r from-primary to-surface-tint text-on-primary font-title-md text-[14px] shadow-md hover:opacity-95 transition-all" data-path="visas-and-immigration" href="#">
+<span class="material-symbols-outlined text-[20px]">bolt</span>
+<span>Start AI Pre-Check</span>
+</a>
+</div>
+</div>
+<!-- Flight Tab Pane -->
+<div class="hidden grid-cols-1 md:grid-cols-4 gap-gutter items-end" id="pane-flight">
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-[12px] uppercase tracking-wider text-on-surface-variant font-medium">Origin Airport</label>
+<div class="flex items-center gap-space-xs p-3 rounded-lg glass-frost-subtle text-on-surface shadow-sm">
+<span class="material-symbols-outlined text-primary text-[20px]">flight_takeoff</span>
+<input class="bg-transparent font-title-md text-[14px] w-full focus:outline-none text-on-surface" type="text" value="BOM • Mumbai Chhatrapati Shivaji"/>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-[12px] uppercase tracking-wider text-on-surface-variant font-medium">Destination Hub</label>
+<div class="flex items-center gap-space-xs p-3 rounded-lg glass-frost-subtle text-on-surface shadow-sm">
+<span class="material-symbols-outlined text-primary text-[20px]">flight_land</span>
+<input class="bg-transparent font-title-md text-[14px] w-full focus:outline-none text-on-surface" type="text" value="FRA • Frankfurt Main Airport"/>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-[12px] uppercase tracking-wider text-on-surface-variant font-medium">Corporate Cabin Class</label>
+<div class="flex items-center gap-space-xs p-3 rounded-lg glass-frost-subtle text-on-surface shadow-sm">
+<span class="material-symbols-outlined text-tertiary text-[20px]">airline_seat_recline_extra</span>
+<select class="bg-transparent font-title-md text-[14px] w-full focus:outline-none text-on-surface cursor-pointer">
+<option class="bg-surface-container-high text-on-surface">Business Class (Policy Approved)</option>
+<option class="bg-surface-container-high text-on-surface">Premium Economy</option>
+<option class="bg-surface-container-high text-on-surface">Economy (Flexible Rescheduling)</option>
+</select>
+</div>
+</div>
+<div>
+<a class="w-full flex items-center justify-center gap-space-xs py-3.5 px-space-md rounded-lg bg-primary-container text-on-primary-container font-title-md text-[14px] shadow-md hover:bg-surface-tint transition-all" data-path="flight-options" href="#">
+<span class="material-symbols-outlined text-[20px]">search</span>
+<span>Compare Flights</span>
+</a>
+</div>
+</div>
+<!-- Hotel Tab Pane -->
+<div class="hidden grid-cols-1 md:grid-cols-4 gap-gutter items-end" id="pane-hotel">
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-[12px] uppercase tracking-wider text-on-surface-variant font-medium">City or Corporate Campus</label>
+<div class="flex items-center gap-space-xs p-3 rounded-lg glass-frost-subtle text-on-surface shadow-sm">
+<span class="material-symbols-outlined text-primary text-[20px]">location_on</span>
+<input class="bg-transparent font-title-md text-[14px] w-full focus:outline-none text-on-surface" type="text" value="Frankfurt Financial District / Innenstadt"/>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-[12px] uppercase tracking-wider text-on-surface-variant font-medium">Stay Dates (2026)</label>
+<div class="flex items-center gap-space-xs p-3 rounded-lg glass-frost-subtle text-on-surface shadow-sm">
+<span class="material-symbols-outlined text-secondary text-[20px]">calendar_today</span>
+<input class="bg-transparent font-title-md text-[14px] w-full focus:outline-none text-on-surface" type="text" value="Oct 14 – Oct 28, 2026 (14 Nights)"/>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-[12px] uppercase tracking-wider text-on-surface-variant font-medium">Tier Preference</label>
+<div class="flex items-center gap-space-xs p-3 rounded-lg glass-frost-subtle text-on-surface shadow-sm">
+<span class="material-symbols-outlined text-tertiary text-[20px]">star</span>
+<select class="bg-transparent font-title-md text-[14px] w-full focus:outline-none text-on-surface cursor-pointer">
+<option class="bg-surface-container-high text-on-surface">5-Star Business Preferred</option>
+<option class="bg-surface-container-high text-on-surface">Executive Long-Stay Suites</option>
+<option class="bg-surface-container-high text-on-surface">Standard Corporate Preferred</option>
+</select>
+</div>
+</div>
+<div>
+<a class="w-full flex items-center justify-center gap-space-xs py-3.5 px-space-md rounded-lg bg-primary-container text-on-primary-container font-title-md text-[14px] shadow-md hover:bg-surface-tint transition-all" data-path="hotel-stays" href="#">
+<span class="material-symbols-outlined text-[20px]">apartment</span>
+<span>Find Corporate Stays</span>
+</a>
+</div>
+</div>
+</div>
+<p class="mt-4 font-body-sm text-[12px] text-on-surface-variant italic">
+          Prices shown are indicative. Final booking on partner site.
+        </p>
+</div>
+</section>
+<!-- 2. SERVICES GRID: AI Visa Pre-Screening, Corporate Flight Comparison, Embassy-Proximity Hotels, Travel Advisory -->
+<section class="w-full px-margin-mobile md:px-margin-desktop py-space-xl">
+<div class="max-w-7xl mx-auto">
+<div class="text-center max-w-3xl mx-auto mb-space-xl">
+<span class="font-label-sm text-[12px] uppercase tracking-wider text-primary">Core Platform Capabilities</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mt-1">Integrated Corporate Mobility Services</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-space-xs">
+            Purpose-built workflows for cross-border engineering delegations, executive summits, and compliance.
+          </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter">
+<!-- Service 1: AI Visa Pre-Screening -->
+<div class="rounded-xl glass-frost p-space-lg flex flex-col justify-between group hover:-translate-y-1 transition-all duration-300">
+<div>
+<div class="w-12 h-12 rounded-xl bg-primary/10 border border-primary/25 flex items-center justify-center text-primary mb-space-md group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-[26px]">verified_user</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-2">AI Visa Pre-Screening</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed mb-space-md">
+                Pre-interview diagnostic checks for Schengen, US, and UK visas that flag common case discrepancies before submission.
+              </p>
+</div>
+<div class="pt-space-sm border-t border-white/10">
+<a class="font-title-md text-[13px] text-primary hover:text-surface-tint flex items-center gap-1.5 transition-colors" data-path="visas-and-immigration" href="#">
+<span>Check Visa Readiness</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Service 2: Corporate Flight Comparison -->
+<div class="rounded-xl glass-frost p-space-lg flex flex-col justify-between group hover:-translate-y-1 transition-all duration-300">
+<div>
+<div class="w-12 h-12 rounded-xl bg-secondary/10 border border-secondary/25 flex items-center justify-center text-secondary mb-space-md group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-[26px]">flight</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-2">Corporate Flight Comparison</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed mb-space-md">
+                Live flight search across leading airlines with corporate policy filtering and flexible rebooking options.
+              </p>
+</div>
+<div class="pt-space-sm border-t border-white/10">
+<a class="font-title-md text-[13px] text-secondary hover:text-secondary-fixed flex items-center gap-1.5 transition-colors" data-path="flight-options" href="#">
+<span>Compare Flights</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Service 3: Embassy-Proximity Hotels -->
+<div class="rounded-xl glass-frost p-space-lg flex flex-col justify-between group hover:-translate-y-1 transition-all duration-300">
+<div>
+<div class="w-12 h-12 rounded-xl bg-tertiary/10 border border-tertiary/25 flex items-center justify-center text-tertiary mb-space-md group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-[26px]">apartment</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-2">Embassy-Proximity Hotels</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed mb-space-md">
+                Verified hotels situated close to consulates and business districts with compliant nightly rate allowances.
+              </p>
+</div>
+<div class="pt-space-sm border-t border-white/10">
+<a class="font-title-md text-[13px] text-tertiary hover:text-tertiary-fixed flex items-center gap-1.5 transition-colors" data-path="hotel-stays" href="#">
+<span>Browse Hotels</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Service 4: Travel Advisory -->
+<div class="rounded-xl glass-frost p-space-lg flex flex-col justify-between group hover:-translate-y-1 transition-all duration-300">
+<div>
+<div class="w-12 h-12 rounded-xl bg-surface-tint/10 border border-surface-tint/25 flex items-center justify-center text-surface-tint mb-space-md group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-[26px]">info</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-2">Travel Advisory</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed mb-space-md">
+                Up-to-date entry rules, required transit authorizations, and destination health advisories for 2026.
+              </p>
+</div>
+<div class="pt-space-sm border-t border-white/10">
+<a class="font-title-md text-[13px] text-surface-tint hover:text-primary flex items-center gap-1.5 transition-colors" data-path="travel-info" href="#">
+<span>View Guidelines</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 3. HOW IT WORKS: 4 Short Steps -->
+<section class="w-full px-margin-mobile md:px-margin-desktop py-space-xl">
+<div class="max-w-7xl mx-auto">
+<div class="text-center max-w-3xl mx-auto mb-space-xl">
+<span class="font-label-sm text-[12px] uppercase tracking-wider text-primary">Pre-Screening Framework</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mt-1">How It Works</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-space-xs">
+            A reliable 4-step workflow combining machine-assisted checks with certified CSR legal review.
+          </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter">
+<!-- Step 1 -->
+<div class="relative rounded-xl glass-frost p-space-lg flex flex-col justify-between group hover:-translate-y-1 transition-all">
+<div>
+<div class="flex items-center justify-between mb-space-md">
+<span class="font-headline-md text-headline-md text-primary font-bold">01</span>
+<div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">smart_toy</span>
+</div>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-2">AI Pre-Screening</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+                Adaptive question prompts evaluate traveler role, trip objectives, sponsor legalities, and case details.
+              </p>
+</div>
+<div class="mt-space-md pt-space-xs border-t border-white/10">
+<span class="font-label-sm text-[12px] text-primary flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">check</span> Interactive Assessment
+              </span>
+</div>
+</div>
+<!-- Step 2 -->
+<div class="relative rounded-xl glass-frost p-space-lg flex flex-col justify-between group hover:-translate-y-1 transition-all">
+<div>
+<div class="flex items-center justify-between mb-space-md">
+<span class="font-headline-md text-headline-md text-surface-tint font-bold">02</span>
+<div class="w-10 h-10 rounded-full bg-surface-tint/10 flex items-center justify-center text-surface-tint">
+<span class="material-symbols-outlined text-[20px]">document_scanner</span>
+</div>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-2">Smart Document Check</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+                Automated document scanning validates passport blank pages, validity dates, corporate letters, and proof of funds.
+              </p>
+</div>
+<div class="mt-space-md pt-space-xs border-t border-white/10">
+<span class="font-label-sm text-[12px] text-surface-tint flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">check</span> Instant Discrepancy Alerts
+              </span>
+</div>
+</div>
+<!-- Step 3 -->
+<div class="relative rounded-xl glass-frost p-space-lg flex flex-col justify-between group hover:-translate-y-1 transition-all">
+<div>
+<div class="flex items-center justify-between mb-space-md">
+<span class="font-headline-md text-headline-md text-tertiary font-bold">03</span>
+<div class="w-10 h-10 rounded-full bg-tertiary/10 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined text-[20px]">verified</span>
+</div>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-2">Human CSR Review</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+                Harbinger corporate mobility officers execute thorough legal sanity checks and deliver a signed 'Proceed Order'.
+              </p>
+</div>
+<div class="mt-space-md pt-space-xs border-t border-white/10">
+<span class="font-label-sm text-[12px] text-tertiary flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">check</span> Certified Officer Verification
+              </span>
+</div>
+</div>
+<!-- Step 4 -->
+<div class="relative rounded-xl glass-frost p-space-lg flex flex-col justify-between group hover:-translate-y-1 transition-all">
+<div>
+<div class="flex items-center justify-between mb-space-md">
+<span class="font-headline-md text-headline-md text-secondary font-bold">04</span>
+<div class="w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[20px]">calendar_month</span>
+</div>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-2">Partner Booking &amp; Biometric Appointment</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+                Consular biometric appointments lock in smoothly with partner flight holds and approved corporate hotels.
+              </p>
+</div>
+<div class="mt-space-md pt-space-xs border-t border-white/10">
+<span class="font-label-sm text-[12px] text-secondary flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">check</span> 2026 Calendar Integration
+              </span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 4. HIGH-FREQUENCY CORPORATE GATEWAYS: Frankfurt, Munich, New York, Paris -->
+<section class="w-full px-margin-mobile md:px-margin-desktop py-space-xl">
+<div class="max-w-7xl mx-auto">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-space-lg gap-space-sm">
+<div>
+<span class="font-label-sm text-[12px] uppercase tracking-wider text-primary">Executive Travel Destinations</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mt-1">High-Frequency Corporate Gateways</h2>
+</div>
+<div class="flex items-center gap-space-xs">
+<a class="px-space-md py-2 rounded-lg glass-frost hover:bg-white/15 text-on-surface font-title-md text-[13px] transition-colors" data-path="flight-options" href="#">
+              All Flight Routes
+            </a>
+<a class="px-space-md py-2 rounded-lg glass-frost hover:bg-white/15 text-on-surface font-title-md text-[13px] transition-colors" data-path="hotel-stays" href="#">
+              All Hotels
+            </a>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter">
+<!-- Card 1: Frankfurt (IMAGE_8) -->
+<div class="rounded-xl glass-frost overflow-hidden flex flex-col group hover:-translate-y-1 transition-all duration-300">
+<div class="relative h-48 w-full overflow-hidden">
+<img alt="Frankfurt Germany skyline with river Main at dusk" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida/AEtjO1W24kGHustP5JQ7bUELA0yg8-9p15xBHFaIqysR0sDgrwSm0KbhbZCwrxYZNcPExTXiT8cFlBVDmXuRfn1Qdt7lt31FbqK6CxmOw9q8Oq_KKPeQCTbCMRlf88azX3vGrFuzG_9nfwm2efQ89lIBM-YzZ_FxQ0TwiaON6ktqEguxNOyGNcus0TzRhfL-m4EGQNNhEYwllcchaUHA8C1f45wlz2Wq2vFOzyRDkds4zeDW5hEpdq4zsKt4zw"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-surface/40 to-transparent"></div>
+<div class="absolute top-space-sm left-space-sm flex items-center gap-1 px-space-sm py-1 rounded-full glass-frost text-on-surface font-label-sm text-[12px] font-semibold">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+                Financial Hub • DE
+              </div>
+<div class="absolute bottom-space-sm right-space-sm px-2.5 py-1 rounded-lg glass-frost text-primary font-code-flight text-[13px] font-bold">
+                FRA HUB
+              </div>
+</div>
+<div class="p-space-md flex flex-col flex-1 justify-between">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-1">Frankfurt am Main</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md">
+                  Direct nonstop connectivity from Mumbai (BOM) &amp; Bengaluru (BLR) for European corporate banking.
+                </p>
+<div class="space-y-1.5 mb-space-md text-[13px]">
+<div class="flex items-center justify-between">
+<span class="text-on-surface-variant">Visa Turnaround:</span>
+<span class="font-title-md text-primary">12 Business Days</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-on-surface-variant">Recommended:</span>
+<span class="font-title-md text-on-surface">Lufthansa / Air India</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-on-surface-variant">Hotel Cap (2026):</span>
+<span class="font-title-md text-tertiary">€220 / night</span>
+</div>
+</div>
+</div>
+<div class="pt-space-sm border-t border-white/10 flex items-center justify-between">
+<a class="font-title-md text-[13px] text-primary hover:underline flex items-center gap-1" data-path="visas-and-immigration" href="#">
+                  Initiate Visa Check <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+<a class="p-2 rounded-lg glass-frost-subtle text-on-surface-variant hover:text-on-surface transition-colors" data-path="flight-options" href="#">
+<span class="material-symbols-outlined text-[18px]">flight</span>
+</a>
+</div>
+</div>
+</div>
+<!-- Card 2: Munich (IMAGE_9) -->
+<div class="rounded-xl glass-frost overflow-hidden flex flex-col group hover:-translate-y-1 transition-all duration-300">
+<div class="relative h-48 w-full overflow-hidden">
+<img alt="Munich Marienplatz dusk view" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida/AEtjO1U5z8d6a2V_hiSNdqjTzY83ujSozSz6COBCZbqMP68Hx0AzVh0w9m94T39fP8ex42kHSddpDUH3UZmcVFHs1WH-PbKHQMP-JmBqMYj-PbO4x-F9yT9UQmljtwB1Y-DEA96C6mCLT4POD_LittXpnHPjHT0UHThgu0K00au2mW1U0Lap1BmdYHAfkS9g7MBo66O4EsM3_TO6hFxMjyytvsaBhXnmI54zimnCHOsKvtiBW0w4323VuKjMcA"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-surface/40 to-transparent"></div>
+<div class="absolute top-space-sm left-space-sm flex items-center gap-1 px-space-sm py-1 rounded-full glass-frost text-on-surface font-label-sm text-[12px] font-semibold">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+                Automotive &amp; Tech • DE
+              </div>
+<div class="absolute bottom-space-sm right-space-sm px-2.5 py-1 rounded-lg glass-frost text-primary font-code-flight text-[13px] font-bold">
+                MUC HUB
+              </div>
+</div>
+<div class="p-space-md flex flex-col flex-1 justify-between">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-1">Munich (Bavaria)</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md">
+                  Seamless express business clearance for engineering delegations, automotive research, and IoT summits.
+                </p>
+<div class="space-y-1.5 mb-space-md text-[13px]">
+<div class="flex items-center justify-between">
+<span class="text-on-surface-variant">Visa Turnaround:</span>
+<span class="font-title-md text-primary">10 Business Days</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-on-surface-variant">Recommended:</span>
+<span class="font-title-md text-on-surface">Lufthansa / Swiss</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-on-surface-variant">Hotel Cap (2026):</span>
+<span class="font-title-md text-tertiary">€215 / night</span>
+</div>
+</div>
+</div>
+<div class="pt-space-sm border-t border-white/10 flex items-center justify-between">
+<a class="font-title-md text-[13px] text-primary hover:underline flex items-center gap-1" data-path="visas-and-immigration" href="#">
+                  Initiate Visa Check <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+<a class="p-2 rounded-lg glass-frost-subtle text-on-surface-variant hover:text-on-surface transition-colors" data-path="flight-options" href="#">
+<span class="material-symbols-outlined text-[18px]">flight</span>
+</a>
+</div>
+</div>
+</div>
+<!-- Card 3: New York (IMAGE_7) -->
+<div class="rounded-xl glass-frost overflow-hidden flex flex-col group hover:-translate-y-1 transition-all duration-300">
+<div class="relative h-48 w-full overflow-hidden">
+<img alt="New York City Manhattan dusk skyline across harbor" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida/AEtjO1XANjI0vNBsLcjzUwdGJU9VBPuJJSqyYFPaWPYI9LlwCzHV5KY7AtvDmxJbMISFWW7H74xVy3DRXoFDqkf2yfBlvxzA0vib7AoOAWMddqRi-EWnq70-QS7OYu4RJL9fFEwaybfvZreSVNk9FtSQAAiQS6QyPDJEzUvU7rHBSvBtYMUdCyaZH7bhPG1vOa9-qoIn09UG3DxqP2TDX4VwRtLc2ndQYSKn8r5TsR_ZMJnIFfhIPcA3L5f1Hw"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-surface/40 to-transparent"></div>
+<div class="absolute top-space-sm left-space-sm flex items-center gap-1 px-space-sm py-1 rounded-full glass-frost text-on-surface font-label-sm text-[12px] font-semibold">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span>
+                Corporate HQ • US
+              </div>
+<div class="absolute bottom-space-sm right-space-sm px-2.5 py-1 rounded-lg glass-frost text-tertiary font-code-flight text-[13px] font-bold">
+                JFK / EWR
+              </div>
+</div>
+<div class="p-space-md flex flex-col flex-1 justify-between">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-1">New York &amp; Tri-State</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md">
+                  Non-stop long-haul corporate routes with comprehensive B-1 / L-1 travel documentation pre-screening.
+                </p>
+<div class="space-y-1.5 mb-space-md text-[13px]">
+<div class="flex items-center justify-between">
+<span class="text-on-surface-variant">B-1 Readiness:</span>
+<span class="font-title-md text-tertiary">96% First-Pass</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-on-surface-variant">Recommended:</span>
+<span class="font-title-md text-on-surface">United / Virgin</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-on-surface-variant">Hotel Cap (2026):</span>
+<span class="font-title-md text-tertiary">$320 / night</span>
+</div>
+</div>
+</div>
+<div class="pt-space-sm border-t border-white/10 flex items-center justify-between">
+<a class="font-title-md text-[13px] text-tertiary hover:underline flex items-center gap-1" data-path="visas-and-immigration" href="#">
+                  Initiate Visa Check <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+<a class="p-2 rounded-lg glass-frost-subtle text-on-surface-variant hover:text-on-surface transition-colors" data-path="flight-options" href="#">
+<span class="material-symbols-outlined text-[18px]">flight</span>
+</a>
+</div>
+</div>
+</div>
+<!-- Card 4: Paris (IMAGE_10) -->
+<div class="rounded-xl glass-frost overflow-hidden flex flex-col group hover:-translate-y-1 transition-all duration-300">
+<div class="relative h-48 w-full overflow-hidden">
+<img alt="Paris European city dusk photography" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida/AEtjO1Wn74PE2WfJeVmV04BbTjk9JPjNIoJXX19K2sEsqqohIoRo8aH1rCsX0zJy7oe1GXfEIWkSLATzF8Bcuq61YeYTCrOV1CrzOF8MHM-GRB5iRSw1qKHLjas26Dt0y9wS5Gbtk1g9qEw_pHreylo5HXZc96eI-9uKQ4gb4t6tRS8EQGavFCjndawVVJh4lZM11x7_fNIpqUa3jEiV752BVVbgw9CBTA80m2Mz9Zc2lSf_Sz826wHJC9xQoY4"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-surface/40 to-transparent"></div>
+<div class="absolute top-space-sm left-space-sm flex items-center gap-1 px-space-sm py-1 rounded-full glass-frost text-on-surface font-label-sm text-[12px] font-semibold">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+                Tech &amp; Design • FR
+              </div>
+<div class="absolute bottom-space-sm right-space-sm px-2.5 py-1 rounded-lg glass-frost text-secondary font-code-flight text-[13px] font-bold">
+                CDG HUB
+              </div>
+</div>
+<div class="p-space-md flex flex-col flex-1 justify-between">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-1">Paris (La Défense)</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md">
+                  Direct flights via Air France. Gateway for enterprise aerospace, supply chain summits, and corporate headquarters.
+                </p>
+<div class="space-y-1.5 mb-space-md text-[13px]">
+<div class="flex items-center justify-between">
+<span class="text-on-surface-variant">Visa Turnaround:</span>
+<span class="font-title-md text-secondary">15 Business Days</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-on-surface-variant">Recommended:</span>
+<span class="font-title-md text-on-surface">Air France / Emirates</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-on-surface-variant">Hotel Cap (2026):</span>
+<span class="font-title-md text-tertiary">€245 / night</span>
+</div>
+</div>
+</div>
+<div class="pt-space-sm border-t border-white/10 flex items-center justify-between">
+<a class="font-title-md text-[13px] text-secondary hover:underline flex items-center gap-1" data-path="visas-and-immigration" href="#">
+                  Initiate Visa Check <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+<a class="p-2 rounded-lg glass-frost-subtle text-on-surface-variant hover:text-on-surface transition-colors" data-path="hotel-stays" href="#">
+<span class="material-symbols-outlined text-[18px]">hotel</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 5. FAQ ACCORDION (Frequently Asked Questions) -->
+<section class="w-full px-margin-mobile md:px-margin-desktop py-space-xl" id="faq-section">
+<div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-gutter-lg">
+<!-- Testimonials side -->
+<div class="lg:col-span-5 flex flex-col justify-between">
+<div>
+<div class="flex items-center gap-2 mb-1">
+<span class="font-label-sm text-[12px] uppercase tracking-wider text-primary">Executive Endorsements</span>
+<span class="font-body-sm text-[12px] text-on-surface-variant px-2 py-0.5 rounded-full glass-frost">(Sample demonstration data)</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-space-md">Trusted by Global Business Mobility Leaders</h2>
+<div class="rounded-xl glass-frost p-space-lg relative mb-space-md">
+<span class="material-symbols-outlined text-primary/40 text-[40px] absolute top-space-md right-space-md">format_quote</span>
+<p class="font-body-lg text-body-lg text-on-surface italic mb-space-md relative z-10 leading-relaxed">
+                "TravelDesk reduced our overseas business visa delays significantly. When 40 engineers needed clearance for a client rollout in Frankfurt, the AI pre-check identified three missing corporate endorsements in minutes."
+              </p>
+<div class="flex items-center gap-space-sm">
+<div class="w-11 h-11 rounded-full bg-gradient-to-tr from-primary-container to-secondary-container flex items-center justify-center font-bold text-on-primary text-body-md">
+                  AR
+                </div>
+<div class="flex flex-col">
+<span class="font-title-md text-body-md text-on-surface font-semibold">Ananya Roy</span>
+<span class="font-body-sm text-[12px] text-on-surface-variant">VP Global Operations, FinServe Enterprise</span>
+</div>
+</div>
+</div>
+<div class="p-space-md rounded-xl glass-frost-subtle text-on-surface-variant font-body-sm text-[12px] flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">verified</span>
+<span>All case reviews are supervised by dedicated human mobility specialists before submission.</span>
+</div>
+</div>
+</div>
+<!-- FAQ Accordion -->
+<div class="lg:col-span-7 flex flex-col">
+<span class="font-label-sm text-[12px] uppercase tracking-wider text-secondary">Operational Guidance</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mt-1 mb-space-md">Frequently Asked Questions</h2>
+<div class="space-y-space-sm">
+<!-- FAQ 1 -->
+<div class="rounded-xl glass-frost p-space-md shadow-sm">
+<button class="w-full flex items-center justify-between text-left font-title-md text-headline-sm text-on-surface cursor-pointer" onclick="toggleFaq('faq-1')">
+<span class="text-[16px]">How does TravelDesk's AI pre-interview prevent Schengen visa rejections?</span>
+<span class="material-symbols-outlined text-on-surface-variant transition-transform" id="faq-icon-1">expand_more</span>
+</button>
+<div class="mt-space-xs font-body-sm text-body-sm text-on-surface-variant leading-relaxed" id="faq-1">
+                Consulates frequently issue Requests for Evidence or denials due to mismatching travel itineraries, lack of verified host company letters, or inadequate medical evacuation clauses. Our diagnostic engine simulates consular intake criteria, validating the cover letter against destination-specific labor codes before any fee is paid.
+              </div>
+</div>
+<!-- FAQ 2 -->
+<div class="rounded-xl glass-frost p-space-md shadow-sm">
+<button class="w-full flex items-center justify-between text-left font-title-md text-headline-sm text-on-surface cursor-pointer" onclick="toggleFaq('faq-2')">
+<span class="text-[16px]">Are flight and hotel bookings compliant with corporate expense policies for 2026?</span>
+<span class="material-symbols-outlined text-on-surface-variant transition-transform" id="faq-icon-2">expand_more</span>
+</button>
+<div class="hidden mt-space-xs font-body-sm text-body-sm text-on-surface-variant leading-relaxed" id="faq-2">
+                Yes. Live feeds from partner platforms are automatically filtered through your company's predefined tier limits (e.g., Director-level Business Class eligibility, maximum city lodging caps). Non-compliant options trigger designated one-click approval workflows.
+              </div>
+</div>
+<!-- FAQ 3 -->
+<div class="rounded-xl glass-frost p-space-md shadow-sm">
+<button class="w-full flex items-center justify-between text-left font-title-md text-headline-sm text-on-surface cursor-pointer" onclick="toggleFaq('faq-3')">
+<span class="text-[16px]">What is the role of the Human CSR Specialist in the loop?</span>
+<span class="material-symbols-outlined text-on-surface-variant transition-transform" id="faq-icon-3">expand_more</span>
+</button>
+<div class="hidden mt-space-xs font-body-sm text-body-sm text-on-surface-variant leading-relaxed" id="faq-3">
+                While AI completes preliminary extraction and syntax validation, every visa case and multi-city ticket is personally audited by a dedicated Harbinger Corporate Services Representative (CSR). They verify diplomatic clearances and monitor embassy queue openings.
+              </div>
+</div>
+<!-- FAQ 4 -->
+<div class="rounded-xl glass-frost p-space-md shadow-sm">
+<button class="w-full flex items-center justify-between text-left font-title-md text-headline-sm text-on-surface cursor-pointer" onclick="toggleFaq('faq-4')">
+<span class="text-[16px]">Can I integrate our company's internal ERP and HRMS?</span>
+<span class="material-symbols-outlined text-on-surface-variant transition-transform" id="faq-icon-4">expand_more</span>
+</button>
+<div class="hidden mt-space-xs font-body-sm text-body-sm text-on-surface-variant leading-relaxed" id="faq-4">
+                TravelDesk provides REST APIs and pre-built connectors for SAP Concur, Workday, BambooHR, and Microsoft Teams. Employee profile verification and travel request sign-offs happen smoothly inside your existing toolchain.
+              </div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 6. FINAL CTA SECTION ("Ready to streamline your 2026 corporate deployment?") -->
+<section class="w-full px-margin-mobile md:px-margin-desktop py-space-xl">
+<div class="max-w-7xl mx-auto relative rounded-xl overflow-hidden glass-frost p-space-xl text-center">
+<div class="absolute -top-24 left-1/4 w-80 h-80 rounded-full blur-[100px] pointer-events-none" style="background: radial-gradient(circle, rgba(20, 184, 166, 0.22) 0%, transparent 70%);"></div>
+<div class="absolute -bottom-24 right-1/4 w-80 h-80 rounded-full blur-[100px] pointer-events-none" style="background: radial-gradient(circle, rgba(139, 92, 246, 0.22) 0%, transparent 70%);"></div>
+<div class="relative z-10 max-w-3xl mx-auto flex flex-col items-center">
+<div class="inline-flex items-center gap-space-xs px-space-md py-1 rounded-full glass-frost text-primary font-label-sm text-[12px] mb-space-md">
+<span class="material-symbols-outlined text-[16px]">verified</span>
+            Harbinger Enterprise Mobility
+          </div>
+<h2 class="font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface mb-space-md leading-tight">
+            Ready to streamline your 2026 corporate deployment?
+          </h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-space-lg max-w-2xl">
+            Join enterprise travelers who rely on TravelDesk for instant consular pre-qualification, discounted negotiated corporate fares, and automated compliance.
+          </p>
+<div class="flex flex-col sm:flex-row items-center justify-center gap-space-md w-full sm:w-auto">
+<a class="w-full sm:w-auto flex items-center justify-center gap-space-xs px-space-lg py-4 rounded-xl bg-gradient-to-r from-primary to-surface-tint text-on-primary font-title-md text-body-lg shadow-lg hover:opacity-95 transition-all" data-path="visas-and-immigration" href="#">
+<span class="material-symbols-outlined text-[20px]">smart_toy</span>
+<span>Begin Visa Pre-Interview</span>
+</a>
+<a class="w-full sm:w-auto flex items-center justify-center gap-space-xs px-space-lg py-4 rounded-xl glass-frost hover:bg-white/15 text-on-surface font-title-md text-body-lg shadow-md transition-all" data-path="flight-options" href="#">
+<span class="material-symbols-outlined text-[20px]">flight</span>
+<span>Explore Flight Options</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+</div>
+<script>
+    function switchCockpitTab(tabKey) {
+      const tabs = ['visa', 'flight', 'hotel'];
+      tabs.forEach(key => {
+        const pane = document.getElementById('pane-' + key);
+        const btn = document.getElementById('tab-btn-' + key);
+        if (key === tabKey) {
+          pane.classList.remove('hidden');
+          pane.classList.add('grid');
+          btn.className = "flex items-center gap-space-xs px-space-md py-space-xs rounded-lg font-title-md text-[14px] bg-primary-container text-on-primary-container shadow-sm transition-all";
+        } else {
+          pane.classList.add('hidden');
+          pane.classList.remove('grid');
+          btn.className = "flex items-center gap-space-xs px-space-md py-space-xs rounded-lg font-title-md text-[14px] text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-all";
+        }
+      });
+    }
+
+    function setQuery(queryText) {
+      const input = document.getElementById('hero-omni-search');
+      if (input) {
+        input.value = queryText;
+        input.focus();
+      }
+    }
+
+    function triggerSearch() {
+      const input = document.getElementById('hero-omni-search');
+      const val = input ? input.value.toLowerCase() : '';
+      if (val.includes('flight') || val.includes('bom') || val.includes('fra')) {
+        window.location.hash = 'flight-options';
+      } else if (val.includes('hotel') || val.includes('paris') || val.includes('munich') || val.includes('stay')) {
+        window.location.hash = 'hotel-stays';
+      } else {
+        window.location.hash = 'visas-and-immigration';
+      }
+    }
+
+    function toggleFaq(id) {
+      const el = document.getElementById(id);
+      const icon = document.getElementById('faq-icon-' + id.split('-')[1]);
+      if (el) {
+        if (el.classList.contains('hidden')) {
+          el.classList.remove('hidden');
+          if (icon) icon.textContent = 'expand_less';
+        } else {
+          el.classList.add('hidden');
+          if (icon) icon.textContent = 'expand_more';
+        }
+      }
+    }
+  </script>
+</main>
+<!-- Floating AI Concierge Launcher (Positioned so it doesn't collide with footer) -->
+<aside class="fixed bottom-6 right-6 z-40 flex items-center">
+<button aria-label="Ask TravelDesk AI Assistant" class="group relative flex items-center gap-space-sm pl-space-sm pr-space-md py-2.5 rounded-full glass-frost text-on-surface hover:bg-white/15 transition-all duration-300 hover:scale-[1.02] cursor-pointer shadow-[0_8px_32px_rgba(0,0,0,0.5)] border border-primary/40" type="button">
+<span class="relative flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-tr from-primary-container to-secondary-container text-white shadow-inner">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-60"></span>
+<span class="material-symbols-outlined text-[18px]">smart_toy</span>
+</span>
+<div class="flex flex-col text-left">
+<span class="font-label-sm text-[12px] uppercase tracking-wider text-primary font-bold">AI Concierge</span>
+<span class="font-title-md text-[13px] text-on-surface font-semibold">Ask TravelDesk</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:translate-x-0.5 transition-transform text-[18px]">arrow_forward</span>
+</button>
+</aside>
+<!-- Footer with "Book via partners", neutral language, minimum 12px text -->
+<footer class="relative z-10 w-full glass-frost border-t border-white/10 pt-space-xl pb-16 mt-space-xl">
+<div class="w-full px-margin-mobile md:px-margin-desktop max-w-7xl mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter mb-space-lg">
+<div class="flex flex-col gap-space-sm md:col-span-2">
+<div class="flex items-center gap-3">
+<img alt="Harbinger Group" class="h-6 w-auto object-contain brightness-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCEAHmedQkdmigxSTqW6iAt9d9Ct_HJX-M0NUc3w3BeOnPkLrNQ6tOasXO5FronjgteNrdMhVKIMbt41owVsx3X8g6jzOuDlDtuan2zs-1rXat9myMgTVm_k1bf7f98rtuObplhlMs3-eIag_XhqE_VqaITkUr7J4GNvUzpWVe9aD1v0VnYnMxPoOdvAQT4DZfan20ySe99dMaThvlKi2Ml7v6lImuGCw7WWvsWQtp_pUYr2sQxg5A9IyGk40NO_YeZ4w"/>
+<span class="font-headline-lg text-[20px] font-bold text-white tracking-tight leading-none">TravelDesk</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-md">
+          Executive travel lifecycle administration, regulatory cross-border compliance, and enterprise corporate logistics engineered with human-supervised verification protocols.
+        </p>
+<p class="font-body-sm text-[12px] text-on-surface-variant italic">
+          * (Sample demonstration data) Figures and reviews displayed are illustrative. Prices shown are indicative. Final booking on partner site.
+        </p>
+</div>
+<!-- Book via partners -->
+<div class="flex flex-col gap-space-xs">
+<span class="font-label-md text-[13px] uppercase tracking-wider text-on-surface font-semibold">Book via partners</span>
+<div class="flex flex-col gap-1.5 font-body-sm text-[13px] text-on-surface-variant">
+<span class="hover:text-on-surface transition-colors cursor-pointer">ixigo</span>
+<span class="hover:text-on-surface transition-colors cursor-pointer">MakeMyTrip</span>
+<span class="hover:text-on-surface transition-colors cursor-pointer">Booking.com</span>
+</div>
+</div>
+<!-- Policy & Compliance -->
+<div class="flex flex-col gap-space-xs">
+<span class="font-label-md text-[13px] uppercase tracking-wider text-on-surface font-semibold">Policy &amp; Compliance</span>
+<div class="flex flex-col gap-1.5 font-body-sm text-[13px] text-on-surface-variant">
+<span class="hover:text-on-surface transition-colors cursor-pointer">Visa Legal Disclaimer</span>
+<span class="hover:text-on-surface transition-colors cursor-pointer">Duty of Care Protocols</span>
+<span class="hover:text-on-surface transition-colors cursor-pointer">Privacy Policy &amp; Terms</span>
+</div>
+</div>
+</div>
+<div class="pt-space-md border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-space-sm">
+<p class="font-body-sm text-[12px] text-on-surface-variant text-center sm:text-left">
+        © 2026 Harbinger Group. All rights reserved. TravelDesk platform operations are subject to standard enterprise terms.
+      </p>
+<div class="font-label-sm text-[12px] text-on-surface-variant flex items-center gap-space-xs">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span>Platform Active (2026)</span>
+</div>
+</div>
+</div>
+</footer>
+</body></html>

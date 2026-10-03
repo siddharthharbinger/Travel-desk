@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="web_standard" name="shell-type"/>
+<title>TravelDesk - Hotel Stays</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&amp;family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+    @layer base {
+      html, body { margin: 0; padding: 0; }
+      body { overscroll-behavior: none; }
+    }
+    ::-webkit-scrollbar { display: none; }
+    .glass-panel {
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      background-color: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    }
+    .glass-chip {
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      background-color: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+    }
+    .glass-chip:hover {
+      background-color: rgba(255, 255, 255, 0.14);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+</style>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "on-surface": "#d6e3ff",
+            "secondary-fixed": "#e9ddff",
+            "on-tertiary-fixed": "#2a1800",
+            "surface": "#071426",
+            "inverse-surface": "#d6e3ff",
+            "surface-container-low": "#0b1b33",
+            "inverse-primary": "#006b5f",
+            "secondary-container": "#571bc1",
+            "surface-container-high": "#182a46",
+            "on-primary-fixed-variant": "#005048",
+            "tertiary": "#ffb957",
+            "error-container": "#93000a",
+            "on-error-container": "#ffdad6",
+            "on-tertiary": "#462b00",
+            "on-secondary": "#3c0091",
+            "primary-fixed": "#71f8e4",
+            "surface-dim": "#071426",
+            "on-surface-variant": "#cbd5e1",
+            "surface-container": "#0f233f",
+            "on-error": "#690005",
+            "on-secondary-container": "#c4abff",
+            "background": "#071426",
+            "error": "#ffb4ab",
+            "on-primary-fixed": "#00201c",
+            "on-tertiary-fixed-variant": "#643f00",
+            "on-tertiary-container": "#533400",
+            "surface-tint": "#4fdbc8",
+            "outline": "#859490",
+            "on-secondary-fixed-variant": "#5516be",
+            "primary-fixed-dim": "#4fdbc8",
+            "surface-bright": "#283a56",
+            "tertiary-container": "#e1940b",
+            "primary-container": "#14b8a6",
+            "surface-container-lowest": "#030c18",
+            "outline-variant": "#3c4947",
+            "secondary-fixed-dim": "#d0bcff",
+            "secondary": "#d0bcff",
+            "on-primary": "#003731",
+            "primary": "#4fdbc8",
+            "on-primary-container": "#00423b",
+            "on-background": "#d6e3ff",
+            "surface-variant": "#233551",
+            "inverse-on-surface": "#1f314d",
+            "tertiary-fixed": "#ffddb5",
+            "on-secondary-fixed": "#23005c",
+            "tertiary-fixed-dim": "#ffb957",
+            "surface-container-highest": "#233551"
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          spacing: {
+            "space-lg": "1.5rem",
+            "space-sm": "0.75rem",
+            "space-md": "1rem",
+            "space-xs": "0.5rem",
+            "margin-mobile": "1rem",
+            "gutter": "1.5rem",
+            "space-xl": "2.5rem",
+            "margin": "2rem",
+            "gutter-sm": "1rem",
+            "margin-desktop": "3rem",
+            "gutter-lg": "2rem"
+          },
+          fontFamily: {
+            "headline-lg": ["Newsreader", "Georgia", "serif"],
+            "headline-sm": ["DM Sans", "sans-serif"],
+            "body-md": ["DM Sans", "sans-serif"],
+            "body-sm": ["DM Sans", "sans-serif"],
+            "display-lg": ["Newsreader", "Georgia", "serif"],
+            "label-sm": ["DM Sans", "sans-serif"],
+            "display-md": ["Newsreader", "Georgia", "serif"],
+            "body-lg": ["DM Sans", "sans-serif"],
+            "title-md": ["DM Sans", "sans-serif"],
+            "headline-md": ["Newsreader", "Georgia", "serif"],
+            "code-flight": ["DM Sans", "sans-serif"],
+            "label-md": ["DM Sans", "sans-serif"]
+          },
+          fontSize: {
+            "headline-lg": ["28px", { lineHeight: "36px", letterSpacing: "-0.01em", fontWeight: "500" }],
+            "headline-sm": ["18px", { lineHeight: "26px", letterSpacing: "-0.005em", fontWeight: "600" }],
+            "body-md": ["14px", { lineHeight: "22px", letterSpacing: "0.005em", fontWeight: "400" }],
+            "body-sm": ["12px", { lineHeight: "18px", letterSpacing: "0.01em", fontWeight: "400" }],
+            "label-sm": ["12px", { lineHeight: "16px", letterSpacing: "0.04em", fontWeight: "700" }],
+            "display-md": ["34px", { lineHeight: "42px", letterSpacing: "-0.015em", fontWeight: "400" }],
+            "body-lg": ["16px", { lineHeight: "26px", letterSpacing: "0em", fontWeight: "400" }],
+            "title-md": ["16px", { lineHeight: "24px", letterSpacing: "0em", fontWeight: "600" }],
+            "display-lg": ["44px", { lineHeight: "52px", letterSpacing: "-0.02em", fontWeight: "400" }],
+            "headline-md": ["22px", { lineHeight: "30px", letterSpacing: "0em", fontWeight: "500" }],
+            "code-flight": ["14px", { lineHeight: "20px", letterSpacing: "0.08em", fontWeight: "700" }],
+            "label-md": ["13px", { lineHeight: "18px", letterSpacing: "0.02em", fontWeight: "600" }]
+          }
+        }
+      }
+    };
+</script>
+</head>
+<body class="bg-surface font-body-md text-on-surface antialiased min-h-screen relative selection:bg-primary-container selection:text-on-primary-container pb-28">
+<!-- AURORA GLOWING BACKDROPS -->
+<div class="pointer-events-none fixed inset-0 overflow-hidden z-0">
+<div class="absolute -top-48 -left-48 w-[720px] h-[720px] rounded-full bg-teal-400/15 blur-[140px]"></div>
+<div class="absolute top-1/4 -right-48 w-[640px] h-[640px] rounded-full bg-violet-600/20 blur-[150px]"></div>
+<div class="absolute top-2/3 left-1/4 w-[750px] h-[550px] rounded-full bg-cyan-500/15 blur-[160px]"></div>
+<div class="absolute -bottom-32 right-1/4 w-[600px] h-[600px] rounded-full bg-indigo-900/35 blur-[150px]"></div>
+</div>
+<!-- 1. TOP NAVBAR: Floating glass pill navbar, exactly 64px high, max-w-7xl mt-4 -->
+<header class="fixed top-0 inset-x-0 z-50 px-4 sm:px-6 lg:px-8 pointer-events-none">
+<div class="h-16 max-w-7xl mx-auto mt-4 px-6 backdrop-blur-md bg-white/10 border border-white/20 rounded-full flex items-center justify-between shadow-2xl shadow-black/40 pointer-events-auto relative">
+<!-- Left: Attached company logo next to wordmark text TravelDesk as ONE single lockup -->
+<a class="flex items-center gap-3 shrink-0 group" href="#">
+<img alt="Logo" class="h-7 w-auto object-contain brightness-0 invert opacity-95 group-hover:opacity-100 transition-opacity" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJexYDbko18cf6vzPDSIphb2Qs4Q4hraBbmnKIpWwo0Et2OrVsqGm0PfuysdcuL-zlALtw0dhPjr9sgu7pWCRCp83mA14NuFvKnCBKHe8BzXb6vdx9O9-sReoDwqcyMWVu5U00kcsMMMWL0fn01PaoOMKx3c8U-I-HkKRLPvS46n7FQ8mw6MvZJhP20Zq9bSpigVJOYsuJN1rPDsn2CzZEioKrdkhwUdJHYUrSAJc_i6GsqKtSzOJ6jGYItML5MHqEjg"/>
+<span class="font-headline-md text-[22px] font-bold text-white tracking-tight leading-none">TravelDesk</span>
+</a>
+<!-- Center: Exactly four navigation links -->
+<nav class="hidden md:flex items-center gap-1.5 p-1 rounded-full bg-white/[0.05] border border-white/10">
+<a class="px-4 py-1.5 rounded-full text-[14px] font-medium text-slate-200 hover:text-white hover:bg-white/[0.08] transition-all" href="#">Visas</a>
+<a class="px-4 py-1.5 rounded-full text-[14px] font-medium text-slate-200 hover:text-white hover:bg-white/[0.08] transition-all" href="#">Flights</a>
+<a aria-current="page" class="px-4 py-1.5 rounded-full text-[14px] font-medium bg-white/[0.12] text-primary border border-primary/30 shadow-sm" href="#">Hotels</a>
+<a class="px-4 py-1.5 rounded-full text-[14px] font-medium text-slate-200 hover:text-white hover:bg-white/[0.08] transition-all" href="#">Travel Info</a>
+</nav>
+<!-- Right: Theme toggle, notification bell with red dot, and avatar ONLY (36px circular avatar) with dropdown -->
+<div class="flex items-center gap-2.5 shrink-0">
+<button aria-label="Toggle UI Theme" class="h-9 w-9 rounded-full bg-white/[0.06] hover:bg-white/[0.14] text-slate-200 hover:text-white border border-white/15 flex items-center justify-center transition-all" id="theme-toggle-btn" onclick="document.documentElement.classList.toggle('dark');" type="button">
+<span class="material-symbols-outlined text-[19px] dark:hidden">light_mode</span>
+<span class="material-symbols-outlined text-[19px] hidden dark:inline-block text-primary">dark_mode</span>
+</button>
+<button aria-label="Notifications" class="relative h-9 w-9 rounded-full bg-white/[0.06] hover:bg-white/[0.14] text-slate-200 hover:text-white border border-white/15 flex items-center justify-center transition-all" type="button">
+<span class="material-symbols-outlined text-[19px]">notifications</span>
+<span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-red-500 shadow-[0_0_8px_#ef4444]"></span>
+</button>
+<!-- User Avatar with Interactive Dropdown Container -->
+<div class="relative group/user">
+<button aria-expanded="false" class="block rounded-full ring-2 ring-white/20 hover:ring-primary/60 transition-all focus:outline-none" type="button">
+<img alt="Vikram Malhotra" class="w-9 h-9 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida/AEtjO1XMGEBK-fctXfCvDlCzzj06D2W3zKDSEMI0U7qUT_3l6Bu8dcezVYv4hBlZetbQkzkpW5X2h8QTrWTszQs7ewyZDs3g9pp8AQW2EXpRpBEVMJL4xNxj6h6HwtlIDu9d2WrfIWbJLgEDnOmoaFIOsgWBEexXX3-tcbU9e48jvvjssTnglZoSNTVob4Up_HpRCB0_sySSW6hgK7iq6dZuruWHscYJa5yjMqY_JO4CXOjcDep-Aje7stSUU6w"/>
+</button>
+<!-- Interactive-looking avatar dropdown card -->
+<div class="absolute right-0 top-full mt-3 w-64 glass-panel rounded-2xl p-3 shadow-2xl border border-white/20 opacity-0 invisible group-hover/user:opacity-100 group-hover/user:visible transition-all duration-200 transform translate-y-1 group-hover/user:translate-y-0 z-50">
+<div class="px-3 py-2 border-b border-white/15 mb-2">
+<div class="font-title-md text-[14px] text-white font-semibold leading-tight">Vikram Malhotra</div>
+<div class="text-[12px] text-primary font-medium mt-0.5">Corporate Traveler</div>
+</div>
+<div class="space-y-1 text-[13px] text-slate-200">
+<a class="flex items-center gap-2 px-3 py-2 rounded-xl hover:bg-white/[0.1] text-slate-200 hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined text-[18px] text-slate-400">help_outline</span>
+<span>Help &amp; FAQ</span>
+</a>
+<a class="flex items-center gap-2 px-3 py-2 rounded-xl hover:bg-white/[0.1] text-slate-200 hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined text-[18px] text-primary">published_with_changes</span>
+<span>Switch role (demo: CSR / Admin)</span>
+</a>
+<div class="my-1 border-t border-white/10"></div>
+<a class="flex items-center gap-2 px-3 py-2 rounded-xl hover:bg-red-500/20 text-rose-300 hover:text-rose-200 transition-colors" href="#">
+<span class="material-symbols-outlined text-[18px]">logout</span>
+<span>Sign out</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</header>
+<!-- MAIN VIEWPORT -->
+<main class="relative z-10 w-full pt-28 min-h-screen">
+<div class="flex flex-col w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-space-md space-y-space-md">
+<!-- Top Breadcrumb & Live Feed Status -->
+<div class="flex flex-wrap items-center justify-between gap-space-xs text-slate-300 font-label-md text-[13px]">
+<div class="flex items-center gap-space-xs">
+<span class="inline-flex items-center gap-1.5 text-primary hover:underline cursor-pointer">
+<span class="material-symbols-outlined text-[18px]">apartment</span>
+          Corporate Accommodations
+        </span>
+<span class="text-white/30">/</span>
+<span class="text-slate-100">Bavaria Corridor • Q4 Executive Mobility</span>
+</div>
+<div class="flex items-center gap-space-sm">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/[0.08] border border-white/15 text-primary text-[12px] font-medium shadow-sm"><span class="h-2 w-2 rounded-full bg-primary animate-pulse"></span> Sample listings</span>
+<span class="hidden sm:inline text-white/30">•</span>
+<span class="hidden sm:inline text-[12px] text-slate-300">Prices shown are indicative. Final price and booking confirmation on partner site.</span>
+</div>
+</div>
+<!-- SEARCH COCKPIT BAR (FROSTED GLASS CONTAINER) -->
+<div class="relative rounded-2xl glass-panel p-space-md shadow-2xl overflow-hidden">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-space-sm items-center">
+<!-- Destination Block -->
+<div class="lg:col-span-4 flex items-center gap-space-sm backdrop-blur-md bg-white/[0.08] hover:bg-white/[0.12] px-space-md py-space-sm rounded-xl transition-all border border-white/15"><div class="p-2.5 rounded-lg bg-surface-container text-primary flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-[20px]">location_on</span></div><div class="flex flex-col min-w-0"><span class="text-[12px] text-slate-300 uppercase tracking-wider font-semibold">Destination / Proximity Node</span><div class="font-title-md text-[15px] text-white font-semibold truncate">Munich, Germany</div><span class="text-[12px] text-primary truncate">near Messe München &amp; Siemens HQ</span></div></div>
+<!-- Dates Block (Accurate Weekdays Oct 14 – Oct 28, 2026) -->
+<div class="lg:col-span-3 flex items-center gap-space-sm backdrop-blur-md bg-white/[0.08] hover:bg-white/[0.12] px-space-md py-space-sm rounded-xl transition-all border border-white/15"><div class="p-2.5 rounded-lg bg-surface-container text-tertiary flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-[20px]">date_range</span></div><div class="flex flex-col min-w-0"><span class="text-[12px] text-slate-300 uppercase tracking-wider font-semibold">Check-in / Check-out</span><div class="font-title-md text-[15px] text-white font-semibold">14 Oct - 28 Oct 2026</div><span class="text-[12px] text-slate-300">14 nights (Sample data)</span></div></div>
+<!-- Occupancy Tier Block -->
+<div class="lg:col-span-3 flex items-center gap-space-sm backdrop-blur-md bg-white/[0.08] hover:bg-white/[0.12] px-space-md py-space-sm rounded-xl transition-all border border-white/15"><div class="p-2.5 rounded-lg bg-surface-container text-secondary flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-[20px]">group</span></div><div class="flex flex-col min-w-0"><span class="text-[12px] text-slate-300 uppercase tracking-wider font-semibold">Occupancy Tier</span><div class="font-title-md text-[15px] text-white font-semibold truncate">1 Executive Guest</div><span class="text-[12px] text-slate-300 truncate">1 Corporate King Room</span></div></div>
+<!-- Action CTA Block -->
+<div class="lg:col-span-2 flex items-stretch h-full">
+<button class="w-full h-full min-h-[52px] px-space-md py-space-sm rounded-xl bg-gradient-to-r from-primary-container via-teal-400 to-surface-tint hover:opacity-95 text-on-primary-container font-title-md text-[14px] font-bold flex items-center justify-center gap-space-xs shadow-lg transition-all" type="button">
+<span class="material-symbols-outlined text-[20px]">sync</span>
+<span>Update Search</span>
+</button>
+</div>
+</div>
+</div>
+<!-- VIEW MODES & RAPID SELECTION CHIPS -->
+<div class="flex flex-col xl:flex-row items-start xl:items-center justify-between gap-space-md pt-space-xs">
+<!-- Quick Filter Chips Track -->
+<div class="flex flex-wrap items-center gap-2 w-full xl:w-auto">
+<button class="px-3.5 py-1.5 rounded-full bg-primary-container/20 border border-primary/40 text-primary text-[13px] font-medium shadow-sm flex items-center gap-1.5 transition-all" type="button">
+<span class="material-symbols-outlined text-[16px]">verified</span>
+          Near German Consulate
+        </button>
+<button class="glass-chip px-3.5 py-1.5 rounded-full text-slate-200 text-[13px] font-medium shadow-sm flex items-center gap-1.5 transition-all" type="button">
+<span class="material-symbols-outlined text-[16px] text-tertiary">check_circle</span>
+          Free Cancellation
+        </button>
+<button class="glass-chip px-3.5 py-1.5 rounded-full text-slate-200 text-[13px] font-medium shadow-sm flex items-center gap-1.5 transition-all" type="button">
+<span class="material-symbols-outlined text-[16px] text-tertiary">free_breakfast</span>
+          Breakfast Included
+        </button>
+<button class="glass-chip px-3.5 py-1.5 rounded-full text-slate-200 text-[13px] font-medium shadow-sm flex items-center gap-1.5 transition-all" type="button">
+<span class="material-symbols-outlined text-[16px] text-secondary">concierge</span>
+          Executive Lounge
+        </button>
+<button class="glass-chip px-3.5 py-1.5 rounded-full text-slate-200 text-[13px] font-medium shadow-sm flex items-center gap-1.5 transition-all" type="button">
+<span class="material-symbols-outlined text-[16px] text-slate-300">near_me</span>
+          Within 5km of Center
+        </button>
+</div>
+<!-- View Toggle Switcher -->
+<div class="flex items-center gap-1 p-1 bg-surface-container-low/80 border border-white/10 rounded-xl shadow-inner shrink-0">
+<button class="px-space-md py-1.5 rounded-lg bg-surface-container-highest text-primary text-[13px] font-semibold shadow-sm flex items-center gap-1.5 transition-all" id="view-mode-list" type="button"><span class="material-symbols-outlined text-[18px]">format_list_bulleted</span><span>List View (3 Stays)</span></button>
+<button class="px-space-md py-1.5 rounded-lg text-slate-300 hover:text-white text-[13px] font-medium flex items-center gap-1.5 transition-all" id="view-mode-map" type="button">
+<span class="material-symbols-outlined text-[18px]">map</span>
+<span>Interactive Map</span>
+</button>
+</div>
+</div>
+<!-- MAIN TWO-COLUMN LAYOUT -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-start pt-space-xs">
+<!-- LEFT SIDEBAR: FILTERS -->
+<div class="lg:col-span-4 flex items-center gap-space-sm backdrop-blur-md bg-white/[0.08] hover:bg-white/[0.12] px-space-md py-space-sm rounded-xl transition-all border border-white/15"><div class="p-2.5 rounded-lg bg-surface-container text-primary flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-[20px]">location_on</span></div><div class="flex flex-col min-w-0"><span class="text-[12px] text-slate-300 uppercase tracking-wider font-semibold">Destination / Proximity Node</span><div class="font-title-md text-[15px] text-white font-semibold truncate">Munich, Germany</div><span class="text-[12px] text-primary truncate">near Messe München &amp; Siemens HQ</span></div></div>
+<!-- RIGHT MAIN AREA: HOTEL LISTINGS -->
+<main class="lg:col-span-8 xl:col-span-9 flex flex-col gap-space-lg">
+<!-- Result Overview Stats Header -->
+<div class="flex flex-wrap items-center justify-between gap-space-sm pb-space-xs">
+<div class="flex items-baseline gap-space-xs">
+<h1 class="font-headline-lg text-headline-lg text-white font-medium tracking-tight">Available Executive Stays</h1>
+<span class="text-[13px] text-primary font-bold">(3 Stays)</span>
+</div>
+<div class="flex items-center gap-space-xs text-[13px] text-slate-300">
+<span>Sort by:</span>
+<button class="flex items-center gap-1 text-white font-semibold hover:text-primary transition-colors" type="button">
+<span>Harbinger Recommendation Index</span>
+<span class="material-symbols-outlined text-[16px]">expand_more</span>
+</button>
+</div>
+</div>
+<!-- ================= CARD 1: PULLMAN MUNICH HOTEL ================= -->
+<article class="group rounded-2xl glass-panel shadow-2xl transition-all duration-300 overflow-hidden flex flex-col xl:flex-row">
+<!-- Pullman Munich Image: MODERN LUXURY ROOM PHOTO https://lh3.googleusercontent.com/aida-public/AB6AXuAtHOPY8uUe8KDs5fKpla2svtI2gx9sv7-K8q8BIrwcU3XXbKyeBR4iJojcIy6JsGht6DE8N4GLNohPWvq0ElpzKqL3-rtTv2oPiLH0LD3eBprzbowEEFAnYKeL6GAcv4R4RtrVJcGiaZ7IKSy_rvsuasHiqrP7-EUcMAjoewAzvoeELuj6o4iSMeprr_KtLYIIvbWsK0FtM-qkGYq3LOPrwe7XMjwaSiBRJI82kh6Y2qyaQJ_E6pkW -->
+<div class="xl:w-2/5 min-h-[260px] xl:min-h-[340px] relative overflow-hidden shrink-0">
+<img alt="Luxurious modern European hotel room interior at Pullman Munich with city view" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida/AEtjO1Wohy6LY4SphY5oeiIWQED3JoMFXO4Kk5vuCBBr6vB-pDpCSTVYrYsnREVl3_gpB28n_RPIL2eKqDpnmnv_-MosF4Av91w7Di_eQ6ji-EPnE2JYlWysw7c_Rf0gpnRpaOpJSYoOJfJdoSRORoKEgSoFDUCDSw3JAKSk9qOSRn4rKc4iHBAhyleN72FBrOkOrPWaCQaNMNPe-IvFo9MUG4Dmuq8J_Mso_cpLWjETRDOUvFcS81GJ2riHNEw"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest/80 via-transparent to-transparent xl:bg-gradient-to-r xl:from-transparent xl:to-surface-container-lowest/70"></div>
+<div class="absolute top-4 left-4 z-20 flex flex-wrap gap-2">
+<span class="px-space-sm py-1 rounded-full bg-primary-container text-on-primary-container text-[12px] font-bold shadow-md flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px]">auto_awesome</span>
+                Top Pick for Business
+              </span>
+<span class="px-space-sm py-1 rounded-full bg-surface-container-lowest/85 backdrop-blur-md text-white text-[12px] font-semibold border border-white/10">
+                4-Star Superior
+              </span>
+</div>
+<button class="absolute bottom-3 left-3 px-2.5 py-1 rounded-lg bg-surface-container-lowest/85 backdrop-blur-md text-slate-200 text-[12px] flex items-center gap-1 hover:bg-surface-container" type="button">
+<span class="material-symbols-outlined text-[14px]">photo_library</span>
+<span>28 Photos</span>
+</button>
+</div>
+<!-- Hotel Details & Pricing Content -->
+<div class="xl:w-3/5 p-space-md lg:p-space-lg flex flex-col justify-between gap-space-md">
+<div class="space-y-space-xs">
+<div class="flex items-start justify-between gap-space-sm">
+<div class="w-full">
+<div class="flex items-center gap-2 flex-wrap">
+<h2 class="font-headline-md text-headline-md text-white font-semibold group-hover:text-primary transition-colors">
+                      Pullman Munich Hotel
+                    </h2>
+<span class="text-[12px] text-slate-400 font-normal">(Sample data)</span>
+</div>
+<div class="flex items-center gap-1.5 text-slate-300 text-[13px] pt-0.5">
+<span class="material-symbols-outlined text-[18px] text-primary">distance</span>
+<span>Schwabing District • 10 mins to Siemens HQ &amp; Consulate</span>
+</div>
+</div>
+<div class="flex flex-col items-end shrink-0">
+<div class="flex items-center gap-1 px-space-sm py-1 rounded-lg bg-primary-container/20 text-primary font-bold border border-primary/30">
+<span class="material-symbols-outlined text-[16px]">star</span>
+<span class="text-[16px]">4.8</span>
+<span class="text-[12px] text-primary/80">/5</span>
+</div>
+<span class="text-[12px] text-slate-300 mt-1">1,240 verified reviews</span>
+</div>
+</div>
+<!-- Note -->
+<div class="p-2.5 px-3 rounded-lg bg-primary-container/15 border border-primary/30 flex items-start gap-2">
+<span class="material-symbols-outlined text-primary text-[18px] shrink-0 mt-0.5">verified_user</span>
+<span class="text-[12px] text-teal-200 font-medium leading-relaxed">
+                  Hotel reservation confirmation suitable for business visa application case attachments. Prompt electronic delivery.
+                </span>
+</div>
+<!-- Key Amenities -->
+<div class="flex flex-wrap gap-1.5 pt-space-xs">
+<span class="px-2.5 py-1 rounded-md bg-white/[0.08] text-slate-200 text-[12px] flex items-center gap-1 border border-white/10">
+<span class="material-symbols-outlined text-[14px] text-primary">wifi</span> Free High-Speed WiFi
+                </span>
+<span class="px-2.5 py-1 rounded-md bg-white/[0.08] text-slate-200 text-[12px] flex items-center gap-1 border border-white/10">
+<span class="material-symbols-outlined text-[14px] text-primary">business_center</span> Business Center
+                </span>
+<span class="px-2.5 py-1 rounded-md bg-white/[0.08] text-slate-200 text-[12px] flex items-center gap-1 border border-white/10">
+<span class="material-symbols-outlined text-[14px] text-primary">volume_off</span> Soundproof Rooms
+                </span>
+<span class="px-2.5 py-1 rounded-md bg-white/[0.08] text-slate-200 text-[12px] flex items-center gap-1 border border-white/10">
+<span class="material-symbols-outlined text-[14px] text-tertiary">restaurant</span> Executive Breakfast
+                </span>
+</div>
+</div>
+<!-- Price & Partner Action Drawer -->
+<div class="pt-space-sm border-t border-white/15 flex flex-col md:flex-row items-start md:items-end justify-between gap-space-md">
+<div class="flex flex-col">
+<span class="text-[12px] text-slate-300 uppercase tracking-wider font-semibold">Corporate Rate</span>
+<div class="flex items-baseline gap-1.5">
+<span class="font-display-md text-headline-lg text-white font-bold tracking-tight">₹14,200</span>
+<span class="text-[13px] text-slate-300">/ night</span>
+</div>
+<div class="flex flex-wrap items-center gap-x-2 gap-y-0.5 text-[12px] text-slate-300">
+<span>Total for 14 nights: <strong class="text-white font-semibold">₹1,98,800</strong></span>
+<span class="text-white/20">•</span>
+<span class="text-primary font-medium">Includes VAT &amp; City Tax</span>
+</div>
+</div>
+<!-- Button Actions -->
+<div class="flex flex-wrap items-center gap-2 w-full md:w-auto">
+<button class="flex-1 md:flex-initial px-4 py-2.5 rounded-xl bg-white/[0.1] hover:bg-white/[0.18] text-white text-[13px] font-semibold border border-white/20 transition-all text-center" onclick="openSpecsDrawer('Pullman Munich Hotel', 'Executive King Suite with Work Desk', '₹14,200', 'Booking.com')" type="button">
+                  Room Specs
+                </button>
+<a class="flex-1 md:flex-initial px-5 py-2.5 rounded-xl bg-gradient-to-r from-primary-container via-teal-400 to-surface-tint hover:opacity-95 text-on-primary-container text-[13px] font-bold flex items-center justify-center gap-1.5 shadow-lg shadow-teal-500/20 transition-all whitespace-nowrap" href="https://www.booking.com" rel="noopener noreferrer" target="_blank">
+<span>View Deals on Booking.com</span>
+<span class="material-symbols-outlined text-[18px]">north_east</span>
+</a>
+</div>
+</div>
+</div>
+</article>
+<!-- ================= CARD 2: SOFITEL MUNICH BAYERPOST ================= -->
+<article class="group rounded-2xl glass-panel shadow-2xl transition-all duration-300 overflow-hidden flex flex-col xl:flex-row">
+<!-- Sofitel Image: GRAND OPULENT LOBBY PHOTO https://lh3.googleusercontent.com/aida-public/AB6AXuDtHxiquSsVDbkSsKNOyqeRXpJsUfqW1UdjeWHwnK15IE3kWzKcffuU87zlE_bwmZXN65WoZo6rnykdrU_iUi3Yp3HCIzbWD-XG4sUYo8xxBz8pQcrCfOXxqD_DtLV30OWLC-EJCpHU93ogbHXxkTTuENfLlLinf_N31L0BOD3gyzO7KwzuDbE0E3LLLYYQXcdgkChNhNJN9jUbUWZo0NSvkkGHAIuxMGJ50kneNlZ6tCkQlgbq6Mxp -->
+<div class="xl:w-2/5 min-h-[260px] xl:min-h-[340px] relative overflow-hidden shrink-0">
+<img alt="Historic luxury hotel grand lobby Sofitel Munich with opulent columns and grand staircase" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida/AEtjO1UFNWk4MjLFEqlXM-GvVy1VSyMpseWsdLTXgAUTd19gCQdSplETitzBLNioFFnxdf2Y8vT12eszODbv0X9AFfeGKP5qO7vnzu7-VA9o1VhXK2Gzw2Krb-QcZPB6XNJZPVj5cgsbtnRCCgizPC114FZx0VWfQ22s7Y3DCcVY6WdJzjq86uzV5s4dfT84cWBHmh3jE0NGOipr1_QEh4JLY9Bc3LpbRanrGDLyie8Zz2oL33wzv3oNZmDlaN4"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest/80 via-transparent to-transparent xl:bg-gradient-to-r xl:from-transparent xl:to-surface-container-lowest/70"></div>
+<div class="absolute top-4 left-4 z-20 flex flex-wrap gap-2">
+<span class="px-space-sm py-1 rounded-full bg-secondary-container text-on-secondary-container text-[12px] font-bold shadow-md flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px]">diamond</span>
+                5-Star Luxury
+              </span>
+<span class="px-space-sm py-1 rounded-full bg-surface-container-lowest/85 backdrop-blur-md text-white text-[12px] font-semibold border border-white/10">
+                Heritage Landmark
+              </span>
+</div>
+<button class="absolute bottom-3 left-3 px-2.5 py-1 rounded-lg bg-surface-container-lowest/85 backdrop-blur-md text-slate-200 text-[12px] flex items-center gap-1 hover:bg-surface-container" type="button">
+<span class="material-symbols-outlined text-[14px]">photo_library</span>
+<span>42 Photos</span>
+</button>
+</div>
+<!-- Hotel Details & Pricing Content -->
+<div class="xl:w-3/5 p-space-md lg:p-space-lg flex flex-col justify-between gap-space-md">
+<div class="space-y-space-xs">
+<div class="flex items-start justify-between gap-space-sm">
+<div class="w-full">
+<div class="flex items-center gap-2 flex-wrap">
+<h2 class="font-headline-md text-headline-md text-white font-semibold group-hover:text-secondary transition-colors">
+                      Sofitel Munich Bayerpost
+                    </h2>
+<span class="text-[12px] text-slate-400 font-normal">(Sample data)</span>
+</div>
+<div class="flex items-center gap-1.5 text-slate-300 text-[13px] pt-0.5">
+<span class="material-symbols-outlined text-[18px] text-secondary">train</span>
+<span>Munich Central Station (Hauptbahnhof) • 100m to Airport S-Bahn</span>
+</div>
+</div>
+<div class="flex flex-col items-end shrink-0">
+<div class="flex items-center gap-1 px-space-sm py-1 rounded-lg bg-secondary-container/30 text-secondary font-bold border border-secondary/30">
+<span class="material-symbols-outlined text-[16px]">star</span>
+<span class="text-[16px]">4.9</span>
+<span class="text-[12px] text-secondary/80">/5</span>
+</div>
+<span class="text-[12px] text-slate-300 mt-1">2,410 verified reviews</span>
+</div>
+</div>
+<!-- Details Overview -->
+<div class="p-2.5 px-3 rounded-lg bg-white/[0.06] border border-white/10 flex items-start gap-2">
+<span class="material-symbols-outlined text-secondary text-[18px] shrink-0 mt-0.5">history_edu</span>
+<span class="text-[12px] text-slate-200 leading-relaxed">
+                  Architectural landmark hotel featuring So SPA wellness suite, soundproof meeting rooms, and 24/7 corporate concierge support.
+                </span>
+</div>
+<!-- Amenities -->
+<div class="flex flex-wrap gap-1.5 pt-space-xs">
+<span class="px-2.5 py-1 rounded-md bg-white/[0.08] text-slate-200 text-[12px] flex items-center gap-1 border border-white/10">
+<span class="material-symbols-outlined text-[14px] text-secondary">spa</span> So SPA &amp; Heated Pool
+                </span>
+<span class="px-2.5 py-1 rounded-md bg-white/[0.08] text-slate-200 text-[12px] flex items-center gap-1 border border-white/10">
+<span class="material-symbols-outlined text-[14px] text-primary">wifi</span> 1 Gbps Fiber
+                </span>
+<span class="px-2.5 py-1 rounded-md bg-white/[0.08] text-slate-200 text-[12px] flex items-center gap-1 border border-white/10">
+<span class="material-symbols-outlined text-[14px] text-tertiary">room_service</span> 24h Executive Dining
+                </span>
+<span class="px-2.5 py-1 rounded-md bg-white/[0.08] text-slate-200 text-[12px] flex items-center gap-1 border border-white/10">
+<span class="material-symbols-outlined text-[14px] text-secondary">directions_car</span> Valet Chauffeur
+                </span>
+</div>
+</div>
+<!-- Price & Action -->
+<div class="pt-space-sm border-t border-white/15 flex flex-col md:flex-row items-start md:items-end justify-between gap-space-md">
+<div class="flex flex-col">
+<span class="text-[12px] text-slate-300 uppercase tracking-wider font-semibold">Negotiated Corporate Rate</span>
+<div class="flex items-baseline gap-1.5">
+<span class="font-display-md text-headline-lg text-white font-bold tracking-tight">₹24,800</span>
+<span class="text-[13px] text-slate-300">/ night</span>
+</div>
+<div class="flex flex-wrap items-center gap-x-2 gap-y-0.5 text-[12px] text-slate-300">
+<span>Total for 14 nights: <strong class="text-white font-semibold">₹3,47,200</strong></span>
+<span class="text-white/20">•</span>
+<span class="text-secondary font-medium">Free cancellation till Oct 12, 2026</span>
+</div>
+</div>
+<div class="flex flex-wrap items-center gap-2 w-full md:w-auto">
+<button class="flex-1 md:flex-initial px-4 py-2.5 rounded-xl bg-white/[0.1] hover:bg-white/[0.18] text-white text-[13px] font-semibold border border-white/20 transition-all text-center" onclick="openSpecsDrawer('Sofitel Munich Bayerpost', 'Luxury Opera Room with Terrace', '₹24,800', 'ixigo Corporate')" type="button">
+                  Room Specs
+                </button>
+<a class="flex-1 md:flex-initial px-5 py-2.5 rounded-xl bg-white/[0.12] hover:bg-white/[0.22] text-white text-[13px] font-bold flex items-center justify-center gap-1.5 border border-white/25 shadow-lg transition-all whitespace-nowrap" href="https://www.ixigo.com" rel="noopener noreferrer" target="_blank">
+<span>View on ixigo</span>
+<span class="material-symbols-outlined text-[18px]">north_east</span>
+</a>
+</div>
+</div>
+</div>
+</article>
+<!-- ================= CARD 3: HILTON MUNICH CITY ================= -->
+<article class="group rounded-2xl glass-panel shadow-2xl transition-all duration-300 overflow-hidden flex flex-col xl:flex-row">
+<!-- Hilton Image: DUSK SKYLINE PHOTO https://lh3.googleusercontent.com/aida/AEtjO1U5z8d6a2V_hiSNdqjTzY83ujSozSz6COBCZbqMP68Hx0AzVh0w9m94T39fP8ex42kHSddpDUH3UZmcVFHs1WH-PbKHQMP-JmBqMYj-PbO4x-F9yT9UQmljtwB1Y-DEA96C6mCLT4POD_LittXpnHPjHT0UHThgu0K00au2mW1U0Lap1BmdYHAfkS9g7MBo66O4EsM3_TO6hFxMjyytvsaBhXnmI54zimnCHOsKvtiBW0w4323VuKjMcA -->
+<div class="xl:w-2/5 min-h-[260px] xl:min-h-[340px] relative overflow-hidden shrink-0">
+<img alt="Hilton Munich City Exterior" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDNM2HZBe23XxQnZ8nrjEFlGF61PASNfKpGNHmaKuQ8pS9L7yOUvAKb9vkng864k9r9jKd-0MdAjWxLPo-srCA4ltZPM9MHkqdgcnerc9qh5iLp_tMBRKL2ztdwdHUg5LFf_-x3G6SNfDnMf-k1hVM0KAItcQAGTdN9ODTRNsWwScQRkUEtS5iH5Y4aG8ikPDzO8V6vxcHb3OiFL1iAiHsuhF_sZ6ZltY5Ia-rsChI39An5osd80uiM"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest/80 via-transparent to-transparent xl:bg-gradient-to-r xl:from-transparent xl:to-surface-container-lowest/70"></div>
+<!-- Clean Badge Row on top of image, never overlapping title -->
+<div class="absolute top-4 left-4 z-20 flex flex-wrap gap-2">
+<span class="px-space-sm py-1 rounded-full bg-surface-container-high/90 backdrop-blur-md text-white text-[12px] font-bold shadow-md flex items-center gap-1 border border-white/15">
+<span class="material-symbols-outlined text-[15px] text-tertiary">workspace_premium</span>
+                4-Star Business Grade
+              </span>
+<span class="px-space-sm py-1 rounded-full bg-surface-container-lowest/85 backdrop-blur-md text-primary text-[12px] font-semibold border border-primary/30">
+                Direct S-Bahn Rosenheimer Platz
+              </span>
+</div>
+<button class="absolute bottom-3 left-3 px-2.5 py-1 rounded-lg bg-surface-container-lowest/85 backdrop-blur-md text-slate-200 text-[12px] flex items-center gap-1 hover:bg-surface-container" type="button">
+<span class="material-symbols-outlined text-[14px]">photo_library</span>
+<span>19 Photos</span>
+</button>
+</div>
+<!-- Hotel Details & Pricing Content -->
+<div class="xl:w-3/5 p-space-md lg:p-space-lg flex flex-col justify-between gap-space-md">
+<div class="space-y-space-xs">
+<div class="flex items-start justify-between gap-space-sm pt-1">
+<div class="w-full">
+<div class="flex items-center gap-2 flex-wrap">
+<h2 class="font-headline-md text-headline-md text-white font-semibold group-hover:text-primary transition-colors">
+                      Hilton Munich City
+                    </h2>
+<span class="text-[12px] text-slate-400 font-normal">(Sample data)</span>
+</div>
+<div class="flex items-center gap-1.5 text-slate-300 text-[13px] pt-0.5">
+<span class="material-symbols-outlined text-[18px] text-primary">pin_drop</span>
+<span>Haidhausen District • S-Bahn Station directly underneath</span>
+</div>
+</div>
+<div class="flex flex-col items-end shrink-0">
+<div class="flex items-center gap-1 px-space-sm py-1 rounded-lg bg-white/[0.08] text-white font-bold border border-white/15">
+<span class="material-symbols-outlined text-[16px] text-tertiary">star</span>
+<span class="text-[16px]">4.6</span>
+<span class="text-[12px] text-slate-300">/5</span>
+</div>
+<span class="text-[12px] text-slate-300 mt-1">980 verified reviews</span>
+</div>
+</div>
+<!-- Corporate Link Info -->
+<div class="p-2.5 px-3 rounded-lg bg-white/[0.06] border border-white/10 flex items-start gap-2">
+<span class="material-symbols-outlined text-primary text-[18px] shrink-0 mt-0.5">check_circle</span>
+<span class="text-[12px] text-slate-200 leading-relaxed">
+                  Hilton Honors Corporate Link eligible. Digital check-in available with direct billing to company accounts.
+                </span>
+</div>
+<!-- Amenities -->
+<div class="flex flex-wrap gap-1.5 pt-space-xs">
+<span class="px-2.5 py-1 rounded-md bg-white/[0.08] text-slate-200 text-[12px] flex items-center gap-1 border border-white/10">
+<span class="material-symbols-outlined text-[14px] text-primary">desk</span> Ergonomic Workstations
+                </span>
+<span class="px-2.5 py-1 rounded-md bg-white/[0.08] text-slate-200 text-[12px] flex items-center gap-1 border border-white/10">
+<span class="material-symbols-outlined text-[14px] text-primary">train</span> Direct Metro Link
+                </span>
+<span class="px-2.5 py-1 rounded-md bg-white/[0.08] text-slate-200 text-[12px] flex items-center gap-1 border border-white/10">
+<span class="material-symbols-outlined text-[14px] text-secondary">coffee</span> Executive Lounge
+                </span>
+<span class="px-2.5 py-1 rounded-md bg-white/[0.08] text-slate-200 text-[12px] flex items-center gap-1 border border-white/10">
+<span class="material-symbols-outlined text-[14px] text-tertiary">local_laundry_service</span> Same-Day Dry Cleaning
+                </span>
+</div>
+</div>
+<!-- Price & Action -->
+<div class="pt-space-sm border-t border-white/15 flex flex-col md:flex-row items-start md:items-end justify-between gap-space-md">
+<div class="flex flex-col">
+<span class="text-[12px] text-slate-300 uppercase tracking-wider font-semibold">Corporate Rate</span>
+<div class="flex items-baseline gap-1.5">
+<span class="font-display-md text-headline-lg text-white font-bold tracking-tight">₹16,500</span>
+<span class="text-[13px] text-slate-300">/ night</span>
+</div>
+<div class="flex flex-wrap items-center gap-x-2 gap-y-0.5 text-[12px] text-slate-300">
+<span>Total for 14 nights: <strong class="text-white font-semibold">₹2,31,000</strong></span>
+<span class="text-white/20">•</span>
+<span class="text-teal-200">Breakfast Included</span>
+</div>
+</div>
+<div class="flex flex-wrap items-center gap-2 w-full md:w-auto">
+<button class="flex-1 md:flex-initial px-4 py-2.5 rounded-xl bg-white/[0.1] hover:bg-white/[0.18] text-white text-[13px] font-semibold border border-white/20 transition-all text-center" onclick="openSpecsDrawer('Hilton Munich City', 'King Executive Room with Club Lounge Access', '₹16,500', 'Booking.com')" type="button">
+                  Room Specs
+                </button>
+<a class="flex-1 md:flex-initial px-5 py-2.5 rounded-xl bg-gradient-to-r from-primary-container via-teal-400 to-surface-tint hover:opacity-95 text-on-primary-container text-[13px] font-bold flex items-center justify-center gap-1.5 shadow-lg shadow-teal-500/20 transition-all whitespace-nowrap" href="https://www.booking.com" rel="noopener noreferrer" target="_blank">
+<span>View Deals on Booking.com</span>
+<span class="material-symbols-outlined text-[18px]">north_east</span>
+</a>
+</div>
+</div>
+</div>
+</article>
+<!-- CONSULATE CASE SUPPORT BANNER (Neutral wording) -->
+<div class="rounded-2xl glass-panel p-space-md shadow-lg flex flex-col md:flex-row items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-md">
+<div class="h-12 w-12 rounded-xl bg-primary-container/20 text-primary flex items-center justify-center shrink-0 border border-primary/30">
+<span class="material-symbols-outlined text-[28px]">policy</span>
+</div>
+<div>
+<h3 class="text-[16px] text-white font-semibold">Consulate Lodging Support</h3>
+<p class="text-[12px] text-slate-300">Booking confirmations come from the partner site and can be attached to your Schengen business visa case.</p>
+</div>
+</div>
+<button class="shrink-0 px-space-md py-2.5 rounded-xl bg-white/[0.08] hover:bg-white/[0.16] text-primary border border-primary/30 text-[13px] font-semibold transition-all" type="button">
+            Download Case Guidelines (.PDF)
+          </button>
+</div>
+</main>
+</div>
+</div>
+<!-- SLIDE-OVER SPECIFICATION DRAWER -->
+<div class="fixed inset-0 z-50 pointer-events-none opacity-0 transition-opacity duration-300" id="hotel-specs-drawer">
+<div class="absolute inset-0 bg-surface-container-lowest/80 backdrop-blur-md transition-all" id="drawer-backdrop" onclick="closeSpecsDrawer()"></div>
+<div class="absolute top-0 right-0 bottom-0 w-full max-w-xl glass-panel p-space-lg flex flex-col justify-between transform translate-x-full transition-transform duration-300 pointer-events-auto overflow-y-auto" id="drawer-panel">
+<div class="space-y-space-md">
+<div class="flex items-center justify-between pb-space-xs border-b border-white/15">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">meeting_room</span>
+<span class="text-[12px] uppercase tracking-wider text-primary font-bold">Executive Room Specification</span>
+</div>
+<button class="h-9 w-9 rounded-lg bg-white/[0.08] hover:bg-white/[0.18] text-slate-300 hover:text-white flex items-center justify-center transition-all border border-white/10" onclick="closeSpecsDrawer()" type="button">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<div>
+<h3 class="font-headline-lg text-headline-lg text-white font-bold" id="drawer-hotel-title">Pullman Munich Hotel</h3>
+<p class="text-[14px] text-primary font-medium" id="drawer-room-type">Executive King Room with Dedicated Work Desk</p>
+</div>
+<!-- Room Preview Photo Showcase -->
+<div class="relative rounded-xl overflow-hidden shadow-xl h-56 border border-white/15">
+<img alt="Modern executive room interior" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtHOPY8uUe8KDs5fKpla2svtI2gx9sv7-K8q8BIrwcU3XXbKyeBR4iJojcIy6JsGht6DE8N4GLNohPWvq0ElpzKqL3-rtTv2oPiLH0LD3eBprzbowEEFAnYKeL6GAcv4R4RtrVJcGiaZ7IKSy_rvsuasHiqrP7-EUcMAjoewAzvoeELuj6o4iSMeprr_KtLYIIvbWsK0FtM-qkGYq3LOPrwe7XMjwaSiBRJI82kh6Y2qyaQJ_E6pkW"/>
+<div class="absolute bottom-3 left-3 px-space-xs py-1 rounded-md bg-surface-container-lowest/85 backdrop-blur-md text-white text-[12px] border border-white/10">
+            36 m² • High Floor City View
+          </div>
+</div>
+<!-- Room Tech Specs -->
+<div class="space-y-space-xs">
+<span class="text-[13px] font-semibold text-white block">Room Technical Specifications</span>
+<div class="grid grid-cols-2 gap-space-xs text-[12px] text-slate-200">
+<div class="p-2.5 rounded-xl bg-white/[0.06] border border-white/10 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">speed</span>
+<span>250 Mbps Dedicated Bandwidth</span>
+</div>
+<div class="p-2.5 rounded-xl bg-white/[0.06] border border-white/10 flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[18px]">desk</span>
+<span>Height-Adjustable Desk</span>
+</div>
+<div class="p-2.5 rounded-xl bg-white/[0.06] border border-white/10 flex items-center gap-2">
+<span class="material-symbols-outlined text-tertiary text-[18px]">power</span>
+<span>Universal 230V + USB-C PD</span>
+</div>
+<div class="p-2.5 rounded-xl bg-white/[0.06] border border-white/10 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">volume_off</span>
+<span>Triple-Pane Acoustic Glass</span>
+</div>
+</div>
+</div>
+<!-- Neutral Booking Voucher Note -->
+<div class="p-space-sm rounded-xl bg-white/[0.06] border border-white/10 space-y-space-xs">
+<div class="flex items-center gap-2 text-white text-[14px] font-semibold">
+<span class="material-symbols-outlined text-primary text-[20px]">assignment_turned_in</span>
+<span>Business Travel Confirmation</span>
+</div>
+<p class="text-[12px] text-slate-300 leading-relaxed">
+            Prices shown are indicative. Final price and booking confirmation on partner site (<strong class="text-white" id="drawer-partner-name">Booking.com</strong>).
+          </p>
+</div>
+</div>
+<!-- Drawer Bottom Checkout Anchor -->
+<div class="pt-space-md border-t border-white/15 space-y-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex flex-col">
+<span class="text-[12px] text-slate-300">Nightly Rate (Excl. Tax)</span>
+<span class="font-display-md text-headline-md text-white font-bold" id="drawer-price">₹14,200</span>
+</div>
+<div class="text-right">
+<span class="text-[12px] text-primary font-bold">In Policy (Grade A)</span>
+<p class="text-[12px] text-slate-300">Direct corporate expensing</p>
+</div>
+</div>
+<a class="w-full py-3 px-space-md rounded-xl bg-gradient-to-r from-primary-container via-teal-400 to-surface-tint hover:opacity-95 text-on-primary-container text-[14px] font-bold flex items-center justify-center gap-2 shadow-lg transition-all" href="https://www.booking.com" id="drawer-external-link" rel="noopener noreferrer" target="_blank">
+<span>Proceed to Partner Booking Site</span>
+<span class="material-symbols-outlined text-[18px]">open_in_new</span>
+</a>
+</div>
+</div>
+</div>
+</main>
+<!-- FLOATING AI CONCIERGE BUTTON (POSITIONED CAREFULLY SO IT NEVER OVERLAPS FOOTER) -->
+<aside class="fixed bottom-6 right-6 z-30 flex items-center">
+<button aria-label="Ask TravelDesk AI Assistant" class="group relative flex items-center gap-space-sm pl-space-sm pr-space-md py-2.5 rounded-full glass-panel hover:bg-white/[0.14] border border-primary/40 shadow-2xl transition-all duration-300 hover:scale-[1.02]" type="button">
+<span class="relative flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-tr from-primary-container to-secondary-container text-white shadow-inner">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-60"></span>
+<span class="material-symbols-outlined text-[18px]">smart_toy</span>
+</span>
+<div class="flex flex-col text-left">
+<span class="text-[11px] uppercase tracking-widest text-primary font-bold">AI Concierge</span>
+<span class="text-[13px] text-white font-semibold leading-tight">Ask TravelDesk</span>
+</div>
+<span class="material-symbols-outlined text-slate-300 group-hover:translate-x-0.5 transition-transform text-[18px]">arrow_forward</span>
+</button>
+</aside>
+<!-- FOOTER -->
+<footer class="relative z-10 w-full glass-panel border-t border-white/20 pt-space-xl pb-space-lg mt-space-xl">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter mb-space-lg">
+<div class="flex flex-col gap-space-sm md:col-span-2">
+<div class="flex items-center gap-space-xs">
+<span class="font-headline-md text-headline-md tracking-tight text-white font-semibold">Harbinger Group</span>
+<span class="text-[12px] px-2.5 py-0.5 rounded-full bg-white/[0.08] text-slate-200 border border-white/10 uppercase font-semibold">Global Mobility</span>
+</div>
+<p class="text-[13px] text-slate-300 max-w-md leading-relaxed">
+          Executive travel logistics and corporate mobility support with human-verified compliance checks and direct partner reservations.
+        </p>
+</div>
+<!-- Book via partners section -->
+<div class="flex flex-col gap-space-xs">
+<span class="text-[13px] uppercase tracking-wider text-white font-semibold">Book via partners</span>
+<span class="text-[12px] text-slate-300">Book via partners:</span>
+<div class="flex flex-col gap-1.5 text-[13px] text-slate-200 pt-1">
+<a class="hover:text-primary transition-colors flex items-center gap-1.5" href="https://www.ixigo.com" rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined text-[15px] text-primary">arrow_right</span>
+<span>ixigo Corporate</span>
+</a>
+<a class="hover:text-primary transition-colors flex items-center gap-1.5" href="https://www.makemytrip.com" rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined text-[15px] text-primary">arrow_right</span>
+<span>MakeMyTrip MyBiz</span>
+</a>
+<a class="hover:text-primary transition-colors flex items-center gap-1.5" href="https://www.booking.com" rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined text-[15px] text-primary">arrow_right</span>
+<span>Booking.com for Business</span>
+</a>
+</div>
+</div>
+<!-- Policy & Legal -->
+<div class="flex flex-col gap-space-xs">
+<span class="text-[13px] uppercase tracking-wider text-white font-semibold">Policy &amp; Legal</span>
+<div class="flex flex-col gap-1.5 text-[13px] text-slate-200 pt-1">
+<a class="hover:text-primary transition-colors cursor-pointer" href="#">Consulate Lodging Criteria</a>
+<span class="hover:text-primary transition-colors cursor-pointer">Duty of Care Protocols</span>
+<span class="hover:text-primary transition-colors cursor-pointer">Visa Support Disclaimer</span>
+<span class="hover:text-primary transition-colors cursor-pointer">Privacy Policy &amp; Terms</span>
+</div>
+</div>
+</div>
+<div class="pt-space-md border-t border-white/15 flex flex-col sm:flex-row items-center justify-between gap-space-sm text-[12px] text-slate-300">
+<p class="text-center sm:text-left">
+        © 2026 Harbinger Group. All rights reserved. Prices shown are indicative. Final price and booking confirmation on partner site.
+      </p>
+<div class="text-[12px] text-slate-300 flex items-center gap-space-xs shrink-0">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+        Enterprise TravelDesk Portal
+      </div>
+</div>
+</div>
+</footer>
+<script>
+    function openSpecsDrawer(hotelName, roomType, price, partner) {
+      const drawer = document.getElementById('hotel-specs-drawer');
+      const panel = document.getElementById('drawer-panel');
+      const hotelTitle = document.getElementById('drawer-hotel-title');
+      const roomTypeEl = document.getElementById('drawer-room-type');
+      const priceEl = document.getElementById('drawer-price');
+      const partnerEl = document.getElementById('drawer-partner-name');
+      const linkEl = document.getElementById('drawer-external-link');
+
+      if (hotelTitle) hotelTitle.textContent = hotelName;
+      if (roomTypeEl) roomTypeEl.textContent = roomType;
+      if (priceEl) priceEl.textContent = price;
+      if (partnerEl) partnerEl.textContent = partner;
+
+      if (linkEl) {
+        if (partner.includes('ixigo')) {
+          linkEl.href = 'https://www.ixigo.com';
+        } else {
+          linkEl.href = 'https://www.booking.com';
+        }
+      }
+
+      drawer.classList.remove('pointer-events-none', 'opacity-0');
+      drawer.classList.add('opacity-100');
+      panel.classList.remove('translate-x-full');
+      panel.classList.add('translate-x-0');
+    }
+
+    function closeSpecsDrawer() {
+      const drawer = document.getElementById('hotel-specs-drawer');
+      const panel = document.getElementById('drawer-panel');
+
+      drawer.classList.add('opacity-0');
+      panel.classList.remove('translate-x-0');
+      panel.classList.add('translate-x-full');
+
+      setTimeout(() => {
+        drawer.classList.add('pointer-events-none');
+      }, 300);
+    }
+
+    document.getElementById('view-mode-map')?.addEventListener('click', function() {
+      alert('Interactive Munich Mobility & Business Map view is switching to full-screen mode.');
+    });
+</script>
+</body></html>
