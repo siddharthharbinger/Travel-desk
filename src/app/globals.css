@@ -130,6 +130,19 @@ body {
   box-shadow: var(--focus-ring);
 }
 
+/* Cinematic Window Zoom Utilities */
+.zoom-canvas {
+  will-change: transform, opacity;
+  transform-origin: center 42%;
+}
+
+.glow-ring-active {
+  box-shadow: 0 0 0 1px rgba(20, 184, 166, 0.4), 0 8px 32px -8px rgba(20, 184, 166, 0.25);
+}
+[data-theme="light"] .glow-ring-active {
+  box-shadow: 0 0 0 1px rgba(15, 118, 110, 0.4), 0 8px 24px -6px rgba(15, 118, 110, 0.15);
+}
+
 /* Mobile blur optimization (< 768px) */
 @media (max-width: 767px) {
   :root {

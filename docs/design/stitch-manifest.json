@@ -1,0 +1,221 @@
+{
+  "projectId": "5624038136432353661",
+  "projectTitle": "TravelDesk AI Platform UI",
+  "lastSyncDate": "2026-10-03T11:32:14.075937+00:00",
+  "branch": "design-sync-2026-10-03",
+  "activeScreensCount": 14,
+  "screens": [
+    {
+      "order": 1,
+      "screenId": "9845765782024992840",
+      "screenIdShort": "98457657",
+      "title": "harbinger-logo.webp",
+      "width": "199",
+      "height": "65",
+      "screenshot": {
+        "fileName": "01_harbinger-logo.webp_98457657.webp",
+        "sha256": "681767dc7d0ba3c79ceeacbc87cc8934d3bf831a44d5fe61599a9bb5746e11a5",
+        "sizeBytes": 6524
+      },
+      "code": null
+    },
+    {
+      "order": 2,
+      "screenId": "100f71f6a1b549fd92a2e682c8d6df95",
+      "screenIdShort": "100f71f6",
+      "title": "Cinematic golden hour view from aircraft window showing airplane wing gliding over soft sunset clouds with deep twilight violet and warm golden sunlight, peaceful, travel aesthetic, ultra high definition",
+      "width": "1376",
+      "height": "768",
+      "screenshot": {
+        "fileName": "02_Cinematic_golden_hour_view_from_aircraft_window_showing_airplane_wing_gliding_100f71f6.png",
+        "sha256": "de67fcfb91086fd8f4377c6d9455603b1d2ef64a96a421ae19388b404fab0808",
+        "sizeBytes": 29563
+      },
+      "code": null
+    },
+    {
+      "order": 3,
+      "screenId": "12f318635a87441c99d4899a1161f490",
+      "screenIdShort": "12f31863",
+      "title": "Cinematic breathtaking aerial photography of an ancient European city like Paris or Prague at dusk, illuminated warm streetlights, river reflection, deep blue twilight sky with amber twilight glow, luxury editorial quality",
+      "width": "1376",
+      "height": "768",
+      "screenshot": {
+        "fileName": "03_Cinematic_breathtaking_aerial_photography_of_an_ancient_European_city_like_Pa_12f31863.png",
+        "sha256": "b92ea22c4bafedc00a9eb620dc72d581eefee24fc8b913f0aa5d9c2e91008550",
+        "sizeBytes": 74218
+      },
+      "code": null
+    },
+    {
+      "order": 4,
+      "screenId": "49214e46423a4471ab5eb8195d2c4cda",
+      "screenIdShort": "49214e46",
+      "title": "AI Visa Pre-Interview - Schengen Business Visa",
+      "width": "2560",
+      "height": "3248",
+      "screenshot": {
+        "fileName": "04_AI_Visa_Pre-Interview_-_Schengen_Business_Visa_49214e46.png",
+        "sha256": "ebfd61d37428c3a7a0b5badb2d2973754122eb6236931bd6953f0f5721b574a9",
+        "sizeBytes": 154210
+      },
+      "code": {
+        "fileName": "04_AI_Visa_Pre-Interview_-_Schengen_Business_Visa_49214e46.html",
+        "sha256": "68567cfd0c6840a068bf0613686ebac33283116a778cf84cd1909574e6abd22a",
+        "sizeBytes": 37596
+      }
+    },
+    {
+      "order": 5,
+      "screenId": "43c9079bea9149948ffec00fc9d546c6",
+      "screenIdShort": "43c9079b",
+      "title": "TravelDesk - Immersive Window Scroll Zoom Landing (2026)",
+      "width": "2560",
+      "height": "8042",
+      "screenshot": {
+        "fileName": "05_TravelDesk_-_Immersive_Window_Scroll_Zoom_Landing_(2026)_43c9079b.png",
+        "sha256": "c43735ae1185f6da7aeaffc0be0ee45cee9960ced7dcf0b414f53d554c9f0bed",
+        "sizeBytes": 76119
+      },
+      "code": {
+        "fileName": "05_TravelDesk_-_Immersive_Window_Scroll_Zoom_Landing_(2026)_43c9079b.html",
+        "sha256": "3a315b35e7167efd691119ed4eca7695908117e31df6c2e0aedea8191613e799",
+        "sizeBytes": 70841
+      }
+    },
+    {
+      "order": 6,
+      "screenId": "a8dad1a8c4534c86b59177a0d9f2f756",
+      "screenIdShort": "a8dad1a8",
+      "title": "Cinematic twilight aerial photography of Frankfurt Germany skyline with river Main reflecting illuminated financial towers and bridges, dusk blue and warm gold lights, no people, editorial photography",
+      "width": "1376",
+      "height": "768",
+      "screenshot": {
+        "fileName": "06_Cinematic_twilight_aerial_photography_of_Frankfurt_Germany_skyline_with_river_a8dad1a8.png",
+        "sha256": "a640d0582712dcbe0a1fdc27bf3e7a5dd1350986c741229f37f19cd85d7395d6",
+        "sizeBytes": 70853
+      },
+      "code": null
+    },
+    {
+      "order": 7,
+      "screenId": "eaae004ef9274b69b28bad3ba97d4954",
+      "screenIdShort": "eaae004e",
+      "title": "Hotel Stays - Verified Accommodations (2026)",
+      "width": "2560",
+      "height": "4636",
+      "screenshot": {
+        "fileName": "07_Hotel_Stays_-_Verified_Accommodations_(2026)_eaae004e.png",
+        "sha256": "74f09925248c3d01d2dbfc901849d922a98aed91df96c359fd459471e545f103",
+        "sizeBytes": 143573
+      },
+      "code": {
+        "fileName": "07_Hotel_Stays_-_Verified_Accommodations_(2026)_eaae004e.html",
+        "sha256": "3d79762128443c0bd286bdc8c3827549eb6d698174662713fac0d7ec0f0d1e03",
+        "sizeBytes": 53598
+      }
+    },
+    {
+      "order": 8,
+      "screenId": "c8c059ad38494769bf65f81b52305b98",
+      "screenIdShort": "c8c059ad",
+      "title": "Modern luxury hotel glass and limestone exterior illuminated at twilight with warmly lit entry, landscaped driveway, architectural photography, Munich executive hotel, upscale European hospitality, no people",
+      "width": "1376",
+      "height": "768",
+      "screenshot": {
+        "fileName": "08_Modern_luxury_hotel_glass_and_limestone_exterior_illuminated_at_twilight_with_c8c059ad.png",
+        "sha256": "9cb256c052614de36da4e4c1b70d40071b944cb2a6a8bab8c9a50ee5dee07bd3",
+        "sizeBytes": 62986
+      },
+      "code": null
+    },
+    {
+      "order": 9,
+      "screenId": "bf4bb7322c004524a66e0b5bd2244b92",
+      "screenIdShort": "bf4bb732",
+      "title": "Historic luxury hotel grand lobby Sofitel Munich, opulent architectural columns, grand staircase, marble floors with warm glowing crystal chandeliers, luxury European hospitality photography, no people",
+      "width": "1376",
+      "height": "768",
+      "screenshot": {
+        "fileName": "09_Historic_luxury_hotel_grand_lobby_Sofitel_Munich,_opulent_architectural_colum_bf4bb732.png",
+        "sha256": "ecc17f278b6526457f081d19669754a4f679580ed1b821781dab6b864f4ccdd6",
+        "sizeBytes": 58335
+      },
+      "code": null
+    },
+    {
+      "order": 10,
+      "screenId": "52ae617466d048188c64aa5a5a2a270f",
+      "screenIdShort": "52ae6174",
+      "title": "Cinematic dusk view of Lower Manhattan New York City skyline across the harbor with glowing amber building lights against deep twilight blue sky, no people, professional travel photography",
+      "width": "1376",
+      "height": "768",
+      "screenshot": {
+        "fileName": "10_Cinematic_dusk_view_of_Lower_Manhattan_New_York_City_skyline_across_the_harbo_52ae6174.png",
+        "sha256": "6cf3a4c44e67b69ec324ace3df932b39c42b95ac800d5b5cf29ac8ee47bf0335",
+        "sizeBytes": 38686
+      },
+      "code": null
+    },
+    {
+      "order": 11,
+      "screenId": "58f006d1188844a6bfb005a9361a811d",
+      "screenIdShort": "58f006d1",
+      "title": "TravelDesk - Cinematic Landing Page (Refined Glass 2026)",
+      "width": "2560",
+      "height": "8042",
+      "screenshot": {
+        "fileName": "11_TravelDesk_-_Cinematic_Landing_Page_(Refined_Glass_2026)_58f006d1.png",
+        "sha256": "1881262abc08f4acf4705f8058bf7b0bf9fd714a80df1806bb98a59282c81c14",
+        "sizeBytes": 83867
+      },
+      "code": {
+        "fileName": "11_TravelDesk_-_Cinematic_Landing_Page_(Refined_Glass_2026)_58f006d1.html",
+        "sha256": "eabc15e0893a0c0883894152c5c4db95b0af470da543495699c8d816ee4e91f1",
+        "sizeBytes": 66125
+      }
+    },
+    {
+      "order": 12,
+      "screenId": "dc4c5dda06ac46c5866f92feef86e5b4",
+      "screenIdShort": "dc4c5dda",
+      "title": "Luxurious modern European hotel room interior at Pullman Munich, plush king bed, ambient warm lighting, designer desk, large window with Munich evening city view, architectural photography, no people",
+      "width": "1376",
+      "height": "768",
+      "screenshot": {
+        "fileName": "12_Luxurious_modern_European_hotel_room_interior_at_Pullman_Munich,_plush_king_b_dc4c5dda.png",
+        "sha256": "a92eca92129cacbe8cd5f4209d7e7cf8d6504778e3bc5b2969fc737fa04ff048",
+        "sizeBytes": 44140
+      },
+      "code": null
+    },
+    {
+      "order": 13,
+      "screenId": "31f70c66caa749c381c02e707bfc3a4c",
+      "screenIdShort": "31f70c66",
+      "title": "TravelDesk DESIGN.md Specification",
+      "width": "0",
+      "height": "0",
+      "screenshot": null,
+      "code": {
+        "fileName": "13_TravelDesk_DESIGN.md_Specification_31f70c66.md",
+        "sha256": "5fc287b59a2848463829f2aa0677768aea19b72c8f02c9a188fe801840c6f265",
+        "sizeBytes": 11012
+      }
+    },
+    {
+      "order": 14,
+      "screenId": "f79519592a3b4c49b722d0847661521c",
+      "screenIdShort": "f7951959",
+      "title": "Breathtaking architectural view of Munich Marienplatz and historic Bavarian city center at dusk, warm amber lights glowing against deep blue evening sky, premium editorial corporate travel photography, no people",
+      "width": "1376",
+      "height": "768",
+      "screenshot": {
+        "fileName": "14_Breathtaking_architectural_view_of_Munich_Marienplatz_and_historic_Bavarian_c_f7951959.png",
+        "sha256": "d9c6b2416617ba5ca1063352879296fd43721c50d12c9bd0a4e8bd83e682aeed",
+        "sizeBytes": 58137
+      },
+      "code": null
+    }
+  ]
+}

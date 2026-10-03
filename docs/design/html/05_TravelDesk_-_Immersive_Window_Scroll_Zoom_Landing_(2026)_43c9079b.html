@@ -58,6 +58,24 @@
     .glow-ring-active {
       animation: pulse-ring 4s ease-in-out infinite;
     }
+
+    /* Cinematic Window Zoom Transition Tokens */
+    .zoom-bg-canvas {
+      will-change: transform, opacity;
+      transform-origin: 48% 46%;
+    }
+    .flight-cloud-layer {
+      will-change: opacity, transform;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .zoom-bg-canvas,
+      .flight-cloud-layer,
+      .glow-ring-active {
+        animation: none !important;
+        transition: none !important;
+        transform: none !important;
+      }
+    }
   </style>
 <script id="tailwind-config">
     tailwind.config = {
@@ -181,7 +199,7 @@
 <header class="pointer-events-auto h-16 max-w-7xl mx-auto mt-4 px-6 rounded-full border border-white/20 bg-white/10 backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.4)] flex items-center justify-between gap-4 transition-all">
 <!-- Left: Attached Harbinger company logo + "TravelDesk" (Newsreader font, ~22px, bold, white) as ONE clean single lockup -->
 <a class="flex items-center gap-3 shrink-0 group focus:outline-none" data-path="visas-and-immigration" href="#">
-<img alt="Harbinger Group" class="h-7 w-auto object-contain brightness-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBxfcwYCeRHcRBwpQC5LLZ_yvWNMi2zm4E4ktV97LOLU0aDcybprZN8ooK2RrvFEkP7DI-yW59fbUhdllbtNltCjnHKQZMfgQU4ngsmH2lFmFNDO8-_jziZ4cZIUKWGkI1xJ9Oo6D3OqPWMTIE7r2j-ebs_yjkq9K_OY0EUFLk67nmIz6tQ1HXoGyR_K1ks1rXTCYx4lH0w0OgPPBk3VIqUJ87r4P58jtxHQlTZ57xM6091Uxor2Cy6ZNTkwtd_FhOrrw"/>
+<img alt="Harbinger Group" class="h-7 w-auto object-contain brightness-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkKua2vZ79xGtxVeNEjX9sYFnY1VTBzQ_fvCRvxR6rzSTICbPvTEwxzJq_zDRiP_M6HwwosFAVsBMqa_gaeeZYR_5dmkDrct-W3nnp32Toh6k2a5xDT3CBNBGdGjAGph2RUjiQeslcJSJUWlYI_EbhLUONjj6k2vqnRBcmBBHwtv_zXfJGCGal9AQsIiqvMyLvdlyUVq2WM_ZBMKtGzpysNkVHnNs04QZG5iBJVBAF_rBI9AYoLr015-4MEl-ya4Evzg"/>
 <span class="font-headline-lg text-[22px] font-bold text-white tracking-tight leading-none group-hover:text-primary transition-colors">TravelDesk</span>
 </a>
 <!-- Center: Exactly four links: "Visas", "Flights", "Hotels", "Travel Info" (text-14px) -->
@@ -238,14 +256,28 @@
 <!-- Main Landing Container -->
 <main class="relative z-10 w-full pt-24 min-h-screen">
 <div class="flex flex-col w-full">
-<!-- 1. LANDING HERO with Full-Bleed Aerial European City at Dusk & Twilight Overlay -->
-<section class="relative w-full overflow-hidden min-h-[680px] flex items-center justify-center px-margin-mobile md:px-margin-desktop py-space-xl lg:py-24">
-<div class="absolute inset-0 z-0">
-<img alt="Breathtaking aerial European city dusk view" class="w-full h-full object-cover object-center scale-105" src="https://lh3.googleusercontent.com/aida/AEtjO1Wn74PE2WfJeVmV04BbTjk9JPjNIoJXX19K2sEsqqohIoRo8aH1rCsX0zJy7oe1GXfEIWkSLATzF8Bcuq61YeYTCrOV1CrzOF8MHM-GRB5iRSw1qKHLjas26Dt0y9wS5Gbtk1g9qEw_pHreylo5HXZc96eI-9uKQ4gb4t6tRS8EQGavFCjndawVVJh4lZM11x7_fNIpqUa3jEiV752BVVbgw9CBTA80m2Mz9Zc2lSf_Sz826wHJC9xQoY4"/>
-<!-- Twilight Gradient Overlay: rgba(7, 20, 38, 0.85) to transparent -->
-<div class="absolute inset-0" style="background: linear-gradient(180deg, rgba(7, 20, 38, 0.85) 0%, rgba(7, 20, 38, 0.92) 65%, rgba(0, 19, 46, 0.98) 100%);"></div>
+<!-- SCROLL-ZOOM CONTAINER: Wraps Hero + Capabilities + Framework in an immersive continuous sky dive -->
+<div class="relative w-full" id="cinematic-zoom-scope">
+<!-- Persistent Sticky Atmospheric Background Canvas -->
+<div class="pointer-events-none fixed inset-0 z-0 overflow-hidden" id="cinematic-sticky-stage">
+<!-- Layer 1: Ethereal Sunset/Twilight Sky & Cloud expansion layer -->
+<div class="absolute inset-0 flight-cloud-layer transition-opacity duration-300" id="zoom-sky-layer" style="opacity: 0.15;">
+<img alt="Sunset sky expansion" class="w-full h-full object-cover object-center scale-110 filter brightness-95 saturate-125" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOXlXRTgQliR4ymt1Fvem-rE9DuaaGh2dlS5HQU0C_nHLeAx45i4cSzn4ld0sdPk1aAp_FcTQYAoa4i43OOv6TiTbFLxEdPyHSXqzVUGZwLwIzCEvvmSxGM1v3qlgRk03jqJAaMDFfDi9CBur4G6Xf6NmTjXPwq0nXWYreYKLY7V9gzrDdIYYRvPwS_5wSA7HpG0i6HdCrBNiSZwkJQ_V5TK_S4Bebr_ck5sKqflRmhLAZIgaObNRj"/>
+<div class="absolute inset-0 bg-gradient-to-b from-[#00132e]/60 via-[#071c36]/40 to-[#00132e]/90"></div>
+<div class="absolute inset-0" style="background: radial-gradient(circle at 50% 30%, rgba(255, 185, 87, 0.18) 0%, rgba(87, 27, 193, 0.22) 40%, rgba(0, 19, 46, 0.8) 100%);"></div>
+</div>
+<!-- Layer 2: Airplane Window Frame & Cabin Zoom Element -->
+<div class="absolute inset-0 flex items-center justify-center transition-opacity duration-300" id="zoom-window-container">
+<div class="w-full h-full zoom-bg-canvas relative" id="zoom-window-canvas" style="transform: scale(1.0);">
+<img alt="Cinematic airplane window view" class="w-full h-full object-cover object-center" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOXlXRTgQliR4ymt1Fvem-rE9DuaaGh2dlS5HQU0C_nHLeAx45i4cSzn4ld0sdPk1aAp_FcTQYAoa4i43OOv6TiTbFLxEdPyHSXqzVUGZwLwIzCEvvmSxGM1v3qlgRk03jqJAaMDFfDi9CBur4G6Xf6NmTjXPwq0nXWYreYKLY7V9gzrDdIYYRvPwS_5wSA7HpG0i6HdCrBNiSZwkJQ_V5TK_S4Bebr_ck5sKqflRmhLAZIgaObNRj"/>
+<!-- Twilight Gradient Overlay matching original design -->
+<div class="absolute inset-0" id="hero-window-overlay" style="background: linear-gradient(180deg, rgba(7, 20, 38, 0.85) 0%, rgba(7, 20, 38, 0.92) 65%, rgba(0, 19, 46, 0.98) 100%);"></div>
 <div class="absolute inset-0 bg-gradient-to-tr from-primary/10 via-secondary-container/15 to-transparent pointer-events-none"></div>
 </div>
+</div>
+</div>
+<!-- 1. LANDING HERO with Full-Bleed Aerial European City at Dusk & Twilight Overlay -->
+<section class="relative z-10 w-full overflow-hidden min-h-[680px] flex items-center justify-center px-margin-mobile md:px-margin-desktop py-space-xl lg:py-24" id="hero-content-section">
 <div class="relative z-10 max-w-5xl mx-auto flex flex-col items-center text-center">
 <!-- Floating Status Badge -->
 <div class="inline-flex items-center gap-space-xs px-space-md py-1.5 rounded-full glass-frost mb-space-lg transition-transform hover:scale-105 duration-200 cursor-default">
@@ -254,13 +286,9 @@
 <span class="font-body-sm text-[12px] text-on-surface-variant">• AI-Assisted Pre-Screening with Human Review</span>
 </div>
 <!-- Headline -->
-<h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface tracking-tight max-w-4xl mx-auto mb-space-md leading-[1.12]">
-          Global business mobility, <span class="italic font-headline-lg bg-gradient-to-r from-primary via-surface-tint to-secondary bg-clip-text text-transparent">effortlessly accelerated.</span>
-</h1>
+<h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface tracking-tight max-w-4xl mx-auto mb-space-md leading-tight">Global business mobility, <span class="italic font-headline-lg bg-gradient-to-r from-primary via-surface-tint to-secondary bg-clip-text text-transparent">effortlessly accelerated.</span></h1>
 <!-- Subtitle -->
-<p class="font-body-lg text-body-lg text-on-surface max-w-3xl mx-auto mb-space-xl leading-relaxed opacity-90">
-          Pre-interview diagnostics for Schengen &amp; US visas, corporate flight comparison, and verified hotel stays for seamless travel in 2026.
-        </p>
+<p class="font-body-lg text-body-lg text-on-surface max-w-3xl mx-auto mb-space-xl leading-relaxed opacity-90">AI-assisted pre-screening for Schengen &amp; US business travel, with live fare comparison and partner stays.</p>
 <!-- Centered Stitch-Style Glass Prompt Box with Subtle Glowing Border -->
 <div class="w-full max-w-3xl mb-space-md">
 <div class="relative group p-1.5 rounded-full glass-frost glow-ring-active transition-all duration-300">
@@ -290,142 +318,14 @@
 </button>
 </div>
 <!-- Multi-Tab Quick Action Cockpit Card -->
-<div class="w-full max-w-5xl rounded-xl glass-frost p-space-md md:p-space-lg text-left relative overflow-hidden">
-<div class="flex items-center gap-space-xs mb-space-lg border-b border-white/10 pb-space-sm overflow-x-auto">
-<button class="flex items-center gap-space-xs px-space-md py-space-xs rounded-lg font-title-md text-[14px] bg-primary-container text-on-primary-container shadow-sm transition-all" id="tab-btn-visa" onclick="switchCockpitTab('visa')">
-<span class="material-symbols-outlined text-[18px]">verified_user</span>
-<span>Visa Pre-Check</span>
-</button>
-<button class="flex items-center gap-space-xs px-space-md py-space-xs rounded-lg font-title-md text-[14px] text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-all" id="tab-btn-flight" onclick="switchCockpitTab('flight')">
-<span class="material-symbols-outlined text-[18px]">flight</span>
-<span>Flights</span>
-</button>
-<button class="flex items-center gap-space-xs px-space-md py-space-xs rounded-lg font-title-md text-[14px] text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-all" id="tab-btn-hotel" onclick="switchCockpitTab('hotel')">
-<span class="material-symbols-outlined text-[18px]">hotel</span>
-<span>Hotels</span>
-</button>
-</div>
-<!-- Visa Tab Pane -->
-<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter items-end" id="pane-visa">
-<div class="flex flex-col gap-1">
-<label class="font-label-sm text-[12px] uppercase tracking-wider text-on-surface-variant font-medium">Departure Base</label>
-<div class="flex items-center gap-space-xs p-3 rounded-lg glass-frost-subtle text-on-surface shadow-sm">
-<span class="material-symbols-outlined text-primary text-[20px]">flight_takeoff</span>
-<select class="bg-transparent font-title-md text-[14px] w-full focus:outline-none text-on-surface cursor-pointer">
-<option class="bg-surface-container-high text-on-surface" value="BOM">India (BOM - Mumbai HQ)</option>
-<option class="bg-surface-container-high text-on-surface" value="PNQ">India (PNQ - Pune Campus)</option>
-<option class="bg-surface-container-high text-on-surface" value="DEL">India (DEL - Delhi NCR)</option>
-<option class="bg-surface-container-high text-on-surface" value="BLR">India (BLR - Tech Hub)</option>
-</select>
-</div>
-</div>
-<div class="flex flex-col gap-1">
-<label class="font-label-sm text-[12px] uppercase tracking-wider text-on-surface-variant font-medium">Target Jurisdiction</label>
-<div class="flex items-center gap-space-xs p-3 rounded-lg glass-frost-subtle text-on-surface shadow-sm">
-<span class="material-symbols-outlined text-secondary text-[20px]">public</span>
-<select class="bg-transparent font-title-md text-[14px] w-full focus:outline-none text-on-surface cursor-pointer">
-<option class="bg-surface-container-high text-on-surface" value="DE">Germany (Schengen Business)</option>
-<option class="bg-surface-container-high text-on-surface" value="US">United States (B-1 / B-2)</option>
-<option class="bg-surface-container-high text-on-surface" value="FR">France (Schengen Short-Stay)</option>
-<option class="bg-surface-container-high text-on-surface" value="GB">United Kingdom (Standard Visitor)</option>
-</select>
-</div>
-</div>
-<div class="flex flex-col gap-1">
-<label class="font-label-sm text-[12px] uppercase tracking-wider text-on-surface-variant font-medium">Trip Mandate &amp; Length</label>
-<div class="flex items-center gap-space-xs p-3 rounded-lg glass-frost-subtle text-on-surface shadow-sm">
-<span class="material-symbols-outlined text-tertiary text-[20px]">event_note</span>
-<select class="bg-transparent font-title-md text-[14px] w-full focus:outline-none text-on-surface cursor-pointer">
-<option class="bg-surface-container-high text-on-surface">Client Meetings (Oct 14 – Oct 28, 2026)</option>
-<option class="bg-surface-container-high text-on-surface">Executive Summit (Nov 03 – Nov 08, 2026)</option>
-<option class="bg-surface-container-high text-on-surface">Contract Negotiation (8d)</option>
-<option class="bg-surface-container-high text-on-surface">Knowledge Transfer Sprint (21d)</option>
-</select>
-</div>
-</div>
-<div>
-<a class="w-full flex items-center justify-center gap-space-xs py-3.5 px-space-md rounded-lg bg-gradient-to-r from-primary to-surface-tint text-on-primary font-title-md text-[14px] shadow-md hover:opacity-95 transition-all" data-path="visas-and-immigration" href="#">
-<span class="material-symbols-outlined text-[20px]">bolt</span>
-<span>Start AI Pre-Check</span>
-</a>
-</div>
-</div>
-<!-- Flight Tab Pane -->
-<div class="hidden grid-cols-1 md:grid-cols-4 gap-gutter items-end" id="pane-flight">
-<div class="flex flex-col gap-1">
-<label class="font-label-sm text-[12px] uppercase tracking-wider text-on-surface-variant font-medium">Origin Airport</label>
-<div class="flex items-center gap-space-xs p-3 rounded-lg glass-frost-subtle text-on-surface shadow-sm">
-<span class="material-symbols-outlined text-primary text-[20px]">flight_takeoff</span>
-<input class="bg-transparent font-title-md text-[14px] w-full focus:outline-none text-on-surface" type="text" value="BOM • Mumbai Chhatrapati Shivaji"/>
-</div>
-</div>
-<div class="flex flex-col gap-1">
-<label class="font-label-sm text-[12px] uppercase tracking-wider text-on-surface-variant font-medium">Destination Hub</label>
-<div class="flex items-center gap-space-xs p-3 rounded-lg glass-frost-subtle text-on-surface shadow-sm">
-<span class="material-symbols-outlined text-primary text-[20px]">flight_land</span>
-<input class="bg-transparent font-title-md text-[14px] w-full focus:outline-none text-on-surface" type="text" value="FRA • Frankfurt Main Airport"/>
-</div>
-</div>
-<div class="flex flex-col gap-1">
-<label class="font-label-sm text-[12px] uppercase tracking-wider text-on-surface-variant font-medium">Corporate Cabin Class</label>
-<div class="flex items-center gap-space-xs p-3 rounded-lg glass-frost-subtle text-on-surface shadow-sm">
-<span class="material-symbols-outlined text-tertiary text-[20px]">airline_seat_recline_extra</span>
-<select class="bg-transparent font-title-md text-[14px] w-full focus:outline-none text-on-surface cursor-pointer">
-<option class="bg-surface-container-high text-on-surface">Business Class (Policy Approved)</option>
-<option class="bg-surface-container-high text-on-surface">Premium Economy</option>
-<option class="bg-surface-container-high text-on-surface">Economy (Flexible Rescheduling)</option>
-</select>
-</div>
-</div>
-<div>
-<a class="w-full flex items-center justify-center gap-space-xs py-3.5 px-space-md rounded-lg bg-primary-container text-on-primary-container font-title-md text-[14px] shadow-md hover:bg-surface-tint transition-all" data-path="flight-options" href="#">
-<span class="material-symbols-outlined text-[20px]">search</span>
-<span>Compare Flights</span>
-</a>
-</div>
-</div>
-<!-- Hotel Tab Pane -->
-<div class="hidden grid-cols-1 md:grid-cols-4 gap-gutter items-end" id="pane-hotel">
-<div class="flex flex-col gap-1">
-<label class="font-label-sm text-[12px] uppercase tracking-wider text-on-surface-variant font-medium">City or Corporate Campus</label>
-<div class="flex items-center gap-space-xs p-3 rounded-lg glass-frost-subtle text-on-surface shadow-sm">
-<span class="material-symbols-outlined text-primary text-[20px]">location_on</span>
-<input class="bg-transparent font-title-md text-[14px] w-full focus:outline-none text-on-surface" type="text" value="Frankfurt Financial District / Innenstadt"/>
-</div>
-</div>
-<div class="flex flex-col gap-1">
-<label class="font-label-sm text-[12px] uppercase tracking-wider text-on-surface-variant font-medium">Stay Dates (2026)</label>
-<div class="flex items-center gap-space-xs p-3 rounded-lg glass-frost-subtle text-on-surface shadow-sm">
-<span class="material-symbols-outlined text-secondary text-[20px]">calendar_today</span>
-<input class="bg-transparent font-title-md text-[14px] w-full focus:outline-none text-on-surface" type="text" value="Oct 14 – Oct 28, 2026 (14 Nights)"/>
-</div>
-</div>
-<div class="flex flex-col gap-1">
-<label class="font-label-sm text-[12px] uppercase tracking-wider text-on-surface-variant font-medium">Tier Preference</label>
-<div class="flex items-center gap-space-xs p-3 rounded-lg glass-frost-subtle text-on-surface shadow-sm">
-<span class="material-symbols-outlined text-tertiary text-[20px]">star</span>
-<select class="bg-transparent font-title-md text-[14px] w-full focus:outline-none text-on-surface cursor-pointer">
-<option class="bg-surface-container-high text-on-surface">5-Star Business Preferred</option>
-<option class="bg-surface-container-high text-on-surface">Executive Long-Stay Suites</option>
-<option class="bg-surface-container-high text-on-surface">Standard Corporate Preferred</option>
-</select>
-</div>
-</div>
-<div>
-<a class="w-full flex items-center justify-center gap-space-xs py-3.5 px-space-md rounded-lg bg-primary-container text-on-primary-container font-title-md text-[14px] shadow-md hover:bg-surface-tint transition-all" data-path="hotel-stays" href="#">
-<span class="material-symbols-outlined text-[20px]">apartment</span>
-<span>Find Corporate Stays</span>
-</a>
-</div>
-</div>
-</div>
+<div class="w-full max-w-5xl rounded-xl glass-frost p-space-md md:p-space-lg text-left relative overflow-hidden"><div class="flex items-center gap-space-xs mb-space-lg border-b border-white/10 pb-space-sm overflow-x-auto"><button class="flex items-center gap-space-xs px-space-md py-space-xs rounded-lg font-title-md text-[14px] bg-primary-container text-on-primary-container shadow-sm transition-all" id="tab-btn-visa" onclick="switchCockpitTab('visa')"><span class="material-symbols-outlined text-[18px]">verified_user</span><span>Visa Pre-Check</span></button><button class="flex items-center gap-space-xs px-space-md py-space-xs rounded-lg font-title-md text-[14px] text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-all" id="tab-btn-flight" onclick="switchCockpitTab('flight')"><span class="material-symbols-outlined text-[18px]">flight</span><span>Flights</span></button><button class="flex items-center gap-space-xs px-space-md py-space-xs rounded-lg font-title-md text-[14px] text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-all" id="tab-btn-hotel" onclick="switchCockpitTab('hotel')"><span class="material-symbols-outlined text-[18px]">hotel</span><span>Hotels</span></button></div><div class="grid grid-cols-1 md:grid-cols-4 gap-gutter items-end" id="pane-visa"><div class="flex flex-col gap-1"><label class="font-label-sm text-[12px] uppercase tracking-wider text-on-surface-variant font-medium">Departure Base</label><div class="flex items-center gap-space-xs p-3 rounded-lg bg-white/10 backdrop-blur-xl border border-white/20 text-white shadow-sm"><span class="material-symbols-outlined text-primary text-[20px]">flight_takeoff</span><select class="bg-transparent font-title-md text-[14px] w-full focus:outline-none text-white cursor-pointer"><option class="bg-surface-container-high text-on-surface" value="BOM">India (BOM - Mumbai HQ)</option><option class="bg-surface-container-high text-on-surface" value="PNQ">India (PNQ - Pune Campus)</option><option class="bg-surface-container-high text-on-surface" value="DEL">India (DEL - Delhi NCR)</option><option class="bg-surface-container-high text-on-surface" value="BLR">India (BLR - Tech Hub)</option></select></div></div><div class="flex flex-col gap-1"><label class="font-label-sm text-[12px] uppercase tracking-wider text-on-surface-variant font-medium">Target Jurisdiction</label><div class="flex items-center gap-space-xs p-3 rounded-lg bg-white/10 backdrop-blur-xl border border-white/20 text-white shadow-sm"><span class="material-symbols-outlined text-secondary text-[20px]">public</span><select class="bg-transparent font-title-md text-[14px] w-full focus:outline-none text-white cursor-pointer"><option class="bg-surface-container-high text-on-surface" value="DE">Germany (Schengen Business)</option><option class="bg-surface-container-high text-on-surface" value="US">United States (B-1 / B-2)</option><option class="bg-surface-container-high text-on-surface" value="FR">France (Schengen Short-Stay)</option><option class="bg-surface-container-high text-on-surface" value="GB">United Kingdom (Standard Visitor)</option></select></div></div><div class="flex flex-col gap-1"><label class="font-label-sm text-[12px] uppercase tracking-wider text-on-surface-variant font-medium">Trip Mandate &amp; Length <span class="text-[11px] text-on-surface-variant">(Sample data)</span></label><div class="flex items-center gap-space-xs p-3 rounded-lg bg-white/10 backdrop-blur-xl border border-white/20 text-white shadow-sm"><span class="material-symbols-outlined text-tertiary text-[20px]">event_note</span><select class="bg-transparent font-title-md text-[14px] w-full focus:outline-none text-white cursor-pointer"><option class="bg-surface-container-high text-on-surface">14 Oct - 28 Oct 2026 · 14 nights (Client Meetings)</option><option class="bg-surface-container-high text-on-surface">03 Nov - 08 Nov 2026 · 5 nights (Summit)</option><option class="bg-surface-container-high text-on-surface">12 Dec - 20 Dec 2026 · 8 nights (Negotiation)</option></select></div></div><div><a class="w-full flex items-center justify-center gap-space-xs py-3.5 px-space-md rounded-lg bg-gradient-to-r from-primary to-surface-tint text-on-primary font-title-md text-[14px] shadow-md hover:opacity-95 transition-all" data-path="visas-and-immigration" href="#"><span class="material-symbols-outlined text-[20px]">bolt</span><span>Start AI Pre-Check</span></a></div></div><div class="hidden grid-cols-1 md:grid-cols-4 gap-gutter items-end" id="pane-flight"><div class="flex flex-col gap-1"><label class="font-label-sm text-[12px] uppercase tracking-wider text-on-surface-variant font-medium">Origin Airport</label><div class="flex items-center gap-space-xs p-3 rounded-lg bg-white/10 backdrop-blur-xl border border-white/20 text-white shadow-sm"><span class="material-symbols-outlined text-primary text-[20px]">flight_takeoff</span><input class="bg-transparent font-title-md text-[14px] w-full focus:outline-none text-white" type="text" value="BOM • Mumbai Chhatrapati Shivaji"/></div></div><div class="flex flex-col gap-1"><label class="font-label-sm text-[12px] uppercase tracking-wider text-on-surface-variant font-medium">Destination Hub</label><div class="flex items-center gap-space-xs p-3 rounded-lg bg-white/10 backdrop-blur-xl border border-white/20 text-white shadow-sm"><span class="material-symbols-outlined text-primary text-[20px]">flight_land</span><input class="bg-transparent font-title-md text-[14px] w-full focus:outline-none text-white" type="text" value="FRA • Frankfurt Main Airport"/></div></div><div class="flex flex-col gap-1"><label class="font-label-sm text-[12px] uppercase tracking-wider text-on-surface-variant font-medium">Corporate Cabin Class</label><div class="flex items-center gap-space-xs p-3 rounded-lg bg-white/10 backdrop-blur-xl border border-white/20 text-white shadow-sm"><span class="material-symbols-outlined text-tertiary text-[20px]">airline_seat_recline_extra</span><select class="bg-transparent font-title-md text-[14px] w-full focus:outline-none text-white cursor-pointer"><option class="bg-surface-container-high text-on-surface">Business Class (Policy Approved)</option><option class="bg-surface-container-high text-on-surface">Premium Economy</option><option class="bg-surface-container-high text-on-surface">Economy (Flexible Rescheduling)</option></select></div></div><div><a class="w-full flex items-center justify-center gap-space-xs py-3.5 px-space-md rounded-lg bg-primary-container text-on-primary-container font-title-md text-[14px] shadow-md hover:bg-surface-tint transition-all" data-path="flight-options" href="#"><span class="material-symbols-outlined text-[20px]">search</span><span>Compare Flights</span></a></div></div><div class="hidden grid-cols-1 md:grid-cols-4 gap-gutter items-end" id="pane-hotel"><div class="flex flex-col gap-1"><label class="font-label-sm text-[12px] uppercase tracking-wider text-on-surface-variant font-medium">City or Corporate Campus</label><div class="flex items-center gap-space-xs p-3 rounded-lg bg-white/10 backdrop-blur-xl border border-white/20 text-white shadow-sm"><span class="material-symbols-outlined text-primary text-[20px]">location_on</span><input class="bg-transparent font-title-md text-[14px] w-full focus:outline-none text-white" type="text" value="Frankfurt Financial District / Innenstadt"/></div></div><div class="flex flex-col gap-1"><label class="font-label-sm text-[12px] uppercase tracking-wider text-on-surface-variant font-medium">Stay Dates (2026)</label><div class="flex items-center gap-space-xs p-3 rounded-lg bg-white/10 backdrop-blur-xl border border-white/20 text-white shadow-sm"><span class="material-symbols-outlined text-secondary text-[20px]">calendar_today</span><input class="bg-transparent font-title-md text-[14px] w-full focus:outline-none text-white" type="text" value="14 Oct - 28 Oct 2026 · 14 nights"/></div></div><div class="flex flex-col gap-1"><label class="font-label-sm text-[12px] uppercase tracking-wider text-on-surface-variant font-medium">Tier Preference</label><div class="flex items-center gap-space-xs p-3 rounded-lg bg-white/10 backdrop-blur-xl border border-white/20 text-white shadow-sm"><span class="material-symbols-outlined text-tertiary text-[20px]">star</span><select class="bg-transparent font-title-md text-[14px] w-full focus:outline-none text-white cursor-pointer"><option class="bg-surface-container-high text-on-surface">5-Star Business Preferred</option><option class="bg-surface-container-high text-on-surface">Executive Long-Stay Suites</option><option class="bg-surface-container-high text-on-surface">Standard Corporate Preferred</option></select></div></div><div><a class="w-full flex items-center justify-center gap-space-xs py-3.5 px-space-md rounded-lg bg-primary-container text-on-primary-container font-title-md text-[14px] shadow-md hover:bg-surface-tint transition-all" data-path="hotel-stays" href="#"><span class="material-symbols-outlined text-[20px]">apartment</span><span>Find Corporate Stays</span></a></div></div></div>
 <p class="mt-4 font-body-sm text-[12px] text-on-surface-variant italic">
           Prices shown are indicative. Final booking on partner site.
         </p>
 </div>
 </section>
 <!-- 2. SERVICES GRID: AI Visa Pre-Screening, Corporate Flight Comparison, Embassy-Proximity Hotels, Travel Advisory -->
-<section class="w-full px-margin-mobile md:px-margin-desktop py-space-xl">
+<section class="relative z-10 w-full px-margin-mobile md:px-margin-desktop py-space-xl">
 <div class="max-w-7xl mx-auto">
 <div class="text-center max-w-3xl mx-auto mb-space-xl">
 <span class="font-label-sm text-[12px] uppercase tracking-wider text-primary">Core Platform Capabilities</span>
@@ -511,7 +411,7 @@
 </div>
 </section>
 <!-- 3. HOW IT WORKS: 4 Short Steps -->
-<section class="w-full px-margin-mobile md:px-margin-desktop py-space-xl">
+<section class="relative z-10 w-full px-margin-mobile md:px-margin-desktop py-space-xl">
 <div class="max-w-7xl mx-auto">
 <div class="text-center max-w-3xl mx-auto mb-space-xl">
 <span class="font-label-sm text-[12px] uppercase tracking-wider text-primary">Pre-Screening Framework</span>
@@ -604,13 +504,15 @@
 </div>
 </div>
 </section>
+</div>
+<!-- End of SCROLL-ZOOM CONTAINER -->
 <!-- 4. HIGH-FREQUENCY CORPORATE GATEWAYS: Frankfurt, Munich, New York, Paris -->
 <section class="w-full px-margin-mobile md:px-margin-desktop py-space-xl">
 <div class="max-w-7xl mx-auto">
 <div class="flex flex-col md:flex-row md:items-end justify-between mb-space-lg gap-space-sm">
 <div>
 <span class="font-label-sm text-[12px] uppercase tracking-wider text-primary">Executive Travel Destinations</span>
-<h2 class="font-headline-lg text-headline-lg text-on-surface mt-1">High-Frequency Corporate Gateways</h2>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mt-1 flex items-center flex-wrap gap-2">High-Frequency Corporate Gateways <span class="font-body-sm text-[12px] text-on-surface-variant font-normal px-2 py-0.5 rounded-full glass-frost">(Sample data)</span></h2>
 </div>
 <div class="flex items-center gap-space-xs">
 <a class="px-space-md py-2 rounded-lg glass-frost hover:bg-white/15 text-on-surface font-title-md text-[13px] transition-colors" data-path="flight-options" href="#">
@@ -895,9 +797,7 @@
 <h2 class="font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface mb-space-md leading-tight">
             Ready to streamline your 2026 corporate deployment?
           </h2>
-<p class="font-body-lg text-body-lg text-on-surface-variant mb-space-lg max-w-2xl">
-            Join enterprise travelers who rely on TravelDesk for instant consular pre-qualification, discounted negotiated corporate fares, and automated compliance.
-          </p>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-space-lg max-w-2xl">Join enterprise travelers who rely on TravelDesk for AI-assisted pre-screening, reviewed by a human, and compare fares across partners.</p>
 <div class="flex flex-col sm:flex-row items-center justify-center gap-space-md w-full sm:w-auto">
 <a class="w-full sm:w-auto flex items-center justify-center gap-space-xs px-space-lg py-4 rounded-xl bg-gradient-to-r from-primary to-surface-tint text-on-primary font-title-md text-body-lg shadow-lg hover:opacity-95 transition-all" data-path="visas-and-immigration" href="#">
 <span class="material-symbols-outlined text-[20px]">smart_toy</span>
@@ -963,6 +863,70 @@
         }
       }
     }
+
+    /* Scroll-driven zoom effect implementation */
+    (function initCinematicScrollZoom() {
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (prefersReducedMotion) return;
+
+      const scope = document.getElementById('cinematic-zoom-scope');
+      const windowCanvas = document.getElementById('zoom-window-canvas');
+      const windowContainer = document.getElementById('zoom-window-container');
+      const skyLayer = document.getElementById('zoom-sky-layer');
+      const stickyStage = document.getElementById('cinematic-sticky-stage');
+      const windowOverlay = document.getElementById('hero-window-overlay');
+
+      if (!scope || !windowCanvas || !windowContainer || !skyLayer) return;
+
+      let ticking = false;
+
+      function updateZoom() {
+        const rect = scope.getBoundingClientRect();
+        const viewportHeight = window.innerHeight;
+        
+        // Active scroll depth through the hero & capabilities section
+        const totalDistance = rect.height - viewportHeight;
+        const currentScroll = Math.max(0, -rect.top);
+        const progress = Math.min(Math.max(currentScroll / Math.max(totalDistance * 0.7, 1), 0), 1);
+
+        // Zoom from 1.0 to 3.85 scaling into window pane center
+        const scale = 1.0 + (progress * 2.85);
+        windowCanvas.style.transform = `scale(${scale.toFixed(3)})`;
+
+        // Cabin window frame fades out as we plunge directly into the clouds
+        const windowOpacity = Math.max(0, 1 - (progress * 1.35));
+        windowContainer.style.opacity = windowOpacity.toFixed(3);
+
+        // Sunset clouds expand and brighten under the frosted glass cards
+        const cloudOpacity = Math.min(0.85, 0.15 + (progress * 0.7));
+        skyLayer.style.opacity = cloudOpacity.toFixed(3);
+
+        // Adjust dark overlay subtly
+        if (windowOverlay) {
+          const overlayAlpha = Math.max(0.65, 0.95 - (progress * 0.3));
+          windowOverlay.style.background = `linear-gradient(180deg, rgba(7, 20, 38, ${overlayAlpha}) 0%, rgba(7, 20, 38, 0.92) 65%, rgba(0, 19, 46, 0.98) 100%)`;
+        }
+
+        // Deactivate sticky canvas when past scope to release GPU layers cleanly
+        if (rect.bottom < 0) {
+          stickyStage.style.display = 'none';
+        } else {
+          stickyStage.style.display = 'block';
+        }
+
+        ticking = false;
+      }
+
+      window.addEventListener('scroll', () => {
+        if (!ticking) {
+          requestAnimationFrame(updateZoom);
+          ticking = true;
+        }
+      }, { passive: true });
+
+      // Run initial check
+      updateZoom();
+    })();
   </script>
 </main>
 <!-- Floating AI Concierge Launcher (Positioned so it doesn't collide with footer) -->
@@ -985,7 +949,7 @@
 <div class="grid grid-cols-1 md:grid-cols-4 gap-gutter mb-space-lg">
 <div class="flex flex-col gap-space-sm md:col-span-2">
 <div class="flex items-center gap-3">
-<img alt="Harbinger Group" class="h-6 w-auto object-contain brightness-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCEAHmedQkdmigxSTqW6iAt9d9Ct_HJX-M0NUc3w3BeOnPkLrNQ6tOasXO5FronjgteNrdMhVKIMbt41owVsx3X8g6jzOuDlDtuan2zs-1rXat9myMgTVm_k1bf7f98rtuObplhlMs3-eIag_XhqE_VqaITkUr7J4GNvUzpWVe9aD1v0VnYnMxPoOdvAQT4DZfan20ySe99dMaThvlKi2Ml7v6lImuGCw7WWvsWQtp_pUYr2sQxg5A9IyGk40NO_YeZ4w"/>
+<img alt="Harbinger Group" class="h-6 w-auto object-contain brightness-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4ROA-f9mpGxdNMCpgCVi6BZu-4AFQwg7vwtjnubleCnXp2QHXlZp1gNiP3yaPgJCi4APOjm9SFUvyQ4H2he-DqRkjHqeJsNVVHSFDHhZrKfGCxBwDChhdfbIwOLz3sCVPTLy8690fFMkp0yJKSc5-ikpxX7Yf3v6-Me1xD4jMMSYJ9X70vjwWpESL9YNxZETojJ2K4i0dfQIvJupj3hX0-AWVvIa6oh4VUH2YJfH-lK44d3nkFfhb5YYf1L90b9FLlw"/>
 <span class="font-headline-lg text-[20px] font-bold text-white tracking-tight leading-none">TravelDesk</span>
 </div>
 <p class="font-body-md text-body-md text-on-surface-variant max-w-md">

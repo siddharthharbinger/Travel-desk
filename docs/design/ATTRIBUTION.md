@@ -38,21 +38,21 @@ This document records the provenance, licensing, and usage context for all visua
 
 ## 4. Active Stitch Design Screen References
 
-The 14 active UI screen captures in Google Stitch are preserved in `/docs/design/screens/` for visual regression testing:
-1. `01_TravelDesk_-_Streamlined_Cinematic_Landing_Page_(2026)_29c94b39.png`
-2. `02_Hotel_Stays_-_Verified_Accommodations_(2026)_eaae004e.png`
-3. `03_Modern_luxury_hotel_glass_and_limestone_exterior_illuminated_at_twilight_with_c8c059ad.png`
-4. `04_Hotel_Stays_-_Simplified_Glass_&_Distinct_Imagery_85f43896.png`
-5. `05_Cinematic_breathtaking_aerial_photography_of_an_ancient_European_city_like_Pa_12f31863.png`
-6. `06_harbinger-logo.webp_98457657.webp`
-7. `07_Luxurious_modern_European_hotel_room_interior_at_Pullman_Munich,_plush_king_b_dc4c5dda.png`
-8. `08_TravelDesk_-_Cinematic_Landing_Page_(Refined_Glass_2026)_58f006d1.png`
-9. `09_AI_Visa_Pre-Interview_-_Schengen_Business_Visa_49214e46.png`
-10. `10_Breathtaking_architectural_view_of_Munich_Marienplatz_and_historic_Bavarian_c_f7951959.png`
-11. `11_Cinematic_twilight_aerial_photography_of_Frankfurt_Germany_skyline_with_river_a8dad1a8.png`
-12. `12_Cinematic_dusk_view_of_Lower_Manhattan_New_York_City_skyline_across_the_harbo_52ae6174.png`
-13. `14_Cinematic_golden_hour_view_from_aircraft_window_showing_airplane_wing_gliding_100f71f6.png`
-14. `15_Historic_luxury_hotel_grand_lobby_Sofitel_Munich,_opulent_architectural_colum_bf4bb732.png`
+The 14 active UI screen captures and specification in Google Stitch are preserved in `/docs/design/screens/` and `/docs/design/html/` for visual regression testing:
+1. `01_harbinger-logo.webp_98457657.webp`
+2. `02_Cinematic_golden_hour_view_from_aircraft_window_showing_airplane_wing_gliding_100f71f6.png`
+3. `03_Cinematic_breathtaking_aerial_photography_of_an_ancient_European_city_like_Pa_12f31863.png`
+4. `04_AI_Visa_Pre-Interview_-_Schengen_Business_Visa_49214e46.png`
+5. `05_TravelDesk_-_Immersive_Window_Scroll_Zoom_Landing_(2026)_43c9079b.png`
+6. `06_Cinematic_twilight_aerial_photography_of_Frankfurt_Germany_skyline_with_river_a8dad1a8.png`
+7. `07_Hotel_Stays_-_Verified_Accommodations_(2026)_eaae004e.png`
+8. `08_Modern_luxury_hotel_glass_and_limestone_exterior_illuminated_at_twilight_with_c8c059ad.png`
+9. `09_Historic_luxury_hotel_grand_lobby_Sofitel_Munich,_opulent_architectural_colum_bf4bb732.png`
+10. `10_Cinematic_dusk_view_of_Lower_Manhattan_New_York_City_skyline_across_the_harbo_52ae6174.png`
+11. `11_TravelDesk_-_Cinematic_Landing_Page_(Refined_Glass_2026)_58f006d1.png`
+12. `12_Luxurious_modern_European_hotel_room_interior_at_Pullman_Munich,_plush_king_b_dc4c5dda.png`
+13. `13_TravelDesk_DESIGN.md_Specification_31f70c66.md`
+14. `14_Breathtaking_architectural_view_of_Munich_Marienplatz_and_historic_Bavarian_c_f7951959.png`
 
 ---
 
