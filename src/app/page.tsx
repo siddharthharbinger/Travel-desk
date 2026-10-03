@@ -22,11 +22,12 @@ export default function HomePage() {
 
   const handlePromptSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!promptText.trim()) {
-      router.push("/visas");
+    const query = promptText.trim();
+    if (!query) {
+      window.location.href = "/visas";
       return;
     }
-    router.push(`/visas?prompt=${encodeURIComponent(promptText.trim())}`);
+    window.location.href = `/visas?prompt=${encodeURIComponent(query)}`;
   };
 
   const suggestionChips = [
@@ -147,7 +148,7 @@ export default function HomePage() {
               <div className="pt-2 flex items-center justify-between border-t border-[var(--glass-border)]">
                 <span className="text-xs text-[var(--foreground-subtle)]">Rule: 3-mo passport validity beyond stay</span>
                 <Link
-                  href="/visas?destination=Germany"
+                  href="/visas?prompt=Munich%20Germany%20client%20meetings"
                   className="inline-flex items-center gap-1.5 text-xs font-semibold text-[var(--brand-teal)] hover:underline"
                 >
                   <span>Start Pre-Screening</span>
@@ -183,7 +184,7 @@ export default function HomePage() {
               <div className="pt-2 flex items-center justify-between border-t border-[var(--glass-border)]">
                 <span className="text-xs text-[var(--foreground-subtle)]">Rule: India Six-Month Club exempt</span>
                 <Link
-                  href="/visas?destination=United States"
+                  href="/visas?prompt=New%20York%20City%20corporate%20tech%20conference"
                   className="inline-flex items-center gap-1.5 text-xs font-semibold text-[var(--brand-teal)] hover:underline"
                 >
                   <span>Start Pre-Screening</span>
