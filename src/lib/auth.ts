@@ -163,6 +163,26 @@ export async function getCurrentUser() {
   }
 }
 
+// 7. Get Session From Request (extracts cookie from req headers or cookies store)
+export async function getSessionFromRequest(req?: Request): Promise<SessionPayload | null> {
+  try {
+    if (req) {
+      const cookieHeader = req.headers.get("cookie") || "";
+      const match = cookieHeader.match(new RegExp(`(?:^|; )${SESSION_COOKIE_NAME}=([^;]*)`));
+      const token = match ? decodeURIComponent(match[1]) : null;
+      if (token) {
+        return await verifySessionToken(token);
+      }
+    }
+    const cookieStore = await cookies();
+    const token = cookieStore.get(SESSION_COOKIE_NAME)?.value;
+    if (!token) return null;
+    return await verifySessionToken(token);
+  } catch {
+    return null;
+  }
+}
+
 // 7. Audit Log Helper
 export async function logAuditEvent({
   actorId,
