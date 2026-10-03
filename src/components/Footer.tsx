@@ -1,9 +1,17 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Logo } from "@/components/Logo";
 import { ExternalLink, ShieldCheck } from "lucide-react";
 
 export function Footer() {
+  const pathname = usePathname();
   const currentYear = new Date().getFullYear();
+
+  if (pathname === "/login") {
+    return null;
+  }
 
   return (
     <footer className="mt-auto border-t border-white/10 bg-[#071426]/80 backdrop-blur-xl relative z-10">

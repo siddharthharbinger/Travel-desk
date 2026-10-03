@@ -103,25 +103,9 @@ export function Navbar({ user, unreadNotificationsCount = 0 }: NavbarProps) {
     navLinks.push({ label: "Review", href: "/review" });
   }
 
-  // Sign-in page = logo only
+  // Sign-in page = dedicated minimal header handled in login page
   if (isLoginPage) {
-    return (
-      <header className="sticky top-4 z-50 px-4 max-w-7xl mx-auto w-full">
-        <nav
-          className="h-14 px-6 rounded-full flex items-center justify-between transition-all duration-200"
-          style={{
-            backgroundColor: scrolled ? "rgba(7, 20, 38, 0.90)" : "rgba(7, 20, 38, 0.60)",
-            backdropFilter: "blur(24px) saturate(140%)",
-            WebkitBackdropFilter: "blur(24px) saturate(140%)",
-            border: "1px solid rgba(255, 255, 255, 0.12)",
-            boxShadow: "0 8px 32px 0 rgba(0, 0, 0, 0.36), inset 0 1px 0 0 rgba(255, 255, 255, 0.14)",
-          }}
-          aria-label="Sign-in Navigation"
-        >
-          <Logo />
-        </nav>
-      </header>
-    );
+    return null;
   }
 
   return (
