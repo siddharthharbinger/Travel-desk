@@ -2,7 +2,7 @@ import fs from "fs";
 import path from "path";
 
 const UPLOAD_ROOT = path.join(process.cwd(), "uploads");
-export const UPLOAD_DIR = path.join(UPLOAD_ROOT, "documents");
+export const UPLOAD_DIR = process.env.DOCUMENT_STORAGE_PATH || path.join(UPLOAD_ROOT, "documents");
 
 // Ensure upload directory exists on server
 export function ensureUploadDir() {

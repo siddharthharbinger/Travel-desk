@@ -6,12 +6,13 @@ services:
     container_name: traveldesk_app
     restart: unless-stopped
     ports:
-      - "3000:3000"
+      - "3001:3000"
     environment:
       - DATABASE_URL=file:/app/prisma/dev.db
       - SESSION_SECRET=traveldesk-docker-production-session-secret-key-2026
-      - NEXT_PUBLIC_APP_URL=http://localhost:3000
+      - NEXT_PUBLIC_APP_URL=http://localhost:3001
       - NEXT_PUBLIC_DEMO_MODE=true
+      - DOCUMENT_STORAGE_PATH=/app/uploads/documents
       - SEED_DEMO_CASES=false
       - DEMO_CUSTOMER_EMAIL=customer@harbingergroup.com
       - DEMO_CUSTOMER_PASSWORD=DemoCustomer2026!
@@ -21,7 +22,7 @@ services:
       - DEMO_ADMIN_PASSWORD=DemoAdmin2026!
     volumes:
       - traveldesk_db:/app/prisma
-      - traveldesk_documents:/app/storage/uploads/documents
+      - traveldesk_documents:/app/uploads/documents
 
 volumes:
   traveldesk_db:

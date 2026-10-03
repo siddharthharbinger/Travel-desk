@@ -32,7 +32,7 @@ RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
 # Create uploads directory for documents volume outside /public
-RUN mkdir -p /app/storage/uploads/documents && chown -R nextjs:nodejs /app/storage
+RUN mkdir -p /app/uploads/documents && chown -R nextjs:nodejs /app/uploads
 
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/prisma ./prisma

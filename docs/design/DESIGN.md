@@ -195,7 +195,7 @@ TravelDesk employs a dual-typeface pairing:
   - Header: **Book via partners**
   - Text: *"Prices shown are indicative. Final price and booking confirmation on partner site."*
   - Partners: ixigo Corporate, MakeMyTrip MyBiz, Booking.com for Business.
-- **Temporal Alignment:** All system dates set to **October 14 – 28, 2026**. Footer copyright reads: `© 2026 Harbinger Group Holdings Ltd. All rights reserved.`
+- **Temporal Alignment:** All system sample dates are generated relative to the current date; never hard-coded. Footer copyright reads: `© 2026 Harbinger Group Holdings Ltd. All rights reserved.`
 ## 7. Implementation Notes (Next.js build)
 
 7.1 Tokens and theming
