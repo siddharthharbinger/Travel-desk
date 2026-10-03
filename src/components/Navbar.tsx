@@ -16,6 +16,8 @@ import {
   ChevronDown
 } from "lucide-react";
 
+import { NotificationBell } from "@/components/NotificationBell";
+
 interface NavbarUser {
   id: string;
   name: string;
@@ -47,6 +49,11 @@ export function Navbar({ user, unreadNotificationsCount = 0 }: NavbarProps) {
   // Show Review tab for CSR and ADMIN
   if (user && (user.role === "CSR" || user.role === "ADMIN")) {
     navLinks.push({ label: "Review", href: "/review" });
+  }
+
+  // Show Admin tab for ADMIN
+  if (user && user.role === "ADMIN") {
+    navLinks.push({ label: "Admin", href: "/admin" });
   }
 
   const handleSignOut = async () => {
@@ -114,18 +121,7 @@ export function Navbar({ user, unreadNotificationsCount = 0 }: NavbarProps) {
         <div className="flex items-center gap-2.5">
           <ThemeToggle />
 
-          {user && (
-            <Link
-              href="/dashboard#notifications"
-              className="p-2 rounded-lg border border-[var(--glass-border)] bg-[var(--glass-fill)] hover:bg-[var(--glass-fill-hover)] text-[var(--foreground-muted)] hover:text-[var(--foreground)] relative focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand-teal)]"
-              aria-label={`View notifications (${unreadNotificationsCount} unread)`}
-            >
-              <Bell className="w-4 h-4" />
-              {unreadNotificationsCount > 0 && (
-                <span className="absolute top-1 right-1 w-2 h-2 rounded-full bg-[var(--brand-amber)] ring-2 ring-[var(--canvas-bg)]" />
-              )}
-            </Link>
-          )}
+          {user && <NotificationBell />}
 
           {user ? (
             /* User Dropdown */
@@ -170,6 +166,18 @@ export function Navbar({ user, unreadNotificationsCount = 0 }: NavbarProps) {
                     <UserIcon className="w-4 h-4 text-[var(--foreground-muted)]" />
                     Customer Dashboard
                   </Link>
+
+                  {user.role === "ADMIN" && (
+                    <Link
+                      href="/admin"
+                      onClick={() => setProfileOpen(false)}
+                      className="flex items-center gap-2 px-3 py-2 rounded-lg text-xs hover:bg-[var(--glass-fill-hover)] text-[var(--foreground)]"
+                      role="menuitem"
+                    >
+                      <ShieldCheck className="w-4 h-4 text-[var(--brand-teal)]" />
+                      Admin Governance
+                    </Link>
+                  )}
 
                   {/* Demo Role Switcher (Shown ONLY when NEXT_PUBLIC_DEMO_MODE=true) */}
                   {isDemoMode && (

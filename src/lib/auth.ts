@@ -24,11 +24,33 @@ export interface SessionPayload {
   lastActive: number;
 }
 
+export const HARBINGER_DOMAIN = "@harbingergroup.com";
+
+// Helper to generate strong temporary password
+export function generateTemporaryPassword(): string {
+  const uppercase = "ABCDEFGHJKLMNPQRSTUVWXYZ";
+  const lowercase = "abcdefghjkmnpqrstuvwxyz";
+  const digits = "23456789";
+  const symbols = "!@#$%^&*";
+  const all = uppercase + lowercase + digits + symbols;
+
+  let pwd = "";
+  pwd += uppercase.charAt(Math.floor(Math.random() * uppercase.length));
+  pwd += lowercase.charAt(Math.floor(Math.random() * lowercase.length));
+  pwd += digits.charAt(Math.floor(Math.random() * digits.length));
+  pwd += symbols.charAt(Math.floor(Math.random() * symbols.length));
+
+  for (let i = 4; i < 14; i++) {
+    pwd += all.charAt(Math.floor(Math.random() * all.length));
+  }
+  return pwd;
+}
+
 // 1. Company Domain Check (@harbingergroup.com)
 export function validateCompanyEmail(email: string): boolean {
   if (!email) return false;
   const clean = email.trim().toLowerCase();
-  return clean.endsWith("@harbingergroup.com");
+  return clean.endsWith(HARBINGER_DOMAIN);
 }
 
 // 2. Password Strength Check (At least 10 chars, strength score 0-4)

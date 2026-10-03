@@ -1,0 +1,171 @@
+"use client";
+
+import React, { useState, useEffect } from "react";
+import Link from "next/link";
+import { Bell, Check, ExternalLink, Inbox } from "lucide-react";
+
+interface NotificationItem {
+  id: string;
+  title: string;
+  message: string;
+  linkUrl: string | null;
+  isRead: boolean;
+  createdAt: string;
+}
+
+export function NotificationBell() {
+  const [open, setOpen] = useState(false);
+  const [notifications, setNotifications] = useState<NotificationItem[]>([]);
+  const [loading, setLoading] = useState(false);
+
+  const fetchNotifications = async () => {
+    try {
+      const res = await fetch("/api/notifications");
+      if (res.ok) {
+        const data = await res.json();
+        setNotifications(data.notifications || []);
+      }
+    } catch (err) {
+      console.error("Error fetching notifications:", err);
+    }
+  };
+
+  useEffect(() => {
+    fetchNotifications();
+    const interval = setInterval(fetchNotifications, 30000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const unreadCount = notifications.filter((n) => !n.isRead).length;
+
+  const markAllAsRead = async () => {
+    try {
+      await fetch("/api/notifications", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({}),
+      });
+      setNotifications((prev) => prev.map((n) => ({ ...n, isRead: true })));
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const markAsRead = async (id: string) => {
+    try {
+      await fetch("/api/notifications", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ notificationId: id }),
+      });
+      setNotifications((prev) =>
+        prev.map((n) => (n.id === id ? { ...n, isRead: true } : n))
+      );
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  return (
+    <div className="relative">
+      <button
+        onClick={() => setOpen(!open)}
+        id="notification-bell-btn"
+        className="p-2 rounded-lg border border-[var(--glass-border)] bg-[var(--glass-fill)] hover:bg-[var(--glass-fill-hover)] text-[var(--foreground-muted)] hover:text-[var(--foreground)] relative focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand-teal)]"
+        aria-label={`View notifications (${unreadCount} unread)`}
+        aria-expanded={open}
+      >
+        <Bell className="w-4 h-4" />
+        {unreadCount > 0 && (
+          <span 
+            id="unread-notifications-badge"
+            className="absolute -top-1 -right-1 min-w-[18px] h-[18px] px-1 rounded-full bg-[var(--brand-amber)] text-black text-[10px] font-bold flex items-center justify-center ring-2 ring-[var(--canvas-bg)]"
+          >
+            {unreadCount > 9 ? "9+" : unreadCount}
+          </span>
+        )}
+      </button>
+
+      {open && (
+        <div 
+          className="absolute right-0 mt-2 w-80 sm:w-96 glass-panel p-4 shadow-2xl border border-[var(--border)] z-50 text-xs animate-in fade-in slide-in-from-top-2 duration-150"
+          role="region"
+          aria-label="Notification center"
+        >
+          <div className="flex items-center justify-between pb-3 border-b border-[var(--border)] mb-2">
+            <div className="flex items-center gap-2">
+              <span className="font-semibold text-sm text-[var(--foreground)]">Notifications</span>
+              {unreadCount > 0 && (
+                <span className="px-2 py-0.5 rounded-full bg-[var(--brand-teal)]/15 text-[var(--brand-teal)] font-bold text-[10px]">
+                  {unreadCount} unread
+                </span>
+              )}
+            </div>
+
+            {unreadCount > 0 && (
+              <button
+                type="button"
+                onClick={markAllAsRead}
+                className="text-[11px] text-[var(--brand-teal)] hover:underline flex items-center gap-1 font-medium"
+              >
+                <Check className="w-3 h-3" />
+                <span>Mark all read</span>
+              </button>
+            )}
+          </div>
+
+          <div className="max-h-80 overflow-y-auto divide-y divide-[var(--border)]">
+            {notifications.length === 0 ? (
+              <div className="py-8 text-center text-[var(--foreground-muted)] space-y-2">
+                <Inbox className="w-8 h-8 mx-auto opacity-40" />
+                <p>No operational notifications yet.</p>
+              </div>
+            ) : (
+              notifications.map((n) => (
+                <div
+                  key={n.id}
+                  className={`py-3 space-y-1 transition-colors ${
+                    !n.isRead ? "bg-[var(--brand-teal)]/5 px-2 rounded-lg" : ""
+                  }`}
+                >
+                  <div className="flex items-start justify-between gap-2">
+                    <span className="font-semibold text-[var(--foreground)]">{n.title}</span>
+                    <span className="text-[10px] text-[var(--foreground-muted)] shrink-0 whitespace-nowrap">
+                      {new Date(n.createdAt).toLocaleDateString([], { month: "short", day: "numeric" })}
+                    </span>
+                  </div>
+                  <p className="text-[var(--foreground-muted)] leading-relaxed">{n.message}</p>
+                  <div className="flex items-center justify-between pt-1">
+                    {n.linkUrl ? (
+                      <Link
+                        href={n.linkUrl}
+                        onClick={() => {
+                          markAsRead(n.id);
+                          setOpen(false);
+                        }}
+                        className="text-[11px] font-semibold text-[var(--brand-teal)] hover:underline flex items-center gap-1"
+                      >
+                        <span>View Details</span>
+                        <ExternalLink className="w-3 h-3" />
+                      </Link>
+                    ) : (
+                      <span />
+                    )}
+                    {!n.isRead && (
+                      <button
+                        onClick={() => markAsRead(n.id)}
+                        className="text-[10px] text-[var(--foreground-muted)] hover:text-[var(--foreground)]"
+                      >
+                        Dismiss
+                      </button>
+                    )}
+                  </div>
+                </div>
+              ))
+            )}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
