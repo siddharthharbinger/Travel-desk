@@ -55,7 +55,7 @@
     "stepCategory": "IMMIGRATION_HISTORY",
     "orderIndex": 5,
     "questionText": "Have you ever had a visa application refused by the destination country or Schengen member state?",
-    "helpText": "Full transparency is required on statutory visa filings. Declaring a refusal does not disqualify you but requires official documentation.",
+    "helpText": "Full transparency is required on official visa applications. Declaring a refusal does not disqualify you but requires official documentation.",
     "responseType": "BOOLEAN",
     "isMandatory": true,
     "flagTriggerRule": "{\"field\":\"value\",\"operator\":\"equals\",\"operand\":\"true\",\"flag\":{\"code\":\"FLAG_PRIOR_REFUSAL\",\"severity\":\"WARNING\",\"message\":\"Applicant reported previous visa refusal. Official consular refusal notice and explanation letter must be submitted for CSR review.\"}}"

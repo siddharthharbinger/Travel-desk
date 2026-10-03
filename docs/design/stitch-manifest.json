@@ -1,221 +1,313 @@
 {
-  "projectId": "5624038136432353661",
-  "projectTitle": "TravelDesk AI Platform UI",
-  "lastSyncDate": "2026-10-03T11:32:14.075937+00:00",
-  "branch": "design-sync-2026-10-03",
-  "activeScreensCount": 14,
+  "projectId": "1987368842284057490",
+  "projectTitle": "TravelDesk v2 (dark)",
+  "lastSyncDate": "2026-10-03T15:30:00Z",
+  "colorMode": "DARK",
+  "branch": "ui-redesign",
+  "totalScreens": 19,
   "screens": [
     {
       "order": 1,
-      "screenId": "9845765782024992840",
-      "screenIdShort": "98457657",
-      "title": "harbinger-logo.webp",
-      "width": "199",
-      "height": "65",
+      "screenId": "22cd69381c8f4e7aa02412861665b4f8",
+      "title": "Sharp, high-resolution cinematic photograph of a commercial jet aircraft wing viewed from inside through an airplane window flying above soft clouds at golden hour twilight, deep amber and dusk blue sky, crisp details, crystal clear photography, highly detailed, no blur",
+      "width": "1376",
+      "height": "768",
       "screenshot": {
-        "fileName": "01_harbinger-logo.webp_98457657.webp",
-        "sha256": "681767dc7d0ba3c79ceeacbc87cc8934d3bf831a44d5fe61599a9bb5746e11a5",
-        "sizeBytes": 6524
+        "fileName": "01_Sharp,_high-resolution_cinematic_photograph_of_a_commercial_jet_aircraft_wing_vi_22cd6938.png",
+        "sha256": "beb2412e05583aa788ca01bdae8f3002e7d9ad68d5677a8005aeba5d2b4ae3d2",
+        "sizeBytes": 37470
       },
-      "code": null
+      "htmlCode": null
     },
     {
       "order": 2,
-      "screenId": "100f71f6a1b549fd92a2e682c8d6df95",
-      "screenIdShort": "100f71f6",
-      "title": "Cinematic golden hour view from aircraft window showing airplane wing gliding over soft sunset clouds with deep twilight violet and warm golden sunlight, peaceful, travel aesthetic, ultra high definition",
-      "width": "1376",
-      "height": "768",
+      "screenId": "935493a1a15040128032c275a6cfd033",
+      "title": "/visas \u2013 Visa Overview \u2013 Desktop 1440",
+      "width": "2560",
+      "height": "4490",
       "screenshot": {
-        "fileName": "02_Cinematic_golden_hour_view_from_aircraft_window_showing_airplane_wing_gliding_100f71f6.png",
-        "sha256": "de67fcfb91086fd8f4377c6d9455603b1d2ef64a96a421ae19388b404fab0808",
-        "sizeBytes": 29563
+        "fileName": "02_visas_\u2013_Visa_Overview_\u2013_Desktop_1440_935493a1.png",
+        "sha256": "78955485a972aa52644e96ad5161c4a357b2efa8fa4b01ec3a382381187350ff",
+        "sizeBytes": 20213
       },
-      "code": null
+      "htmlCode": {
+        "fileName": "02_visas_\u2013_Visa_Overview_\u2013_Desktop_1440_935493a1.html",
+        "sha256": "956a722e2f435c2d3895cbbe007ad63dfa21e3951445d0ef63116d90eec35a6b",
+        "sizeBytes": 31459
+      }
     },
     {
       "order": 3,
-      "screenId": "12f318635a87441c99d4899a1161f490",
-      "screenIdShort": "12f31863",
-      "title": "Cinematic breathtaking aerial photography of an ancient European city like Paris or Prague at dusk, illuminated warm streetlights, river reflection, deep blue twilight sky with amber twilight glow, luxury editorial quality",
+      "screenId": "36968e729bfd429f8a56cf72bc97978d",
+      "title": "Sharp high-resolution architectural photograph of New York City Manhattan skyline with Empire State Building at evening dusk twilight, glowing office windows, realistic clear travel photography",
       "width": "1376",
       "height": "768",
       "screenshot": {
-        "fileName": "03_Cinematic_breathtaking_aerial_photography_of_an_ancient_European_city_like_Pa_12f31863.png",
-        "sha256": "b92ea22c4bafedc00a9eb620dc72d581eefee24fc8b913f0aa5d9c2e91008550",
-        "sizeBytes": 74218
+        "fileName": "03_Sharp_high-resolution_architectural_photograph_of_New_York_City_Manhattan_skylin_36968e72.png",
+        "sha256": "170da368acb0ddaf5a0f13bb0f77aa4d12dff00bfa95cf9f0966c33ac6d5ffdb",
+        "sizeBytes": 63695
       },
-      "code": null
+      "htmlCode": null
     },
     {
       "order": 4,
-      "screenId": "49214e46423a4471ab5eb8195d2c4cda",
-      "screenIdShort": "49214e46",
-      "title": "AI Visa Pre-Interview - Schengen Business Visa",
-      "width": "2560",
-      "height": "3248",
-      "screenshot": {
-        "fileName": "04_AI_Visa_Pre-Interview_-_Schengen_Business_Visa_49214e46.png",
-        "sha256": "ebfd61d37428c3a7a0b5badb2d2973754122eb6236931bd6953f0f5721b574a9",
-        "sizeBytes": 154210
-      },
-      "code": {
-        "fileName": "04_AI_Visa_Pre-Interview_-_Schengen_Business_Visa_49214e46.html",
-        "sha256": "68567cfd0c6840a068bf0613686ebac33283116a778cf84cd1909574e6abd22a",
-        "sizeBytes": 37596
+      "screenId": "4bd98421585f447eaa02b26a6a3f3f6c",
+      "title": "Harbinger TravelDesk Pre-Screening & Mobility Flow",
+      "width": "1280",
+      "height": "1024",
+      "screenshot": null,
+      "htmlCode": {
+        "fileName": "04_Harbinger_TravelDesk_Pre-Screening_&_Mobility_Flow_4bd98421.html",
+        "sha256": "6e36477d66a23e5bdb728acbe2ed1d5cc773a4f8e5b7f2dba796fc2c011d769a",
+        "sizeBytes": 18342
       }
     },
     {
       "order": 5,
-      "screenId": "43c9079bea9149948ffec00fc9d546c6",
-      "screenIdShort": "43c9079b",
-      "title": "TravelDesk - Immersive Window Scroll Zoom Landing (2026)",
+      "screenId": "ed1dd8952b354ed5b8e94d0f62c662fe",
+      "title": "/review/[id] \u2013 Case Detail Review \u2013 Desktop 1440",
       "width": "2560",
-      "height": "8042",
+      "height": "4172",
       "screenshot": {
-        "fileName": "05_TravelDesk_-_Immersive_Window_Scroll_Zoom_Landing_(2026)_43c9079b.png",
-        "sha256": "c43735ae1185f6da7aeaffc0be0ee45cee9960ced7dcf0b414f53d554c9f0bed",
-        "sizeBytes": 76119
+        "fileName": "05_review[id]_\u2013_Case_Detail_Review_\u2013_Desktop_1440_ed1dd895.png",
+        "sha256": "fdfbea3bbbca18594c9454bfc9daa334a56ecee4d6a36d838cfc8ab40f93fff9",
+        "sizeBytes": 105956
       },
-      "code": {
-        "fileName": "05_TravelDesk_-_Immersive_Window_Scroll_Zoom_Landing_(2026)_43c9079b.html",
-        "sha256": "3a315b35e7167efd691119ed4eca7695908117e31df6c2e0aedea8191613e799",
-        "sizeBytes": 70841
+      "htmlCode": {
+        "fileName": "05_review[id]_\u2013_Case_Detail_Review_\u2013_Desktop_1440_ed1dd895.html",
+        "sha256": "0443446255d8f6b495f0489a7adab7ad2643fc218f07e768972558826f287b82",
+        "sizeBytes": 46014
       }
     },
     {
       "order": 6,
-      "screenId": "a8dad1a8c4534c86b59177a0d9f2f756",
-      "screenIdShort": "a8dad1a8",
-      "title": "Cinematic twilight aerial photography of Frankfurt Germany skyline with river Main reflecting illuminated financial towers and bridges, dusk blue and warm gold lights, no people, editorial photography",
-      "width": "1376",
-      "height": "768",
+      "screenId": "84f6ad0de6b94951a9e57d20385f0e0f",
+      "title": "/applications/[id]/documents \u2013 Document Upload \u2013 Desktop 1440",
+      "width": "2560",
+      "height": "4674",
       "screenshot": {
-        "fileName": "06_Cinematic_twilight_aerial_photography_of_Frankfurt_Germany_skyline_with_river_a8dad1a8.png",
-        "sha256": "a640d0582712dcbe0a1fdc27bf3e7a5dd1350986c741229f37f19cd85d7395d6",
-        "sizeBytes": 70853
+        "fileName": "06_applications[id]documents_\u2013_Document_Upload_\u2013_Desktop_1440_84f6ad0d.png",
+        "sha256": "0a5a84a3a4e5d654a428307d9381af8e76e767bcf7f117ee278746f118b02758",
+        "sizeBytes": 37609
       },
-      "code": null
+      "htmlCode": {
+        "fileName": "06_applications[id]documents_\u2013_Document_Upload_\u2013_Desktop_1440_84f6ad0d.html",
+        "sha256": "249f568e2b5b69a8140b7291b609693d6aaa591e01885f7886165763de18af7b",
+        "sizeBytes": 27623
+      }
     },
     {
       "order": 7,
-      "screenId": "eaae004ef9274b69b28bad3ba97d4954",
-      "screenIdShort": "eaae004e",
-      "title": "Hotel Stays - Verified Accommodations (2026)",
+      "screenId": "880d376be3e64e2cb6a9d1b291b1686b",
+      "title": "/flights \u2013 Flights Search Hub \u2013 Desktop 1440",
       "width": "2560",
-      "height": "4636",
+      "height": "4298",
       "screenshot": {
-        "fileName": "07_Hotel_Stays_-_Verified_Accommodations_(2026)_eaae004e.png",
-        "sha256": "74f09925248c3d01d2dbfc901849d922a98aed91df96c359fd459471e545f103",
-        "sizeBytes": 143573
+        "fileName": "07_flights_\u2013_Flights_Search_Hub_\u2013_Desktop_1440_880d376b.png",
+        "sha256": "285a450f7581c5bb74c526580cb15db057cdc311fd577da4549a56d398ab0870",
+        "sizeBytes": 46302
       },
-      "code": {
-        "fileName": "07_Hotel_Stays_-_Verified_Accommodations_(2026)_eaae004e.html",
-        "sha256": "3d79762128443c0bd286bdc8c3827549eb6d698174662713fac0d7ec0f0d1e03",
-        "sizeBytes": 53598
+      "htmlCode": {
+        "fileName": "07_flights_\u2013_Flights_Search_Hub_\u2013_Desktop_1440_880d376b.html",
+        "sha256": "466b6c8a988cf3088b49b5aedf1ab4fe11eb364d488bfd6cf9a3aa3cc1a2c8ed",
+        "sizeBytes": 25777
       }
     },
     {
       "order": 8,
-      "screenId": "c8c059ad38494769bf65f81b52305b98",
-      "screenIdShort": "c8c059ad",
-      "title": "Modern luxury hotel glass and limestone exterior illuminated at twilight with warmly lit entry, landscaped driveway, architectural photography, Munich executive hotel, upscale European hospitality, no people",
+      "screenId": "2df5d27ab56846b09bbad0dbaa1430e7",
+      "title": "Sharp high-resolution architectural photograph of Munich Germany, Marienplatz Neues Rathaus square at twilight dusk with elegant atmospheric warm lighting and deep blue sky, realistic clear travel photography",
       "width": "1376",
       "height": "768",
       "screenshot": {
-        "fileName": "08_Modern_luxury_hotel_glass_and_limestone_exterior_illuminated_at_twilight_with_c8c059ad.png",
-        "sha256": "9cb256c052614de36da4e4c1b70d40071b944cb2a6a8bab8c9a50ee5dee07bd3",
-        "sizeBytes": 62986
+        "fileName": "08_Sharp_high-resolution_architectural_photograph_of_Munich_Germany,_Marienplatz_Ne_2df5d27a.png",
+        "sha256": "e68945e710e0931a7ebd6e318bd13917d97dde26cd19cefda8d862a82e5a5d51",
+        "sizeBytes": 61536
       },
-      "code": null
+      "htmlCode": null
     },
     {
       "order": 9,
-      "screenId": "bf4bb7322c004524a66e0b5bd2244b92",
-      "screenIdShort": "bf4bb732",
-      "title": "Historic luxury hotel grand lobby Sofitel Munich, opulent architectural columns, grand staircase, marble floors with warm glowing crystal chandeliers, luxury European hospitality photography, no people",
-      "width": "1376",
-      "height": "768",
+      "screenId": "1286a2108aae41eeab05f40b7748e777",
+      "title": "/login \u2013 Sign in \u2013 Desktop 1440",
+      "width": "2560",
+      "height": "2048",
       "screenshot": {
-        "fileName": "09_Historic_luxury_hotel_grand_lobby_Sofitel_Munich,_opulent_architectural_colum_bf4bb732.png",
-        "sha256": "ecc17f278b6526457f081d19669754a4f679580ed1b821781dab6b864f4ccdd6",
-        "sizeBytes": 58335
+        "fileName": "09_login_\u2013_Sign_in_\u2013_Desktop_1440_1286a210.png",
+        "sha256": "05c271ef0694dcb213d68486ef5ad6728bce8c6ebb61ee99b04bafad30c1ca92",
+        "sizeBytes": 21868
       },
-      "code": null
+      "htmlCode": {
+        "fileName": "09_login_\u2013_Sign_in_\u2013_Desktop_1440_1286a210.html",
+        "sha256": "6e36477d66a23e5bdb728acbe2ed1d5cc773a4f8e5b7f2dba796fc2c011d769a",
+        "sizeBytes": 18342
+      }
     },
     {
       "order": 10,
-      "screenId": "52ae617466d048188c64aa5a5a2a270f",
-      "screenIdShort": "52ae6174",
-      "title": "Cinematic dusk view of Lower Manhattan New York City skyline across the harbor with glowing amber building lights against deep twilight blue sky, no people, professional travel photography",
-      "width": "1376",
-      "height": "768",
+      "screenId": "2b7ecd1bfbc64e0f97b4eb67aec509c2",
+      "title": "/review \u2013 Review Queue \u2013 Desktop 1440",
+      "width": "2560",
+      "height": "2082",
       "screenshot": {
-        "fileName": "10_Cinematic_dusk_view_of_Lower_Manhattan_New_York_City_skyline_across_the_harbo_52ae6174.png",
-        "sha256": "6cf3a4c44e67b69ec324ace3df932b39c42b95ac800d5b5cf29ac8ee47bf0335",
-        "sizeBytes": 38686
+        "fileName": "10_review_\u2013_Review_Queue_\u2013_Desktop_1440_2b7ecd1b.png",
+        "sha256": "954638bfd44024d22720203cdb78f623244297e98dbac573fe61ef6fd6d0270e",
+        "sizeBytes": 122978
       },
-      "code": null
+      "htmlCode": {
+        "fileName": "10_review_\u2013_Review_Queue_\u2013_Desktop_1440_2b7ecd1b.html",
+        "sha256": "c0ba1ef135af77960208932d65269baf980157d1573c8eedddbf0baf9a3f149a",
+        "sizeBytes": 41448
+      }
     },
     {
       "order": 11,
-      "screenId": "58f006d1188844a6bfb005a9361a811d",
-      "screenIdShort": "58f006d1",
-      "title": "TravelDesk - Cinematic Landing Page (Refined Glass 2026)",
+      "screenId": "5b53f5a6bc354a9083eccd4011668bf2",
+      "title": "/403 & /404 & Session Expired \u2013 Error System \u2013 Desktop 1440",
       "width": "2560",
-      "height": "8042",
+      "height": "2048",
       "screenshot": {
-        "fileName": "11_TravelDesk_-_Cinematic_Landing_Page_(Refined_Glass_2026)_58f006d1.png",
-        "sha256": "1881262abc08f4acf4705f8058bf7b0bf9fd714a80df1806bb98a59282c81c14",
-        "sizeBytes": 83867
+        "fileName": "11_403_&_404_&_Session_Expired_\u2013_Error_System_\u2013_Desktop_1440_5b53f5a6.png",
+        "sha256": "ef7c912dbf23497dfcd93b70c36eba5faaf339b2343519df862d57a5c867f5ed",
+        "sizeBytes": 20671
       },
-      "code": {
-        "fileName": "11_TravelDesk_-_Cinematic_Landing_Page_(Refined_Glass_2026)_58f006d1.html",
-        "sha256": "eabc15e0893a0c0883894152c5c4db95b0af470da543495699c8d816ee4e91f1",
-        "sizeBytes": 66125
+      "htmlCode": {
+        "fileName": "11_403_&_404_&_Session_Expired_\u2013_Error_System_\u2013_Desktop_1440_5b53f5a6.html",
+        "sha256": "985a4467ea0cef6398008725329835c410749327a1db2ac62708c76e56478d89",
+        "sizeBytes": 9449
       }
     },
     {
       "order": 12,
-      "screenId": "dc4c5dda06ac46c5866f92feef86e5b4",
-      "screenIdShort": "dc4c5dda",
-      "title": "Luxurious modern European hotel room interior at Pullman Munich, plush king bed, ambient warm lighting, designer desk, large window with Munich evening city view, architectural photography, no people",
-      "width": "1376",
-      "height": "768",
+      "screenId": "824dbd1570da451dadb6fdc26892d4fb",
+      "title": "/interview/[id] \u2013 Pre-Screening Interview \u2013 Desktop 1440",
+      "width": "2560",
+      "height": "3708",
       "screenshot": {
-        "fileName": "12_Luxurious_modern_European_hotel_room_interior_at_Pullman_Munich,_plush_king_b_dc4c5dda.png",
-        "sha256": "a92eca92129cacbe8cd5f4209d7e7cf8d6504778e3bc5b2969fc737fa04ff048",
-        "sizeBytes": 44140
+        "fileName": "12_interview[id]_\u2013_Pre-Screening_Interview_\u2013_Desktop_1440_824dbd15.png",
+        "sha256": "10688e698c56a87404fb7036686442cd7a16b3966208712504f78dfb7fc57436",
+        "sizeBytes": 24914
       },
-      "code": null
+      "htmlCode": {
+        "fileName": "12_interview[id]_\u2013_Pre-Screening_Interview_\u2013_Desktop_1440_824dbd15.html",
+        "sha256": "244beefe83819b13dceafa2b4008ee696ffe1710036b068c750b807e108df7dd",
+        "sizeBytes": 28455
+      }
     },
     {
       "order": 13,
-      "screenId": "31f70c66caa749c381c02e707bfc3a4c",
-      "screenIdShort": "31f70c66",
-      "title": "TravelDesk DESIGN.md Specification",
-      "width": "0",
-      "height": "0",
-      "screenshot": null,
-      "code": {
-        "fileName": "13_TravelDesk_DESIGN.md_Specification_31f70c66.md",
-        "sha256": "5fc287b59a2848463829f2aa0677768aea19b72c8f02c9a188fe801840c6f265",
-        "sizeBytes": 11012
+      "screenId": "c4e570ae25ce4d0a96669145c0caceea",
+      "title": "/change-password \u2013 Forced Password Change \u2013 Desktop 1440",
+      "width": "2560",
+      "height": "2048",
+      "screenshot": {
+        "fileName": "13_change-password_\u2013_Forced_Password_Change_\u2013_Desktop_1440_c4e570ae.png",
+        "sha256": "6296157fd9866939351e30647174128b23e8f31714a52ee577ba21acf9ff9518",
+        "sizeBytes": 77790
+      },
+      "htmlCode": {
+        "fileName": "13_change-password_\u2013_Forced_Password_Change_\u2013_Desktop_1440_c4e570ae.html",
+        "sha256": "5881ce1cdd35cfd3e3ca0e8371253b450aa69fdb9784c199605a1fa010e0619e",
+        "sizeBytes": 21850
       }
     },
     {
       "order": 14,
-      "screenId": "f79519592a3b4c49b722d0847661521c",
-      "screenIdShort": "f7951959",
-      "title": "Breathtaking architectural view of Munich Marienplatz and historic Bavarian city center at dusk, warm amber lights glowing against deep blue evening sky, premium editorial corporate travel photography, no people",
-      "width": "1376",
-      "height": "768",
+      "screenId": "dfef788efbb7488597c7b233985b321e",
+      "title": "/travel-info \u2013 Travel Info \u2013 Desktop 1440",
+      "width": "2560",
+      "height": "4882",
       "screenshot": {
-        "fileName": "14_Breathtaking_architectural_view_of_Munich_Marienplatz_and_historic_Bavarian_c_f7951959.png",
-        "sha256": "d9c6b2416617ba5ca1063352879296fd43721c50d12c9bd0a4e8bd83e682aeed",
-        "sizeBytes": 58137
+        "fileName": "14_travel-info_\u2013_Travel_Info_\u2013_Desktop_1440_dfef788e.png",
+        "sha256": "0961f192dda8e3d7ed6111d63934efdd62ab8cb1606e904f5bccc65abfff96e2",
+        "sizeBytes": 25410
       },
-      "code": null
+      "htmlCode": {
+        "fileName": "14_travel-info_\u2013_Travel_Info_\u2013_Desktop_1440_dfef788e.html",
+        "sha256": "40e5654583bd20c544246877662e828e5c0ce45da98cb983f1d56923a1bbf538",
+        "sizeBytes": 40034
+      }
+    },
+    {
+      "order": 15,
+      "screenId": "30756a69f969449eb281a6690e0e7712",
+      "title": "/dashboard \u2013 Customer Dashboard \u2013 Desktop 1440",
+      "width": "2560",
+      "height": "4296",
+      "screenshot": {
+        "fileName": "15_dashboard_\u2013_Customer_Dashboard_\u2013_Desktop_1440_30756a69.png",
+        "sha256": "9c7c07843795d8391b78583dcbfe685cffe68728dd4763ce88b1c1ea0f26e3fb",
+        "sizeBytes": 32902
+      },
+      "htmlCode": {
+        "fileName": "15_dashboard_\u2013_Customer_Dashboard_\u2013_Desktop_1440_30756a69.html",
+        "sha256": "83c7715242ff930038c3766df350e2dc08275294526069e99a422596ae0dfd04",
+        "sizeBytes": 24784
+      }
+    },
+    {
+      "order": 16,
+      "screenId": "6b38e76abb0e40e091830c92895290e0",
+      "title": "/ \u2013 Landing \u2013 Desktop 1440",
+      "width": "2560",
+      "height": "7474",
+      "screenshot": {
+        "fileName": "16__\u2013_Landing_\u2013_Desktop_1440_6b38e76a.png",
+        "sha256": "0b5b9829f6cc289c2ef77d8ccfc7c169b6936c7d90acc44aa277d734fceef8ae",
+        "sizeBytes": 25619
+      },
+      "htmlCode": {
+        "fileName": "16__\u2013_Landing_\u2013_Desktop_1440_6b38e76a.html",
+        "sha256": "9052462c237037fd9e6446562c575977264a9a165d43a5c055791f7c3b23b2d0",
+        "sizeBytes": 37740
+      }
+    },
+    {
+      "order": 17,
+      "screenId": "7f167906cb8247e995886cc4811b0513",
+      "title": "/hotels \u2013 Hotels Search Hub \u2013 Desktop 1440",
+      "width": "2560",
+      "height": "4322",
+      "screenshot": {
+        "fileName": "17_hotels_\u2013_Hotels_Search_Hub_\u2013_Desktop_1440_7f167906.png",
+        "sha256": "9cfa9a6979833a1d24da40e8f52aa0001b87d1bb364a2b3b33f365abb85aafc1",
+        "sizeBytes": 45155
+      },
+      "htmlCode": {
+        "fileName": "17_hotels_\u2013_Hotels_Search_Hub_\u2013_Desktop_1440_7f167906.html",
+        "sha256": "41713d4934c436ccb0090eca68a98874cc5306ba4c027b3c896a1afbe9933401",
+        "sizeBytes": 26813
+      }
+    },
+    {
+      "order": 18,
+      "screenId": "96d8e96b14fc4244971df4f0cb4409f3",
+      "title": "/interview/start \u2013 Eligibility Gate \u2013 Desktop 1440",
+      "width": "2560",
+      "height": "3266",
+      "screenshot": {
+        "fileName": "18_interviewstart_\u2013_Eligibility_Gate_\u2013_Desktop_1440_96d8e96b.png",
+        "sha256": "fc99a4eb8bb960d7bfc5ed18a7f22b7e83358a5a33d37ab70c6d079318f05ca2",
+        "sizeBytes": 23904
+      },
+      "htmlCode": {
+        "fileName": "18_interviewstart_\u2013_Eligibility_Gate_\u2013_Desktop_1440_96d8e96b.html",
+        "sha256": "a2795a51d0758022d35f4d61986ed87a692f8c5def36f281fae353a603b45d7f",
+        "sizeBytes": 19791
+      }
+    },
+    {
+      "order": 19,
+      "screenId": "5170885866327966396",
+      "title": "image.png",
+      "width": "199",
+      "height": "65",
+      "screenshot": {
+        "fileName": "19_image.png_51708858.png",
+        "sha256": "6f29a600e8213669f91d4136ca3dd56f43ba7794a0b5744b11bf3ef5c9ec7a9d",
+        "sizeBytes": 5187
+      },
+      "htmlCode": null
     }
   ]
 }

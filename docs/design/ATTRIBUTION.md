@@ -1,6 +1,6 @@
 # Image & Asset Attribution
 
-This document records the provenance, licensing, and usage context for all visual assets and imagery used across the **TravelDesk by Harbinger** web application, synchronized with the latest active screens in Stitch project `5624038136432353661`. All assets are stored locally in `/public/images` to ensure 100% offline availability, fast loading, zero hotlinking to remote servers, and data privacy.
+This document records the provenance, licensing, and usage context for all visual assets and imagery used across the **TravelDesk by Harbinger** web application, synchronized with the latest active screens in Stitch project `1987368842284057490` ("TravelDesk v2 (dark)"). All assets are stored locally in `/public/images` to ensure 100% offline availability, fast loading, zero hotlinking to remote servers, and data privacy.
 
 ---
 
@@ -8,51 +8,43 @@ This document records the provenance, licensing, and usage context for all visua
 
 | Filename | Description | Usage | License / Source |
 | :--- | :--- | :--- | :--- |
-| `harbinger-logo.webp` | Official Harbinger Group corporate lockup logo | Main navigation bar, footer, auth headers | Harbinger Group Corporate Identity (Internal / Authorized) |
-| `stitch_ref_1.png` / `stitch_ref_6.png` | Harbinger brand emblems & UI markers | Navigation and modal headers | Harbinger Group Corporate Identity |
+| `harbinger-logo.webp` / `harbinger-logo.png` | Official Harbinger Group corporate lockup logo (199x65) | Main navigation bar, footer, auth headers | Harbinger Group Corporate Identity (Internal / Authorized) |
 
 ---
 
-## 2. Hotel Accommodations & Interior Architecture
+## 2. Destination Guides, Skylines & Travel Imagery
 
 | Filename | Description | Usage | License / Source |
 | :--- | :--- | :--- | :--- |
-| `hotel_pullman_room.png` | Modern executive guestroom interior at Pullman Munich with plush bed, warm lighting, work desk | Pullman Munich hotel listing card | Commercial editorial photography (Royalty-free) |
-| `hotel_sofitel_lobby.png` | Grand luxury hotel lobby at Sofitel Munich with marble columns and crystal chandeliers | Sofitel Munich hotel listing card | Commercial editorial photography (Royalty-free) |
-| `stitch_ref_10.png` / `stitch_ref_11.png` | Luxury European hospitality interior suites | Hotel listing cards and room specifications | Commercial editorial photography (Royalty-free) |
-| `stitch_ref_13.png` | Pullman Munich hotel exterior illuminated at dusk | Hotel comparison cards | Commercial editorial photography (Royalty-free) |
-
----
-
-## 3. Destination Guides & Skylines
-
-| Filename | Description | Usage | License / Source |
-| :--- | :--- | :--- | :--- |
-| `dest_munich.png` | Architectural dusk view of Munich Marienplatz & Bavarian city center | Destination guide (Munich, Germany), visa navigator | Commercial editorial travel photography (Royalty-free) |
-| `dest_frankfurt.png` | Twilight aerial of Frankfurt skyline with Main river reflections | Destination guide (Frankfurt, Germany), flight routes | Commercial editorial travel photography (Royalty-free) |
-| `dest_paris.png` | Twilight aerial view of Paris / European historic capital with bridges | Destination guide & Schengen visa overview | Commercial editorial travel photography (Royalty-free) |
-| `dest_newyork.png` | Dusk view of Lower Manhattan NYC skyline across harbor with glowing towers | Destination guide (New York, USA), US B-1 / H-1B guides | Commercial editorial travel photography (Royalty-free) |
+| `dest_munich.png` | Architectural dusk view of Munich Marienplatz & Bavarian Neues Rathaus square | Destination guide (Munich, Germany), visa navigator | Commercial editorial travel photography (Royalty-free) |
+| `dest_newyork.png` | Dusk view of Lower Manhattan NYC skyline with Empire State Building across harbor | Destination guide (New York, USA), US B-1 / H-1B guides | Commercial editorial travel photography (Royalty-free) |
 | `flight_aircraft_sunset.png` | Golden hour aircraft wing view gliding over twilight clouds | Flights listing hero, travel logistics header | Commercial aerial photography (Royalty-free) |
+| `stitch_asset_*.png` | Supporting UI contextual textures and partner visual assets | Search hubs and informational modules | Royalty-free design assets |
 
 ---
 
-## 4. Active Stitch Design Screen References
+## 3. Active Stitch Design Screens (Project `1987368842284057490`)
 
-The 14 active UI screen captures and specification in Google Stitch are preserved in `/docs/design/screens/` and `/docs/design/html/` for visual regression testing:
-1. `01_harbinger-logo.webp_98457657.webp`
-2. `02_Cinematic_golden_hour_view_from_aircraft_window_showing_airplane_wing_gliding_100f71f6.png`
-3. `03_Cinematic_breathtaking_aerial_photography_of_an_ancient_European_city_like_Pa_12f31863.png`
-4. `04_AI_Visa_Pre-Interview_-_Schengen_Business_Visa_49214e46.png`
-5. `05_TravelDesk_-_Immersive_Window_Scroll_Zoom_Landing_(2026)_43c9079b.png`
-6. `06_Cinematic_twilight_aerial_photography_of_Frankfurt_Germany_skyline_with_river_a8dad1a8.png`
-7. `07_Hotel_Stays_-_Verified_Accommodations_(2026)_eaae004e.png`
-8. `08_Modern_luxury_hotel_glass_and_limestone_exterior_illuminated_at_twilight_with_c8c059ad.png`
-9. `09_Historic_luxury_hotel_grand_lobby_Sofitel_Munich,_opulent_architectural_colum_bf4bb732.png`
-10. `10_Cinematic_dusk_view_of_Lower_Manhattan_New_York_City_skyline_across_the_harbo_52ae6174.png`
-11. `11_TravelDesk_-_Cinematic_Landing_Page_(Refined_Glass_2026)_58f006d1.png`
-12. `12_Luxurious_modern_European_hotel_room_interior_at_Pullman_Munich,_plush_king_b_dc4c5dda.png`
-13. `13_TravelDesk_DESIGN.md_Specification_31f70c66.md`
-14. `14_Breathtaking_architectural_view_of_Munich_Marienplatz_and_historic_Bavarian_c_f7951959.png`
+The 19 UI screen captures and specifications from Google Stitch project `1987368842284057490` are stored locally in `/docs/design/screens/` and `/docs/design/html/`:
+1. `01_Sharp,_high-resolution_cinematic_photograph_of_a_commercial_jet_aircraft_wing_vi_22cd6938.png` (Hero aircraft asset)
+2. `02_visas_–_Visa_Overview_–_Desktop_1440_935493a1.png` & `.html` (`/visas`)
+3. `03_Sharp_high-resolution_architectural_photograph_of_New_York_City_Manhattan_skylin_36968e72.png` (NYC destination asset)
+4. `04_Harbinger_TravelDesk_Pre-Screening_&_Mobility_Flow_4bd98421.html` (Mobility flow documentation)
+5. `05_review[id]_–_Case_Detail_Review_–_Desktop_1440_ed1dd895.png` & `.html` (`/review/[id]`)
+6. `06_applications[id]documents_–_Document_Upload_–_Desktop_1440_84f6ad0d.png` & `.html` (`/interview/[id]` document upload / `/applications/[id]/documents`)
+7. `07_flights_–_Flights_Search_Hub_–_Desktop_1440_880d376b.png` & `.html` (`/flights`)
+8. `08_Sharp_high-resolution_architectural_photograph_of_Munich_Germany,_Marienplatz_Ne_2df5d27a.png` (Munich destination asset)
+9. `09_login_–_Sign_in_–_Desktop_1440_1286a210.png` & `.html` (`/login`)
+10. `10_review_–_Review_Queue_–_Desktop_1440_2b7ecd1b.png` & `.html` (`/review`)
+11. `11_403_&_404_&_Session_Expired_–_Error_System_–_Desktop_1440_5b53f5a6.png` & `.html` (`/unauthorized`, `not-found`, session expired modal)
+12. `12_interview[id]_–_Pre-Screening_Interview_–_Desktop_1440_824dbd15.png` & `.html` (`/interview/[id]`)
+13. `13_change-password_–_Forced_Password_Change_–_Desktop_1440_c4e570ae.png` & `.html` (`/change-password`)
+14. `14_travel-info_–_Travel_Info_–_Desktop_1440_dfef788e.png` & `.html` (`/travel-info`)
+15. `15_dashboard_–_Customer_Dashboard_–_Desktop_1440_30756a69.png` & `.html` (`/dashboard`)
+16. `16__–_Landing_–_Desktop_1440_6b38e76a.png` & `.html` (`/`)
+17. `17_hotels_–_Hotels_Search_Hub_–_Desktop_1440_7f167906.png` & `.html` (`/hotels`)
+18. `18_interviewstart_–_Eligibility_Gate_–_Desktop_1440_96d8e96b.png` & `.html` (`/interview/start`)
+19. `19_image.png_51708858.png` (Harbinger corporate logo asset)
 
 ---
 

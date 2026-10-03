@@ -1,56 +1,55 @@
 import Link from "next/link";
 import { Logo } from "@/components/Logo";
-import { ExternalLink, ShieldAlert, CheckCircle2 } from "lucide-react";
+import { ExternalLink, ShieldCheck } from "lucide-react";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="mt-auto border-t border-[var(--glass-border)] bg-[var(--canvas-bg-alt)]/60 backdrop-blur-md">
+    <footer className="mt-auto border-t border-white/10 bg-[#071426]/80 backdrop-blur-xl relative z-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
-          {/* Brand & Mandate */}
+          {/* Brand & Purpose */}
           <div className="md:col-span-2 space-y-4">
-            <Logo size="md" />
+            <Logo />
             <p className="text-sm text-[var(--foreground-muted)] max-w-md leading-relaxed">
-              Executive corporate travel logistics and regulatory cross-border compliance 
-              engineered with AI-assisted pre-screening and human review.
+              Corporate travel logistics and consular visa pre-screening engineered with AI assistance and expert human review.
             </p>
             <div className="flex items-center gap-2 text-xs text-[var(--brand-teal)]">
-              <CheckCircle2 className="w-4 h-4 text-[var(--brand-teal)]" />
-              <span>Statutory decisions made solely by trained corporate service representatives.</span>
+              <ShieldCheck className="w-4 h-4 text-[var(--brand-teal)]" />
+              <span>Decisions are reviewed and verified by authorized corporate service representatives.</span>
             </div>
           </div>
 
-          {/* Quick Services */}
+          {/* Consular Services */}
           <div className="space-y-3">
-            <h3 className="text-xs font-semibold uppercase tracking-wider text-[var(--foreground)]">
+            <h3 className="text-xs font-semibold uppercase tracking-wider text-white">
               Consular Services
             </h3>
             <ul className="space-y-2 text-sm text-[var(--foreground-muted)]">
               <li>
                 <Link href="/visas" className="hover:text-[var(--brand-teal)] transition-colors">
-                  Visa Navigator Wizard
+                  Visa Navigator
                 </Link>
               </li>
               <li>
                 <Link href="/visas/info" className="hover:text-[var(--brand-teal)] transition-colors">
-                  Visa Policy Directory
+                  Visa Information
                 </Link>
               </li>
               <li>
                 <Link href="/passport" className="hover:text-[var(--brand-teal)] transition-colors">
-                  Passport Services & Validity
+                  Passport Validity
                 </Link>
               </li>
               <li>
                 <Link href="/travel-info" className="hover:text-[var(--brand-teal)] transition-colors">
-                  Destination Dossiers (Munich, NYC)
+                  Destination Guides (Munich, New York)
                 </Link>
               </li>
               <li>
                 <Link href="/faq" className="hover:text-[var(--brand-teal)] transition-colors">
-                  Help & Consular FAQ
+                  Frequently Asked Questions
                 </Link>
               </li>
             </ul>
@@ -58,8 +57,8 @@ export function Footer() {
 
           {/* Partner Search Hub */}
           <div className="space-y-3">
-            <h3 className="text-xs font-semibold uppercase tracking-wider text-[var(--foreground)]">
-              Search and Book on
+            <h3 className="text-xs font-semibold uppercase tracking-wider text-white">
+              Partner Search Hub
             </h3>
             <p className="text-xs text-[var(--foreground-subtle)] leading-relaxed">
               TravelDesk provides search redirection without markup or implied partnership:
@@ -96,12 +95,12 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Regulatory Disclosure & Copyright Bar */}
-        <div className="pt-8 border-t border-[var(--glass-border)] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[var(--foreground-subtle)]">
-          <p>© {currentYear} Harbinger Group Holdings Ltd. All rights reserved.</p>
+        {/* Advisory & Copyright Bar */}
+        <div className="pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[var(--foreground-subtle)]">
+          <p>© {currentYear} Harbinger Group. All rights reserved.</p>
           <div className="flex items-center gap-2 text-[var(--foreground-subtle)]">
-            <ShieldAlert className="w-3.5 h-3.5 text-[var(--brand-amber)]" />
-            <span>AI-assisted pre-screening only. Official verification required on consular portals.</span>
+            <ShieldCheck className="w-3.5 h-3.5 text-[var(--brand-teal)]" />
+            <span>AI-assisted pre-screening only. Official verification required on government portals.</span>
           </div>
         </div>
       </div>

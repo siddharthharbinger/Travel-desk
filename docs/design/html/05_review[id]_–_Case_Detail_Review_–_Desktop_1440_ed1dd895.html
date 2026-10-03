@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><title>TravelDesk — Harbinger</title><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Newsreader:wght@100..900&display=swap" rel="stylesheet"/><style>@layer base { html, body { margin: 0; padding: 0; } body { overscroll-behavior: none; } main > :first-child { margin-top: 0 !important; } main > :last-child { margin-bottom: 0 !important; } } ::-webkit-scrollbar { display: none; }</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "on-primary-fixed-variant": "#005048", "error-container": "#93000a", "tertiary-fixed-dim": "#ffb957", "on-surface-variant": "#bbcac6", "on-error": "#690005", "on-secondary-container": "#a0b6de", "outline-variant": "#3c4947", "inverse-surface": "#d7e3fc", "on-tertiary-fixed-variant": "#643f00", "outline": "#859490", "tertiary-fixed": "#ffddb5", "surface": "#071426", "surface-container-lowest": "#030e20", "on-tertiary": "#462b00", "on-tertiary-container": "#533400", "on-background": "#d7e3fc", "surface-tint": "#4fdbc8", "tertiary": "#ffb957", "inverse-on-surface": "#253144", "on-primary": "#003731", "on-secondary-fixed": "#001c3b", "surface-bright": "#2e3a4d", "surface-container": "#142032", "on-surface": "#d7e3fc", "on-primary-container": "#00423b", "secondary-fixed-dim": "#b1c7f0", "error": "#ffb4ab", "primary": "#4fdbc8", "surface-container-highest": "#293549", "on-tertiary-fixed": "#2a1800", "background": "#071426", "inverse-primary": "#006b5f", "on-secondary": "#193151", "surface-dim": "#071426", "secondary-fixed": "#d5e3ff", "surface-container-high": "#1e2a3d", "surface-variant": "#293549", "primary-fixed": "#71f8e4", "primary-container": "#14b8a6", "secondary-container": "#314769", "secondary": "#b1c7f0", "surface-container-low": "#0f1c2e", "tertiary-container": "#e1940b", "on-secondary-fixed-variant": "#314769", "primary-fixed-dim": "#4fdbc8", "on-error-container": "#ffdad6", "on-primary-fixed": "#00201c" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "space-md": "1rem", "margin-desktop": "3rem", "gutter": "1.5rem", "margin": "2rem", "space-xs": "0.25rem", "margin-mobile": "1rem", "space-sm": "0.5rem", "space-xl": "2.5rem", "gutter-lg": "2rem", "space-lg": "1.5rem", "gutter-sm": "1rem" }, fontFamily: { "body-lg": ["Inter"], "headline-lg-mobile": ["Newsreader"], "label-sm": ["Inter"], "headline-sm": ["Newsreader"], "label-md": ["Inter"], "headline-xl": ["Newsreader"], "headline-lg": ["Newsreader"], "body-md": ["Inter"], "body-sm": ["Inter"], "title-sm": ["Inter"], "title-md": ["Inter"], "headline-xl-mobile": ["Newsreader"], "headline-md": ["Newsreader"] }, fontSize: { "body-lg": ["16px", { lineHeight: "26px", fontWeight: "400" }], "headline-lg-mobile": ["26px", { lineHeight: "34px", letterSpacing: "-0.01em", fontWeight: "400" }], "label-sm": ["11px", { lineHeight: "14px", letterSpacing: "0.05em", fontWeight: "500" }], "headline-sm": ["20px", { lineHeight: "28px", fontWeight: "500" }], "label-md": ["12px", { lineHeight: "16px", letterSpacing: "0.04em", fontWeight: "600" }], "headline-xl": ["48px", { lineHeight: "56px", letterSpacing: "-0.02em", fontWeight: "400" }], "headline-lg": ["36px", { lineHeight: "44px", letterSpacing: "-0.015em", fontWeight: "400" }], "body-md": ["14px", { lineHeight: "22px", fontWeight: "400" }], "body-sm": ["13px", { lineHeight: "18px", fontWeight: "400" }], "title-sm": ["14px", { lineHeight: "20px", fontWeight: "600" }], "title-md": ["16px", { lineHeight: "24px", letterSpacing: "-0.005em", fontWeight: "600" }], "headline-xl-mobile": ["32px", { lineHeight: "40px", letterSpacing: "-0.01em", fontWeight: "400" }], "headline-md": ["24px", { lineHeight: "32px", fontWeight: "500" }] } } } };</script></head><body class="bg-surface font-body-md text-on-surface min-h-screen relative selection:bg-primary selection:text-on-primary"><div class="fixed inset-0 pointer-events-none z-0 overflow-hidden"><div class="absolute -top-40 -left-40 w-[640px] h-[640px] rounded-full bg-primary/10 blur-[140px]"></div><div class="absolute -top-32 -right-32 w-[600px] h-[600px] rounded-full bg-secondary-container/30 blur-[130px]"></div></div><header class="fixed top-4 left-4 right-4 z-50 flex justify-center pointer-events-none"><div class="pointer-events-auto w-full max-w-[1280px] h-16 rounded-full bg-[rgba(7,20,38,0.70)] backdrop-blur-[24px] border border-white/15 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.18),0_16px_40px_-4px_rgba(0,0,0,0.55)] px-space-md flex items-center justify-between"><div class="flex items-center gap-space-sm"><div class="h-9 w-9 rounded-lg bg-white flex items-center justify-center shadow-sm shrink-0"><span class="text-[#071426] font-title-md font-bold leading-none tracking-tight">H</span></div><span class="font-headline-md text-headline-md text-on-surface tracking-tight ml-space-xs">TravelDesk</span></div><nav class="hidden md:flex items-center gap-space-xs bg-surface-container-low/60 rounded-full p-1 border border-white/5" data-active-classes="bg-primary-container text-on-primary-container font-title-sm shadow-[0_0_12px_rgba(20,184,166,0.25)]"><a class="px-space-md py-1.5 rounded-full font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" data-path="visa-dossiers" href="#">Visas</a><a class="px-space-md py-1.5 rounded-full font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" data-path="flights" href="#">Flights</a><a class="px-space-md py-1.5 rounded-full font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" data-path="hotels" href="#">Hotels</a><a class="px-space-md py-1.5 rounded-full font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" data-path="travel-info" href="#">Travel Info</a><a aria-current="page" class="px-space-md py-1.5 rounded-full transition-colors bg-primary-container text-on-primary-container font-title-sm shadow-[0_0_12px_rgba(20,184,166,0.25)]" data-path="csr-review-queue" href="#">Review</a><a class="px-space-md py-1.5 rounded-full font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" data-path="admin-control" href="#">Admin</a></nav><div class="flex items-center gap-space-sm"><button aria-label="Notifications" class="relative p-2 rounded-full text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors flex items-center justify-center"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-2 right-2 w-1.5 h-1.5 rounded-full bg-primary ring-2 ring-surface"></span></button><div class="flex items-center gap-space-xs pl-space-xs"><div class="w-8 h-8 rounded-full bg-secondary-container border border-white/20 flex items-center justify-center text-on-secondary-container font-label-md text-label-md font-semibold select-none">RV</div><img alt="Profile" class="w-8 h-8 rounded-full object-cover ring-1 ring-white/20" src="https://lh3.googleusercontent.com/aida/AEtjO1U6MOZsSwyG8Nwcdnk-lKLzF_g4-EQVperGLqXeiir4eC6hhdItZc2pXOjKG-Vfc70dOZV9H_xJj_01Z52PukfoARptfHp2Nzm-WQEEx4qs4Sa4rBV0g7-GXQKqJdlkfIzd55_oxPI8IZJcdJhEIVIit6bF_u2ODOLMcoM66wJmbKphtcB1JBJbhoDDCl8JmTvmGyjM3FVYp-gHwrvWjPKs2UUY311MM_0mUmlqUnyOl5-B6VmHK_zPrfj0_YN5L7ZpOQ95YPIsqQ"/></div></div></div></header><main class="relative z-10 w-full pt-20 pb-space-xl px-space-md max-w-[1440px] mx-auto min-h-[calc(100vh-140px)]"><div class="flex flex-col w-full text-on-surface">
+<!-- Floating Sticky Context Bar -->
+<section class="sticky top-20 z-40 w-full mb-space-lg backdrop-blur-[24px] bg-surface-container-low/80 rounded-xl shadow-xl px-space-lg py-space-md">
+<div class="flex flex-wrap items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-md">
+<a class="inline-flex items-center gap-1.5 px-space-md py-1.5 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface font-body-sm text-body-sm transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[16px]">arrow_back</span>
+<span>Back to Queue</span>
+</a>
+<div class="flex items-center gap-2 font-body-sm text-body-sm text-on-surface-variant">
+<span class="hover:text-on-surface cursor-pointer">Review Queue</span>
+<span>/</span>
+<span class="font-title-sm text-title-sm text-primary tracking-wide">Case #TRV-2026-0419</span>
+</div>
+</div>
+<div class="flex items-center gap-space-md">
+<div class="flex items-center gap-2 bg-surface-container-lowest/70 px-space-md py-1.5 rounded-full">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Assigned:</span>
+<span class="font-title-sm text-title-sm text-on-surface">Reviewer RV (Rohan V.)</span>
+</div>
+<div class="hidden lg:flex items-center gap-space-xs font-label-sm text-label-sm text-outline">
+<span class="material-symbols-outlined text-[15px]">schedule</span>
+<span>SLA Target: 2h 45m left</span>
+</div>
+</div>
+</div>
+<!-- Case Header Meta -->
+<div class="mt-space-md pt-space-sm flex flex-col md:flex-row md:items-baseline justify-between gap-space-sm">
+<div class="flex flex-wrap items-baseline gap-space-md">
+<h1 class="font-headline-lg text-headline-lg tracking-tight text-white">
+          Rohan Verma
+        </h1>
+<span class="font-headline-sm text-headline-sm text-secondary font-light">
+          Schengen Business Visa (C) — Germany
+        </span>
+</div>
+<div class="flex items-center gap-2">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-tertiary-container/20 text-tertiary text-label-sm font-label-sm uppercase tracking-wider">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+          High Priority
+        </span>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-primary-container/20 text-primary text-label-sm font-label-sm uppercase tracking-wider">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-ping"></span>
+          In Review
+        </span>
+</div>
+</div>
+</section>
+<!-- Summary & Readiness Matrix Bento Grid -->
+<section class="grid grid-cols-1 lg:grid-cols-12 gap-gutter mb-space-xl">
+<!-- Itinerary Card (4 cols) -->
+<div class="lg:col-span-4 rounded-xl bg-surface-container/65 backdrop-blur-[20px] p-space-lg flex flex-col justify-between shadow-lg relative overflow-hidden">
+<div class="absolute -right-12 -bottom-12 w-48 h-48 rounded-full bg-primary/5 blur-3xl pointer-events-none"></div>
+<div>
+<div class="flex items-center justify-between pb-space-sm mb-space-md">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-primary">flight_takeoff</span>
+            Travel Overview
+          </span>
+<span class="font-label-sm text-label-sm text-on-surface-variant bg-surface-container-highest px-2 py-0.5 rounded">Client Deputation</span>
+</div>
+<div class="space-y-space-md">
+<div>
+<div class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider">Target Destination</div>
+<div class="font-headline-sm text-headline-sm text-white mt-0.5">Munich, Germany</div>
+<div class="text-body-sm font-body-sm text-secondary">BMW AG Technical Campus & Data Center</div>
+</div>
+<div class="grid grid-cols-2 gap-space-sm pt-space-xs">
+<div class="bg-surface-container-lowest/60 p-space-sm rounded-lg">
+<span class="text-label-sm font-label-sm text-outline block">Departure</span>
+<span class="font-title-sm text-title-sm text-white">14 Dec 2026</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant block">DEL → MUC</span>
+</div>
+<div class="bg-surface-container-lowest/60 p-space-sm rounded-lg">
+<span class="text-label-sm font-label-sm text-outline block">Return</span>
+<span class="font-title-sm text-title-sm text-white">21 Dec 2026</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant block">MUC → DEL</span>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-space-md pt-space-md bg-surface-container-lowest/40 -mx-space-lg -mb-space-lg px-space-lg py-space-sm">
+<span class="text-label-sm font-label-sm text-outline block">Sponsoring Entity</span>
+<span class="text-body-sm font-body-sm text-on-surface flex items-center gap-1.5 font-medium">
+<span class="material-symbols-outlined text-[16px] text-primary">apartment</span>
+          Harbinger Group Direct Corporate Billing (CC #4092)
+        </span>
+</div>
+</div>
+<!-- Readiness Scoring & Metric Ring (4 cols) -->
+<div class="lg:col-span-4 rounded-xl bg-surface-container/65 backdrop-blur-[20px] p-space-lg flex flex-col justify-between shadow-lg relative">
+<div>
+<div class="flex items-center justify-between pb-space-sm mb-space-md">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-primary">verified_user</span>
+            Readiness Audit
+          </span>
+<span class="text-label-sm font-label-sm text-primary bg-primary/10 px-2 py-0.5 rounded-full font-semibold">60% Complete</span>
+</div>
+<div class="flex items-center gap-space-lg my-space-xs">
+<!-- Inline Radial Meter Graphic -->
+<div class="relative w-28 h-28 flex items-center justify-center shrink-0">
+<svg class="w-full h-full -rotate-90" viewbox="0 0 100 100">
+<circle class="text-surface-container-highest fill-none" cx="50" cy="50" r="42" stroke="currentColor" stroke-width="8"></circle>
+<circle class="text-primary fill-none transition-all duration-700" cx="50" cy="50" r="42" stroke="currentColor" stroke-dasharray="264" stroke-dashoffset="105" stroke-linecap="round" stroke-width="8"></circle>
+</svg>
+<div class="absolute flex flex-col items-center justify-center text-center">
+<span class="font-headline-sm text-headline-sm text-white font-bold leading-none">3 / 5</span>
+<span class="text-label-sm font-label-sm text-outline mt-1 uppercase">Cleared</span>
+</div>
+</div>
+<div class="space-y-1.5">
+<div class="font-title-md text-title-md text-white">Application Readiness</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-tight">
+              Calculated from verified mandatory documents and interview consistency checks.
+            </p>
+</div>
+</div>
+</div>
+<!-- Passport Validity Chronology -->
+<div class="mt-space-md pt-space-sm bg-surface-container-lowest/50 p-space-sm rounded-lg">
+<div class="flex justify-between items-center text-label-sm font-label-sm mb-1.5">
+<span class="text-outline">Passport Validity Margin</span>
+<span class="text-primary font-medium">34 Mos Remaining</span>
+</div>
+<div class="w-full h-2 bg-surface-container-highest rounded-full overflow-hidden flex">
+<div class="h-full bg-primary" style="width: 75%;"></div>
+<div class="h-full bg-tertiary" style="width: 25%;"></div>
+</div>
+<div class="flex justify-between text-label-sm font-label-sm text-outline mt-1">
+<span>Dec 2026 (Travel)</span>
+<span>Oct 2029 (Expiry)</span>
+</div>
+</div>
+</div>
+<!-- Active Review Flags (4 cols) -->
+<div class="lg:col-span-4 rounded-xl bg-surface-container/65 backdrop-blur-[20px] p-space-lg flex flex-col justify-between shadow-lg">
+<div>
+<div class="flex items-center justify-between pb-space-sm mb-space-md">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-tertiary">warning</span>
+            Active Action Flags
+          </span>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded-full bg-error-container/40 text-error">2 Pending</span>
+</div>
+<div class="space-y-space-sm">
+<!-- Critical Flag -->
+<div class="p-space-sm rounded-lg bg-surface-container-lowest/90 flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-error text-[20px] shrink-0 mt-0.5">report_problem</span>
+<div class="space-y-0.5">
+<div class="flex items-center gap-2">
+<span class="font-title-sm text-title-sm text-white">Host Invitation Letter</span>
+<span class="text-[10px] uppercase font-bold text-error bg-error/15 px-1.5 py-0.2 rounded">Action Required</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                Lacks official company seal and direct HR contact extension. Resubmission requested from applicant.
+              </p>
+</div>
+</div>
+<!-- Warning Flag -->
+<div class="p-space-sm rounded-lg bg-surface-container-lowest/90 flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-tertiary text-[20px] shrink-0 mt-0.5">info</span>
+<div class="space-y-0.5">
+<div class="flex items-center gap-2">
+<span class="font-title-sm text-title-sm text-white">Flight Reservation</span>
+<span class="text-[10px] uppercase font-bold text-tertiary bg-tertiary/15 px-1.5 py-0.2 rounded">Advisory</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                Flight reservation tentative; ensure confirmed non-refundable booking only after visa appointment issuance.
+              </p>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-space-sm text-right">
+<button class="font-label-sm text-label-sm text-primary hover:text-primary-fixed underline transition-colors" onclick="document.getElementById('decisionModal').classList.remove('hidden')">
+          View full pre-screening rules →
+        </button>
+</div>
+</div>
+</section>
+<!-- Two-Column Review Workspace -->
+<section class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-start pb-28">
+<!-- LEFT COLUMN: Verification & Transcript (7 Cols) -->
+<div class="lg:col-span-7 space-y-space-lg">
+<!-- Section: Interview Responses Transcript -->
+<div class="rounded-xl bg-surface-container/65 backdrop-blur-[20px] p-space-lg shadow-lg">
+<div class="flex items-center justify-between pb-space-md mb-space-md">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[22px]">record_voice_over</span>
+<h2 class="font-headline-sm text-headline-sm text-white">Interview Responses Transcript</h2>
+</div>
+<span class="text-label-sm font-label-sm text-outline">Self-Declaration Recorded 12 Dec 2026</span>
+</div>
+<div class="space-y-space-md">
+<!-- Item 1 -->
+<div class="p-space-md rounded-lg bg-surface-container-low/70 flex flex-col md:flex-row md:items-center justify-between gap-space-sm hover:bg-surface-container-low transition-colors">
+<div class="space-y-0.5">
+<span class="text-label-sm font-label-sm text-outline">Q1: Intended Destination & Location</span>
+<div class="font-title-sm text-title-sm text-white">Germany (Munich Client Site)</div>
+</div>
+<div class="flex items-center gap-1.5 self-start md:self-auto px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[15px]">check_circle</span>
+<span>Verified Match</span>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="p-space-md rounded-lg bg-surface-container-low/70 flex flex-col md:flex-row md:items-center justify-between gap-space-sm hover:bg-surface-container-low transition-colors">
+<div class="space-y-0.5">
+<span class="text-label-sm font-label-sm text-outline">Q2: Total Duration of Business Stay</span>
+<div class="font-title-sm text-title-sm text-white">14 Dec 2026 to 21 Dec 2026 (7 days total)</div>
+</div>
+<div class="flex items-center gap-1.5 self-start md:self-auto px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[15px]">check_circle</span>
+<span>Consistent</span>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="p-space-md rounded-lg bg-surface-container-low/70 flex flex-col md:flex-row md:items-center justify-between gap-space-sm hover:bg-surface-container-low transition-colors">
+<div class="space-y-0.5">
+<span class="text-label-sm font-label-sm text-outline">Q3: Expense Coverage & Sponsorship</span>
+<div class="font-title-sm text-title-sm text-white">Harbinger Group Internal Billing Direct</div>
+</div>
+<div class="flex items-center gap-1.5 self-start md:self-auto px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[15px]">check_circle</span>
+<span>Confirmed</span>
+</div>
+</div>
+<!-- Item 4 -->
+<div class="p-space-md rounded-lg bg-surface-container-low/70 flex flex-col md:flex-row md:items-center justify-between gap-space-sm hover:bg-surface-container-low transition-colors">
+<div class="space-y-0.5">
+<span class="text-label-sm font-label-sm text-outline">Q4: Primary Purpose of Travel</span>
+<div class="font-title-sm text-title-sm text-white">Technical architecture workshop with client counterparts</div>
+</div>
+<div class="flex items-center gap-1.5 self-start md:self-auto px-2.5 py-1 rounded-full bg-tertiary/15 text-tertiary font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[15px]">pending</span>
+<span>Requires matching host letter</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Section: Document Verification Queue -->
+<div class="rounded-xl bg-surface-container/65 backdrop-blur-[20px] p-space-lg shadow-lg">
+<div class="flex items-center justify-between pb-space-md mb-space-md">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[22px]">fact_check</span>
+<div>
+<h2 class="font-headline-sm text-headline-sm text-white">Document Verification Queue</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Review each document against consulate criteria</p>
+</div>
+</div>
+<span class="font-label-sm text-label-sm bg-surface-container-highest text-on-surface px-2.5 py-1 rounded-md">5 Items</span>
+</div>
+<div class="space-y-space-md">
+<!-- Doc 1: Passport -->
+<div class="p-space-md rounded-lg bg-surface-container-low/80 flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+<div class="flex items-start gap-space-md">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-primary shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[20px]">badge</span>
+</div>
+<div class="space-y-0.5">
+<div class="flex items-center gap-2">
+<span class="font-title-sm text-title-sm text-white">Passport Bio Page (Indian Passport)</span>
+<span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-emerald-500/15 text-emerald-400">Verified ✓</span>
+</div>
+<div class="text-body-sm font-body-sm text-on-surface-variant">
+                  Passport #Z8492018 • Expiry: 18 Oct 2029 (Safe Margin > 6 Mos)
+                </div>
+</div>
+</div>
+<button class="px-space-md py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-white font-title-sm text-title-sm transition-colors flex items-center gap-1.5 self-start md:self-auto">
+<span class="material-symbols-outlined text-[16px]">visibility</span>
+<span>Preview</span>
+</button>
+</div>
+<!-- Doc 2: Employer Letter -->
+<div class="p-space-md rounded-lg bg-surface-container-low/80 flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+<div class="flex items-start gap-space-md">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-primary shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[20px]">description</span>
+</div>
+<div class="space-y-0.5">
+<div class="flex items-center gap-2">
+<span class="font-title-sm text-title-sm text-white">Employer Deputation Letter</span>
+<span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-emerald-500/15 text-emerald-400">Verified ✓</span>
+</div>
+<div class="text-body-sm font-body-sm text-on-surface-variant">
+                  Signed corporate deputation letter by Harbinger HR Director with stamp.
+                </div>
+</div>
+</div>
+<button class="px-space-md py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-white font-title-sm text-title-sm transition-colors flex items-center gap-1.5 self-start md:self-auto">
+<span class="material-symbols-outlined text-[16px]">visibility</span>
+<span>Preview</span>
+</button>
+</div>
+<!-- Doc 3: Host Invitation (Rejected) -->
+<div class="p-space-md rounded-lg bg-surface-container-lowest/90 flex flex-col gap-space-sm">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+<div class="flex items-start gap-space-md">
+<div class="w-10 h-10 rounded-lg bg-error-container/30 flex items-center justify-center text-error shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[20px]">mark_email_unread</span>
+</div>
+<div class="space-y-0.5">
+<div class="flex items-center gap-2">
+<span class="font-title-sm text-title-sm text-white">Invitation Letter from Host Company</span>
+<span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-error-container/40 text-error">Rejected with reason ✕</span>
+</div>
+<div class="text-body-sm font-body-sm text-on-surface-variant">
+                    Host: BMW AG Technical Campus, Munich
+                  </div>
+</div>
+</div>
+<button class="px-space-md py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-white font-title-sm text-title-sm transition-colors flex items-center gap-1.5 self-start md:self-auto">
+<span class="material-symbols-outlined text-[16px]">visibility</span>
+<span>View Rejected PDF</span>
+</button>
+</div>
+<div class="p-space-sm bg-surface-container rounded font-body-sm text-body-sm text-error flex items-start gap-2">
+<span class="material-symbols-outlined text-[18px] shrink-0">error</span>
+<span><strong>Rejection note sent to applicant:</strong> Missing official company seal and direct German corporate telephone extension. Resubmission pending from applicant.</span>
+</div>
+</div>
+<!-- Doc 4: Proof of Accommodation (Interactive Pending) -->
+<div class="p-space-md rounded-lg bg-surface-container-low/80 flex flex-col gap-space-md transition-all" id="doc4Card">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+<div class="flex items-start gap-space-md">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-tertiary shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[20px]">hotel</span>
+</div>
+<div class="space-y-0.5">
+<div class="flex items-center gap-2">
+<span class="font-title-sm text-title-sm text-white">Proof of Accommodation</span>
+<span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-tertiary/20 text-tertiary" id="doc4Status">Pending Review</span>
+</div>
+<div class="text-body-sm font-body-sm text-on-surface-variant">
+                    Steigenberger Hotel Munich • 14 Dec – 21 Dec 2026 • Booking Ref: #STEIG-8941
+                  </div>
+</div>
+</div>
+<button class="px-space-md py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-white font-title-sm text-title-sm transition-colors flex items-center gap-1.5 self-start md:self-auto">
+<span class="material-symbols-outlined text-[16px]">visibility</span>
+<span>Preview Doc</span>
+</button>
+</div>
+<!-- Action buttons for Doc 4 -->
+<div class="flex flex-wrap items-center gap-space-sm pt-space-xs" id="doc4Actions">
+<button class="px-space-md py-1.5 rounded bg-primary-container text-on-primary-container font-title-sm text-title-sm hover:brightness-110 flex items-center gap-1.5 transition-all" onclick="verifyDoc('doc4Card', 'doc4Status', 'doc4Actions')">
+<span class="material-symbols-outlined text-[16px]">check</span>
+<span>Verify Document ✓</span>
+</button>
+<button class="px-space-md py-1.5 rounded bg-error-container/20 hover:bg-error-container/40 text-error font-title-sm text-title-sm flex items-center gap-1.5 transition-all" onclick="document.getElementById('decisionModal').classList.remove('hidden')">
+<span class="material-symbols-outlined text-[16px]">close</span>
+<span>Reject with Reason ✕</span>
+</button>
+</div>
+</div>
+<!-- Doc 5: Flight Reservation (Interactive Pending) -->
+<div class="p-space-md rounded-lg bg-surface-container-low/80 flex flex-col gap-space-md transition-all" id="doc5Card">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+<div class="flex items-start gap-space-md">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-tertiary shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[20px]">airplane_ticket</span>
+</div>
+<div class="space-y-0.5">
+<div class="flex items-center gap-2">
+<span class="font-title-sm text-title-sm text-white">Flight Reservation</span>
+<span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-tertiary/20 text-tertiary" id="doc5Status">Pending Review</span>
+</div>
+<div class="text-body-sm font-body-sm text-on-surface-variant">
+                    Lufthansa LH763 (DEL → MUC) & LH762 (MUC → DEL) • Corporate PNR: 7K9YWM
+                  </div>
+</div>
+</div>
+<button class="px-space-md py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-white font-title-sm text-title-sm transition-colors flex items-center gap-1.5 self-start md:self-auto">
+<span class="material-symbols-outlined text-[16px]">visibility</span>
+<span>Preview Doc</span>
+</button>
+</div>
+<!-- Action buttons for Doc 5 -->
+<div class="flex flex-wrap items-center gap-space-sm pt-space-xs" id="doc5Actions">
+<button class="px-space-md py-1.5 rounded bg-primary-container text-on-primary-container font-title-sm text-title-sm hover:brightness-110 flex items-center gap-1.5 transition-all" onclick="verifyDoc('doc5Card', 'doc5Status', 'doc5Actions')">
+<span class="material-symbols-outlined text-[16px]">check</span>
+<span>Verify Document ✓</span>
+</button>
+<button class="px-space-md py-1.5 rounded bg-error-container/20 hover:bg-error-container/40 text-error font-title-sm text-title-sm flex items-center gap-1.5 transition-all" onclick="document.getElementById('decisionModal').classList.remove('hidden')">
+<span class="material-symbols-outlined text-[16px]">close</span>
+<span>Reject with Reason ✕</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- RIGHT COLUMN: Internal Notes & Decision Audit Trail (5 Cols) -->
+<div class="lg:col-span-5 space-y-space-lg">
+<!-- Private Internal Reviewer Notes Thread -->
+<div class="rounded-xl bg-surface-container/65 backdrop-blur-[20px] p-space-lg shadow-lg">
+<div class="flex items-center justify-between pb-space-sm mb-space-md">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[20px]">lock</span>
+<h2 class="font-headline-sm text-headline-sm text-white">Internal Reviewer Notes</h2>
+</div>
+<span class="text-label-sm font-label-sm text-outline">Private Internal Thread</span>
+</div>
+<!-- Scrollable Thread -->
+<div class="space-y-space-md mb-space-lg max-h-[300px] overflow-y-auto pr-1" id="notesContainer">
+<!-- Existing Note 1 -->
+<div class="p-space-md rounded-lg bg-surface-container-lowest/80 space-y-space-xs">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-secondary-container flex items-center justify-center font-label-sm text-label-sm text-on-secondary-container font-semibold">
+                  RV
+                </div>
+<span class="font-title-sm text-title-sm text-white">Reviewer RV</span>
+</div>
+<span class="text-label-sm font-label-sm text-outline">14 Dec 2026, 11:30 AM</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Contacted Harbinger travel operations to verify corporate cost center code. All verified. Awaiting applicant update on host letter company seal.
+            </p>
+</div>
+</div>
+<!-- Add Note Box -->
+<form class="space-y-space-sm" onsubmit="event.preventDefault(); postNote();">
+<div class="relative">
+<textarea class="w-full rounded-lg bg-surface-container-lowest/90 px-space-md py-space-sm text-body-sm font-body-sm text-white placeholder-outline focus:outline-none focus:ring-1 focus:ring-primary resize-none" id="noteInput" placeholder="Write internal review note, cross-reference check, or compliance note..." rows="3"></textarea>
+</div>
+<div class="flex justify-end">
+<button class="px-space-md py-1.5 rounded-lg bg-white/10 hover:bg-white/15 text-white font-title-sm text-title-sm flex items-center gap-1.5 transition-all" type="submit">
+<span class="material-symbols-outlined text-[16px]">add_comment</span>
+<span>Post Internal Note</span>
+</button>
+</div>
+</form>
+</div>
+<!-- Decision History & Audit Trail -->
+<div class="rounded-xl bg-surface-container/65 backdrop-blur-[20px] p-space-lg shadow-lg">
+<div class="flex items-center justify-between pb-space-sm mb-space-md">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[20px]">history_toggle_off</span>
+<h2 class="font-headline-sm text-headline-sm text-white">Decision History & Audit Trail</h2>
+</div>
+<span class="text-label-sm font-label-sm text-outline">5 Logs</span>
+</div>
+<div class="relative pl-6 space-y-space-lg">
+<!-- Continuous Vertical Timeline Rule using background -->
+<div class="absolute left-2.5 top-2 bottom-2 w-0.5 bg-surface-container-highest"></div>
+<!-- Log Event 1 -->
+<div class="relative flex items-start gap-space-md">
+<span class="absolute -left-6 top-1 w-3.5 h-3.5 rounded-full bg-surface-container-highest flex items-center justify-center">
+<span class="w-1.5 h-1.5 rounded-full bg-outline"></span>
+</span>
+<div class="space-y-0.5">
+<div class="font-title-sm text-title-sm text-white">Application Submitted by Applicant</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Rohan Verma uploaded travel packet and completed questionnaire.</div>
+<div class="text-label-sm font-label-sm text-outline">12 Dec 2026, 09:14 AM</div>
+</div>
+</div>
+<!-- Log Event 2 -->
+<div class="relative flex items-start gap-space-md">
+<span class="absolute -left-6 top-1 w-3.5 h-3.5 rounded-full bg-surface-container-highest flex items-center justify-center">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+</span>
+<div class="space-y-0.5">
+<div class="font-title-sm text-title-sm text-white">Pre-screening Checklist Generated</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Automated validation matched German Schengen Business Type-C criteria.</div>
+<div class="text-label-sm font-label-sm text-outline">12 Dec 2026, 09:15 AM</div>
+</div>
+</div>
+<!-- Log Event 3 -->
+<div class="relative flex items-start gap-space-md">
+<span class="absolute -left-6 top-1 w-3.5 h-3.5 rounded-full bg-surface-container-highest flex items-center justify-center">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+</span>
+<div class="space-y-0.5">
+<div class="font-title-sm text-title-sm text-white">Review Claimed by RV</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Case assigned from global queue into active processing.</div>
+<div class="text-label-sm font-label-sm text-outline">14 Dec 2026, 10:45 AM</div>
+</div>
+</div>
+<!-- Log Event 4 -->
+<div class="relative flex items-start gap-space-md">
+<span class="absolute -left-6 top-1 w-3.5 h-3.5 rounded-full bg-surface-container-highest flex items-center justify-center">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span>
+</span>
+<div class="space-y-0.5">
+<div class="font-title-sm text-title-sm text-white">Host Letter Rejected</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Marked non-compliant due to missing corporate stamp and direct HR ext.</div>
+<div class="text-label-sm font-label-sm text-outline">14 Dec 2026, 11:10 AM</div>
+</div>
+</div>
+<!-- Log Event 5 -->
+<div class="relative flex items-start gap-space-md">
+<span class="absolute -left-6 top-1 w-3.5 h-3.5 rounded-full bg-surface-container-highest flex items-center justify-center">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+</span>
+<div class="space-y-0.5">
+<div class="font-title-sm text-title-sm text-white">Updated File Requested</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Automated resubmission link dispatched to applicant mail.</div>
+<div class="text-label-sm font-label-sm text-outline">14 Dec 2026, 11:12 AM</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Sticky Bottom Action Bar -->
+<div class="fixed bottom-0 left-0 right-0 z-40 bg-surface-container-lowest/90 backdrop-blur-[24px] px-space-lg py-space-md shadow-[0_-8px_32px_rgba(0,0,0,0.6)]">
+<div class="max-w-[1440px] mx-auto flex flex-col md:flex-row items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-md">
+<div class="w-9 h-9 rounded-full bg-surface-container-high flex items-center justify-center text-tertiary shrink-0">
+<span class="material-symbols-outlined text-[20px]">pending_actions</span>
+</div>
+<div>
+<div class="font-title-sm text-title-sm text-white">Action Pending Decision</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Case #TRV-2026-0419 requires resolution on 2 pending documents.</p>
+</div>
+</div>
+<div class="flex flex-wrap items-center gap-space-sm w-full md:w-auto justify-end">
+<button class="px-space-md py-2.5 rounded-lg bg-white/5 hover:bg-white/10 text-white font-title-sm text-title-sm transition-colors flex items-center gap-1.5" onclick="document.getElementById('decisionModal').classList.remove('hidden')">
+<span class="material-symbols-outlined text-[18px]">forward_to_inbox</span>
+<span>Request More Information</span>
+</button>
+<button class="px-space-md py-2.5 rounded-lg bg-tertiary-container/30 hover:bg-tertiary-container/50 text-tertiary font-title-sm text-title-sm transition-colors flex items-center gap-1.5" onclick="document.getElementById('decisionModal').classList.remove('hidden')">
+<span class="material-symbols-outlined text-[18px]">gavel</span>
+<span>Escalate to Senior Counsel</span>
+</button>
+<button class="px-space-lg py-2.5 rounded-lg bg-primary-container hover:bg-primary-container/90 text-on-primary-container font-title-sm text-title-sm font-semibold shadow-[0_0_20px_rgba(20,184,166,0.35)] flex items-center gap-2 transition-all" onclick="document.getElementById('decisionModal').classList.remove('hidden')">
+<span class="material-symbols-outlined text-[18px]">check_circle</span>
+<span>Proceed to Consular Clearance</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Reviewer Action Notes Dialog Modal -->
+<div class="hidden fixed inset-0 z-50 flex items-center justify-center bg-surface-container-lowest/80 backdrop-blur-md p-space-md" id="decisionModal">
+<div class="w-full max-w-xl rounded-xl bg-surface-container/95 backdrop-blur-[24px] shadow-2xl p-space-lg space-y-space-md">
+<div class="flex items-center justify-between pb-space-sm">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-lg bg-primary/20 text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">assignment_turned_in</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-white">Reviewer Action Notes</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Required before status change or decision escalation</p>
+</div>
+</div>
+<button class="text-on-surface-variant hover:text-white p-1" onclick="document.getElementById('decisionModal').classList.add('hidden')">
+<span class="material-symbols-outlined text-[22px]">close</span>
+</button>
+</div>
+<div class="space-y-space-sm">
+<label class="block font-title-sm text-title-sm text-white">
+          Enter internal justification or instructions for the applicant:
+        </label>
+<textarea class="w-full rounded-lg bg-surface-container-lowest/90 px-space-md py-space-sm text-body-sm font-body-sm text-white placeholder-outline focus:outline-none focus:ring-1 focus:ring-primary resize-none" id="modalTextarea" placeholder="Detail specific document requirements, consular references, or reasons for clearance hold..." rows="4"></textarea>
+</div>
+<div class="p-space-sm rounded bg-surface-container-lowest flex items-center gap-2 text-label-sm font-label-sm text-outline">
+<span class="material-symbols-outlined text-[16px] text-tertiary">info</span>
+<span>This note will be permanently logged in the audit trail and linked to your reviewer profile.</span>
+</div>
+<div class="flex items-center justify-end gap-space-sm pt-space-sm">
+<button class="px-space-md py-2 rounded-lg bg-white/5 hover:bg-white/10 text-white font-title-sm text-title-sm transition-colors" onclick="document.getElementById('decisionModal').classList.add('hidden')">
+          Cancel
+        </button>
+<button class="px-space-lg py-2 rounded-lg bg-primary-container text-on-primary-container font-title-sm text-title-sm font-semibold hover:brightness-110 transition-all flex items-center gap-1.5" onclick="submitDecision()">
+<span class="material-symbols-outlined text-[16px]">check</span>
+<span>Confirm & Log Action</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Inline Script for Interactions -->
+<script>
+    function verifyDoc(cardId, statusId, actionsId) {
+      const card = document.getElementById(cardId);
+      const status = document.getElementById(statusId);
+      const actions = document.getElementById(actionsId);
+      if (status && actions) {
+        status.className = "px-2 py-0.5 rounded text-[11px] font-semibold bg-emerald-500/15 text-emerald-400";
+        status.innerText = "Verified ✓";
+        actions.innerHTML = '<span class="text-body-sm font-body-sm text-emerald-400 flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">task_alt</span>Verified by RV just now</span>';
+      }
+    }
+
+    function postNote() {
+      const input = document.getElementById('noteInput');
+      const container = document.getElementById('notesContainer');
+      if (input && input.value.trim() !== '') {
+        const noteDiv = document.createElement('div');
+        noteDiv.className = "p-space-md rounded-lg bg-surface-container-lowest/80 space-y-space-xs transition-all";
+        noteDiv.innerHTML = `
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <div class="w-6 h-6 rounded-full bg-secondary-container flex items-center justify-center font-label-sm text-label-sm text-on-secondary-container font-semibold">
+                RV
+              </div>
+              <span class="font-title-sm text-title-sm text-white">Reviewer RV</span>
+            </div>
+            <span class="text-label-sm font-label-sm text-outline">Just now</span>
+          </div>
+          <p class="font-body-sm text-body-sm text-on-surface-variant">${input.value.trim()}</p>
+        `;
+        container.appendChild(noteDiv);
+        input.value = '';
+        container.scrollTop = container.scrollHeight;
+      }
+    }
+
+    function submitDecision() {
+      const modal = document.getElementById('decisionModal');
+      const textarea = document.getElementById('modalTextarea');
+      if (textarea && textarea.value.trim() !== '') {
+        const container = document.getElementById('notesContainer');
+        const noteDiv = document.createElement('div');
+        noteDiv.className = "p-space-md rounded-lg bg-surface-container-lowest/80 space-y-space-xs transition-all";
+        noteDiv.innerHTML = `
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <div class="w-6 h-6 rounded-full bg-secondary-container flex items-center justify-center font-label-sm text-label-sm text-on-secondary-container font-semibold">
+                RV
+              </div>
+              <span class="font-title-sm text-title-sm text-white">Reviewer RV (Action Note)</span>
+            </div>
+            <span class="text-label-sm font-label-sm text-outline">Just now</span>
+          </div>
+          <p class="font-body-sm text-body-sm text-primary">${textarea.value.trim()}</p>
+        `;
+        container.appendChild(noteDiv);
+        textarea.value = '';
+      }
+      modal.classList.add('hidden');
+    }
+  </script>
+</div></main><footer class="relative z-10 w-full bg-surface-container-lowest/80 backdrop-blur-md border-t border-white/5 py-space-lg"><div class="max-w-[1280px] mx-auto px-space-md flex flex-col md:flex-row items-center justify-between gap-space-md"><div class="flex items-center gap-space-sm"><div class="h-6 w-6 rounded bg-white flex items-center justify-center shadow-sm shrink-0"><span class="text-[#071426] text-[12px] font-bold leading-none">H</span></div><span class="font-body-sm text-body-sm text-on-surface-variant">AI-assisted pre-screening with human review</span></div><div class="flex items-center gap-space-lg font-body-sm text-body-sm text-on-surface-variant"><a class="hover:text-on-surface transition-colors" href="#">Help & FAQ</a><a class="hover:text-on-surface transition-colors" href="#">Privacy</a><a class="hover:text-on-surface transition-colors" href="#">Terms</a></div><div class="flex flex-col md:items-end text-center md:text-right font-label-sm text-label-sm text-outline"><p>Book via partners: ixigo, MakeMyTrip, Booking.com</p><p class="text-on-surface-variant/80">© 2026 Harbinger Group. Authorized users only.</p></div></div></footer></body></html>

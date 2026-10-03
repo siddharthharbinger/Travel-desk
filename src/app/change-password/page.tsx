@@ -2,39 +2,49 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Lock, ShieldAlert, CheckCircle2, ArrowRight, AlertCircle } from "lucide-react";
+import { Logo } from "@/components/Logo";
+import { Lock, Key, Shield, Eye, EyeOff, CheckCircle2, Circle, AlertCircle, Loader2 } from "lucide-react";
 
 export default function ChangePasswordPage() {
   const router = useRouter();
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [showCurrent, setShowCurrent] = useState(false);
+  const [showNew, setShowNew] = useState(false);
+  const [showConfirm, setShowConfirm] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
-  // Password Strength calculation
-  const calculateStrength = (pass: string) => {
-    if (!pass) return { score: 0, label: "Empty", color: "bg-slate-700" };
-    if (pass.length < 10) return { score: 1, label: "Too Short (Min 10)", color: "bg-red-500" };
+  // Requirements check
+  const hasLength = newPassword.length >= 10;
+  const hasUpper = /[A-Z]/.test(newPassword);
+  const hasNumber = /[0-9]/.test(newPassword);
+  const hasSpecial = /[^A-Za-z0-9]/.test(newPassword);
 
-    let score = 2;
-    if (/[A-Z]/.test(pass)) score++;
-    if (/[0-9]/.test(pass)) score++;
-    if (/[^A-Za-z0-9]/.test(pass)) score++;
+  const calculateStrength = () => {
+    if (!newPassword) return { score: 0, label: "Unassessed" };
+    let score = 0;
+    if (hasLength) score++;
+    if (hasUpper) score++;
+    if (hasNumber) score++;
+    if (hasSpecial) score++;
 
-    if (score <= 2) return { score: 2, label: "Fair", color: "bg-amber-500" };
-    if (score === 3 || score === 4) return { score: 3, label: "Strong", color: "bg-emerald-500" };
-    return { score: 4, label: "Very Strong", color: "bg-teal-400" };
+    if (score === 1) return { score: 1, label: "Weak" };
+    if (score === 2) return { score: 2, label: "Moderate" };
+    if (score === 3) return { score: 3, label: "Strong" };
+    if (score === 4) return { score: 4, label: "Optimal" };
+    return { score: 0, label: "Unassessed" };
   };
 
-  const strength = calculateStrength(newPassword);
+  const strength = calculateStrength();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
 
-    if (newPassword.length < 10) {
-      setError("Password must be at least 10 characters long.");
+    if (!hasLength) {
+      setError("Password must be at least 10 characters in length.");
       return;
     }
 
@@ -67,128 +77,220 @@ export default function ChangePasswordPage() {
   };
 
   return (
-    <div className="min-h-[80vh] flex items-center justify-center px-4 py-12">
-      <div className="w-full max-w-md">
-        <div className="glass-panel p-8 shadow-2xl relative border border-[var(--glass-border)]">
+    <div className="w-full flex flex-col items-center justify-center min-h-[calc(100vh-140px)] px-4 py-8 relative z-20">
+      <div className="w-full max-w-[540px]">
+        {/* Top Header Pill */}
+        <div className="flex items-center justify-between px-2 mb-4">
+          <div className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-[var(--brand-teal)]" />
+            <span className="text-[11px] font-semibold uppercase tracking-wider text-[var(--foreground-muted)]">
+              Account Security • Password Setup
+            </span>
+          </div>
+          <div className="flex items-center gap-1.5 text-[var(--foreground-subtle)] text-xs">
+            <Lock className="w-3.5 h-3.5 text-[var(--brand-amber)]" />
+            <span>Setup Required</span>
+          </div>
+        </div>
+
+        {/* Card Container */}
+        <div
+          className="relative rounded-2xl p-8 md:p-10 flex flex-col gap-6"
+          style={{
+            background: "rgba(11, 37, 69, 0.70)",
+            backdropFilter: "blur(24px)",
+            WebkitBackdropFilter: "blur(24px)",
+            border: "1px solid rgba(255, 255, 255, 0.14)",
+            boxShadow: "0 20px 50px -10px rgba(0, 0, 0, 0.65), 0 0 45px -10px rgba(20, 184, 166, 0.12), inset 0 1px 0 0 rgba(255, 255, 255, 0.20)",
+          }}
+        >
           {/* Header */}
-          <div className="text-center space-y-2 mb-6">
-            <div className="w-12 h-12 rounded-full bg-[var(--brand-amber)]/20 text-[var(--brand-amber)] flex items-center justify-center mx-auto mb-3">
-              <ShieldAlert className="w-6 h-6" />
-            </div>
-            <h1 className="text-xl font-semibold tracking-tight text-[var(--foreground)]">
-              Password Update Required
+          <div className="flex items-center justify-between pb-4 border-b border-white/10">
+            <Logo />
+            <span className="text-[11px] font-semibold tracking-wide bg-white/10 text-[var(--brand-teal)] px-3 py-1 rounded-full border border-white/10">
+              Security Update
+            </span>
+          </div>
+
+          <div>
+            <h1 className="font-serif text-2xl md:text-3xl font-normal text-white tracking-tight mb-2">
+              Update your temporary password
+              <span className="block text-xs uppercase tracking-wider text-[var(--brand-teal)] mt-1 font-sans font-semibold">
+                Password Update Required
+              </span>
             </h1>
-            <p className="text-xs text-[var(--foreground-muted)] max-w-xs mx-auto">
-              Your administrator requires you to set a permanent, secure password before accessing corporate travel tools.
+            <p className="text-sm text-[var(--foreground-muted)] leading-relaxed">
+              To secure your corporate travel profile and travel documents, please set a permanent password before continuing.
             </p>
           </div>
 
           {error && (
-            <div 
-              className="mb-6 p-3 rounded-lg border border-[var(--brand-ruby)]/40 bg-[var(--brand-ruby)]/10 text-[var(--brand-ruby)] text-xs flex items-center gap-2"
+            <div
+              className="p-3.5 rounded-xl bg-red-500/15 border border-red-500/30 text-red-200 text-xs flex items-center gap-2.5"
               role="alert"
             >
-              <AlertCircle className="w-4 h-4 shrink-0" />
+              <AlertCircle className="w-4 h-4 text-red-400 shrink-0" />
               <span>{error}</span>
             </div>
           )}
 
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div>
-              <label 
-                htmlFor="currentPassword" 
-                className="block text-xs font-medium text-[var(--foreground-muted)] mb-1.5 uppercase tracking-wider"
-              >
-                Temporary / Current Password
+          {/* Form */}
+          <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+            {/* Current Password */}
+            <div className="flex flex-col gap-1.5">
+              <label className="text-xs font-semibold uppercase tracking-wider text-[var(--foreground)]" htmlFor="currentPassword">
+                Current temporary password
               </label>
-              <div className="relative">
-                <Lock className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-[var(--foreground-muted)]" />
+              <div className="relative flex items-center">
+                <Key className="w-4 h-4 absolute left-3.5 text-[var(--foreground-subtle)]" />
                 <input
                   id="currentPassword"
-                  type="password"
+                  type={showCurrent ? "text" : "password"}
+                  required
                   value={currentPassword}
                   onChange={(e) => setCurrentPassword(e.target.value)}
-                  placeholder="Enter current password"
-                  required
-                  className="w-full pl-10 pr-4 py-2.5 text-sm glass-input"
+                  placeholder="Enter assigned temporary password"
+                  className="w-full h-11 pl-10 pr-10 rounded-lg glass-input text-sm placeholder:text-[var(--foreground-subtle)] focus:bg-[#071426]/80 transition-all"
                 />
+                <button
+                  type="button"
+                  onClick={() => setShowCurrent(!showCurrent)}
+                  className="absolute right-3 p-1 text-[var(--foreground-subtle)] hover:text-white transition-colors"
+                  aria-label="Toggle temporary password visibility"
+                >
+                  {showCurrent ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                </button>
               </div>
             </div>
 
-            <div>
-              <label 
-                htmlFor="newPassword" 
-                className="block text-xs font-medium text-[var(--foreground-muted)] mb-1.5 uppercase tracking-wider"
-              >
-                New Password (Min. 10 Characters)
+            {/* New Password */}
+            <div className="flex flex-col gap-1.5">
+              <label className="text-xs font-semibold uppercase tracking-wider text-[var(--foreground)]" htmlFor="newPassword">
+                New permanent password
               </label>
-              <div className="relative">
-                <Lock className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-[var(--foreground-muted)]" />
+              <div className="relative flex items-center">
+                <Shield className="w-4 h-4 absolute left-3.5 text-[var(--foreground-subtle)]" />
                 <input
                   id="newPassword"
-                  type="password"
+                  type={showNew ? "text" : "password"}
+                  required
                   value={newPassword}
                   onChange={(e) => setNewPassword(e.target.value)}
-                  placeholder="At least 10 characters"
-                  required
-                  className="w-full pl-10 pr-4 py-2.5 text-sm glass-input"
+                  placeholder="Create strong passphrase"
+                  className="w-full h-11 pl-10 pr-10 rounded-lg glass-input text-sm placeholder:text-[var(--foreground-subtle)] focus:bg-[#071426]/80 transition-all"
                 />
+                <button
+                  type="button"
+                  onClick={() => setShowNew(!showNew)}
+                  className="absolute right-3 p-1 text-[var(--foreground-subtle)] hover:text-white transition-colors"
+                  aria-label="Toggle new password visibility"
+                >
+                  {showNew ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                </button>
               </div>
 
-              {/* Strength Meter Bar */}
-              {newPassword && (
-                <div className="mt-2 space-y-1">
-                  <div className="flex justify-between items-center text-[10px]">
-                    <span className="text-[var(--foreground-muted)]">Security Strength:</span>
-                    <span className="font-semibold text-[var(--foreground)]">{strength.label}</span>
-                  </div>
-                  <div className="h-1.5 w-full bg-[var(--glass-fill-nested)] rounded-full overflow-hidden">
-                    <div
-                      className={`h-full transition-all duration-300 ${strength.color}`}
-                      style={{ width: `${(strength.score / 4) * 100}%` }}
-                    />
-                  </div>
+              {/* Strength Rating Bars */}
+              <div className="pt-1.5">
+                <div className="flex items-center justify-between mb-1.5 text-[11px]">
+                  <span className="text-[var(--foreground-subtle)]">Complexity Rating</span>
+                  <span className="uppercase tracking-wider font-semibold text-[var(--brand-teal)]">
+                    {strength.label}
+                  </span>
                 </div>
-              )}
+                <div className="grid grid-cols-4 gap-1.5 h-1.5 w-full">
+                  <div className={`rounded-full transition-all duration-300 ${strength.score >= 1 ? "bg-[var(--brand-teal)]" : "bg-white/10"}`} />
+                  <div className={`rounded-full transition-all duration-300 ${strength.score >= 2 ? "bg-[var(--brand-teal)]" : "bg-white/10"}`} />
+                  <div className={`rounded-full transition-all duration-300 ${strength.score >= 3 ? "bg-[var(--brand-teal)]" : "bg-white/10"}`} />
+                  <div className={`rounded-full transition-all duration-300 ${strength.score >= 4 ? "bg-[var(--brand-teal)]" : "bg-white/10"}`} />
+                </div>
+              </div>
             </div>
 
-            <div>
-              <label 
-                htmlFor="confirmPassword" 
-                className="block text-xs font-medium text-[var(--foreground-muted)] mb-1.5 uppercase tracking-wider"
-              >
-                Confirm New Password
+            {/* Confirm Password */}
+            <div className="flex flex-col gap-1.5">
+              <label className="text-xs font-semibold uppercase tracking-wider text-[var(--foreground)]" htmlFor="confirmPassword">
+                Confirm new password
               </label>
-              <div className="relative">
-                <Lock className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-[var(--foreground-muted)]" />
+              <div className="relative flex items-center">
+                <Lock className="w-4 h-4 absolute left-3.5 text-[var(--foreground-subtle)]" />
                 <input
                   id="confirmPassword"
-                  type="password"
+                  type={showConfirm ? "text" : "password"}
+                  required
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
-                  placeholder="Re-enter new password"
-                  required
-                  className="w-full pl-10 pr-4 py-2.5 text-sm glass-input"
+                  placeholder="Re-enter your new password"
+                  className="w-full h-11 pl-10 pr-10 rounded-lg glass-input text-sm placeholder:text-[var(--foreground-subtle)] focus:bg-[#071426]/80 transition-all"
                 />
+                <button
+                  type="button"
+                  onClick={() => setShowConfirm(!showConfirm)}
+                  className="absolute right-3 p-1 text-[var(--foreground-subtle)] hover:text-white transition-colors"
+                  aria-label="Toggle confirmation password visibility"
+                >
+                  {showConfirm ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                </button>
               </div>
             </div>
 
+            {/* Security Requirements Checklist */}
+            <div className="p-4 rounded-xl bg-[#071426]/70 border border-white/10 space-y-2 mt-2">
+              <span className="text-[11px] font-semibold uppercase tracking-wider text-[var(--foreground-subtle)] block mb-1">
+                Security Requirements
+              </span>
+              <ul className="space-y-1.5 text-xs text-[var(--foreground-muted)]">
+                <li className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    {hasLength ? <CheckCircle2 className="w-3.5 h-3.5 text-[var(--brand-teal)]" /> : <Circle className="w-3.5 h-3.5 text-[var(--foreground-subtle)]" />}
+                    <span>At least 10 characters in length</span>
+                  </div>
+                  <span className={`text-[10px] font-semibold uppercase ${hasLength ? "text-[var(--brand-teal)]" : "text-[var(--foreground-subtle)]"}`}>
+                    {hasLength ? "Met" : "Required"}
+                  </span>
+                </li>
+                <li className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    {hasUpper ? <CheckCircle2 className="w-3.5 h-3.5 text-[var(--brand-teal)]" /> : <Circle className="w-3.5 h-3.5 text-[var(--foreground-subtle)]" />}
+                    <span>At least one uppercase letter (A–Z)</span>
+                  </div>
+                  <span className={`text-[10px] font-semibold uppercase ${hasUpper ? "text-[var(--brand-teal)]" : "text-[var(--foreground-subtle)]"}`}>
+                    {hasUpper ? "Met" : "Required"}
+                  </span>
+                </li>
+                <li className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    {hasNumber ? <CheckCircle2 className="w-3.5 h-3.5 text-[var(--brand-teal)]" /> : <Circle className="w-3.5 h-3.5 text-[var(--foreground-subtle)]" />}
+                    <span>At least one number (0–9)</span>
+                  </div>
+                  <span className={`text-[10px] font-semibold uppercase ${hasNumber ? "text-[var(--brand-teal)]" : "text-[var(--foreground-subtle)]"}`}>
+                    {hasNumber ? "Met" : "Required"}
+                  </span>
+                </li>
+                <li className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    {hasSpecial ? <CheckCircle2 className="w-3.5 h-3.5 text-[var(--brand-teal)]" /> : <Circle className="w-3.5 h-3.5 text-[var(--foreground-subtle)]" />}
+                    <span>At least one special character (!@#$%^&*)</span>
+                  </div>
+                  <span className={`text-[10px] font-semibold uppercase ${hasSpecial ? "text-[var(--brand-teal)]" : "text-[var(--foreground-subtle)]"}`}>
+                    {hasSpecial ? "Met" : "Recommended"}
+                  </span>
+                </li>
+              </ul>
+            </div>
+
+            {/* Submit CTA */}
             <button
               type="submit"
-              disabled={loading || newPassword.length < 10}
-              className="w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-lg text-sm font-semibold bg-[var(--brand-teal)] hover:bg-[var(--brand-teal-hover)] text-white shadow-lg transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand-teal)] disabled:opacity-50"
+              disabled={loading}
+              className="w-full h-11 mt-2 rounded-lg bg-[var(--brand-teal)] text-[#071426] font-semibold text-sm tracking-wide flex items-center justify-center gap-2 shadow-md hover:bg-[var(--brand-teal-hover)] focus:outline-none focus:ring-2 focus:ring-[var(--brand-teal)] active:scale-[0.98] disabled:opacity-60 transition-all"
             >
               {loading ? (
-                <span className="inline-flex items-center gap-2">
-                  <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                  Updating...
-                </span>
-              ) : (
                 <>
-                  <CheckCircle2 className="w-4 h-4" />
-                  <span>Update Password & Continue</span>
-                  <ArrowRight className="w-4 h-4" />
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                  <span>Updating password...</span>
                 </>
+              ) : (
+                <span>Update password and continue</span>
               )}
             </button>
           </form>

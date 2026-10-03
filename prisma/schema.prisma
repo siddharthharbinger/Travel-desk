@@ -29,6 +29,7 @@ model User {
 
   applications        Application[]
   decisions           CaseDecision[]
+  caseNotes           CaseNote[]
   assignedCases       Application[] @relation("AssignedCSR")
   auditLogs           AuditLog[]    @relation("ActorAudit")
   targetedAudits      AuditLog[]    @relation("TargetUserAudit")
@@ -69,6 +70,7 @@ model Application {
   documents          Document[]
   flags              CaseFlag[]
   decisions          CaseDecision[]
+  caseNotes          CaseNote[]
   auditLogs          AuditLog[]
 
   @@index([userId])
@@ -159,8 +161,40 @@ model CaseFlag {
   resolvedByUserId   String?
   createdAt          DateTime          @default(now())
 
+  @@unique([applicationId, code])
   @@index([applicationId])
   @@index([code])
+}
+
+model CaseNote {
+  id            String      @id @default(cuid())
+  applicationId String
+  application   Application @relation(fields: [applicationId], references: [id], onDelete: Cascade)
+  authorId      String
+  author        User        @relation(fields: [authorId], references: [id])
+  content       String
+  isInternal    Boolean     @default(true)
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+
+  @@index([applicationId])
+  @@index([authorId])
+}
+
+model DocumentRequirement {
+  id           String   @id @default(cuid())
+  visaType     String
+  documentType String
+  label        String
+  description  String
+  isMandatory  Boolean  @default(true)
+  jurisdiction String?  @default("ALL")
+  orderIndex   Int      @default(0)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@unique([visaType, documentType])
+  @@index([visaType])
 }
 
 model CaseDecision {
@@ -211,6 +245,7 @@ model Question {
   followUpLogic      String?
   flagTriggerRule    String?
   isActive           Boolean           @default(true)
+  approvalStatus     String            @default("APPROVED")
   createdAt          DateTime          @default(now())
   updatedAt          DateTime          @updatedAt
 

@@ -1,10 +1,14 @@
 export type DocumentType = 
   | "PASSPORT"
+  | "EMPLOYER_LETTER"
   | "INVITATION_LETTER"
-  | "EMPLOYER_SUPPORT_LETTER"
+  | "PROOF_OF_ACCOMMODATION"
+  | "FLIGHT_RESERVATION"
   | "TRAVEL_INSURANCE"
-  | "FLIGHT_ITINERARY"
-  | "HOTEL_BOOKING"
+  | "FINANCIAL_PROOF"
+  | "EMPLOYER_SUPPORT_LETTER" // legacy alias
+  | "FLIGHT_ITINERARY" // legacy alias
+  | "HOTEL_BOOKING" // legacy alias
   | "OTHER";
 
 export type FlagSeverity = "CRITICAL" | "WARNING" | "INFO";
@@ -55,62 +59,97 @@ export function validateMagicBytes(buffer: Buffer | Uint8Array): {
   };
 }
 
-// 2. Required Document Types per Visa Category
+// 2. Canonical Required Document Types per Visa Category
 export const REQUIRED_DOCUMENTS: Record<string, { type: DocumentType; label: string; description: string }[]> = {
   SCHENGEN_BUSINESS: [
     {
       type: "PASSPORT",
-      label: "Passport Bio-Data Page",
-      description: "Must be valid for at least 3 months after departure from Schengen territory."
+      label: "Passport bio page",
+      description: "Must be valid for at least 3 months after departure from Schengen territory and issued within the previous 10 years."
+    },
+    {
+      type: "EMPLOYER_LETTER",
+      label: "Employer letter",
+      description: "Company letter confirming employment status, role, and travel purpose."
     },
     {
       type: "INVITATION_LETTER",
-      label: "German Business Invitation Letter",
-      description: "Einladungsschreiben from host organization in Germany."
+      label: "Invitation letter from host company",
+      description: "Invitation letter from host company in Munich stating meeting dates and agenda."
     },
     {
-      type: "EMPLOYER_SUPPORT_LETTER",
-      label: "Harbinger Employer Dispatch Letter",
-      description: "Corporate deputation letter confirming travel purpose and salary paid in India."
+      type: "PROOF_OF_ACCOMMODATION",
+      label: "Proof of accommodation",
+      description: "Hotel reservation or host declaration of accommodation."
+    },
+    {
+      type: "FLIGHT_RESERVATION",
+      label: "Flight reservation",
+      description: "Round-trip flight booking or itinerary reservation."
     },
     {
       type: "TRAVEL_INSURANCE",
-      label: "Travel Medical Insurance Policy",
-      description: "Minimum €30,000 emergency medical and repatriation coverage."
+      label: "Travel medical insurance (Schengen only)",
+      description: "Minimum €30,000 emergency medical and repatriation coverage across Schengen territory."
+    },
+    {
+      type: "FINANCIAL_PROOF",
+      label: "Financial proof (bank statements)",
+      description: "Recent official bank statements showing sufficient funds for travel."
     }
   ],
   US_B1: [
     {
       type: "PASSPORT",
-      label: "Passport Bio-Data Page",
-      description: "Valid Indian passport (Six-Month Club exempt for duration of stay)."
+      label: "Passport bio page",
+      description: "Valid Indian passport (Six-Month Club eligible for duration of stay)."
+    },
+    {
+      type: "EMPLOYER_LETTER",
+      label: "Employer letter",
+      description: "Company letter confirming employee status and business travel purpose."
     },
     {
       type: "INVITATION_LETTER",
-      label: "US Client / Conference Invitation",
-      description: "Formal letter stating meeting dates and corporate agenda."
+      label: "Invitation letter from host company",
+      description: "Invitation letter from host company stating meeting agenda and corporate contact details."
     },
     {
-      type: "EMPLOYER_SUPPORT_LETTER",
-      label: "Harbinger Employer Support Letter",
-      description: "Letter confirming employee status and non-productive business travel."
+      type: "PROOF_OF_ACCOMMODATION",
+      label: "Proof of accommodation",
+      description: "Hotel booking or lodging documentation."
+    },
+    {
+      type: "FLIGHT_RESERVATION",
+      label: "Flight reservation",
+      description: "Round-trip flight reservation."
+    },
+    {
+      type: "FINANCIAL_PROOF",
+      label: "Financial proof (bank statements)",
+      description: "Recent bank statements demonstrating financial solvency."
     }
   ],
   DEFAULT: [
     {
       type: "PASSPORT",
-      label: "Passport Bio-Data Page",
-      description: "Valid sovereign travel document."
+      label: "Passport bio page",
+      description: "Valid official travel document."
     },
     {
       type: "INVITATION_LETTER",
-      label: "Host Invitation Letter",
-      description: "Official invitation from foreign sponsor."
+      label: "Invitation letter from host company",
+      description: "Official invitation from host company."
+    },
+    {
+      type: "EMPLOYER_LETTER",
+      label: "Employer letter",
+      description: "Company letter confirming employment status."
     }
   ]
 };
 
-// 3. Deterministic Readiness Score Formula
+// 3. Documented Readiness Score Formula
 export function calculateReadinessScore(
   mandatoryQuestionsTotal: number,
   mandatoryQuestionsAnswered: number,
@@ -135,7 +174,7 @@ export function calculateReadinessScore(
   return { score, formulaDetails };
 }
 
-// 4. Deterministic Answer Evaluation & Flag Rule Checker
+// 4. Rule-based Answer Evaluation & Flag Rule Checker
 export interface FlagEvaluationResult {
   hasFlag: boolean;
   code?: string;

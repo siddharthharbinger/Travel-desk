@@ -2,6 +2,7 @@ import { PrismaClient, Role } from "@prisma/client";
 import bcrypt from "bcryptjs";
 import fs from "fs";
 import path from "path";
+import { REQUIRED_DOCUMENTS } from "../src/lib/prescreening-rules";
 
 const prisma = new PrismaClient();
 
@@ -125,7 +126,37 @@ async function main() {
     console.log(`Seeded ${questionsData.length} starter questions (Starter set, pending CSR team approval).`);
   }
 
-  // 3. Optional Demo Cases (OFF by default, gated by SEED_DEMO_CASES=true)
+  // 3. Seed Canonical Document Requirements
+  for (const [vType, docList] of Object.entries(REQUIRED_DOCUMENTS)) {
+    for (let i = 0; i < docList.length; i++) {
+      const doc = docList[i];
+      await prisma.documentRequirement.upsert({
+        where: {
+          visaType_documentType: {
+            visaType: vType,
+            documentType: doc.type,
+          },
+        },
+        update: {
+          label: doc.label,
+          description: doc.description,
+          isMandatory: true,
+          orderIndex: i + 1,
+        },
+        create: {
+          visaType: vType,
+          documentType: doc.type,
+          label: doc.label,
+          description: doc.description,
+          isMandatory: true,
+          orderIndex: i + 1,
+        },
+      });
+    }
+  }
+  console.log("Seeded canonical DocumentRequirement records.");
+
+  // 4. Optional Demo Cases (OFF by default, gated by SEED_DEMO_CASES=true)
   if (process.env.SEED_DEMO_CASES === "true") {
     console.log("SEED_DEMO_CASES=true detected. Seeding tagged demo applications...");
     const existingApp = await prisma.application.findFirst({

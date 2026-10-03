@@ -1,41 +1,51 @@
 import Link from "next/link";
-import { ShieldX, ArrowLeft, Home } from "lucide-react";
+import { Lock, Home, Mail } from "lucide-react";
 
 export default function UnauthorizedPage() {
   return (
-    <div className="min-h-[75vh] flex items-center justify-center px-4 py-16">
-      <div className="max-w-md w-full glass-panel p-8 text-center space-y-6 border border-[var(--brand-ruby)]/30 shadow-2xl">
-        <div className="w-16 h-16 rounded-full bg-[var(--brand-ruby)]/15 text-[var(--brand-ruby)] flex items-center justify-center mx-auto">
-          <ShieldX className="w-8 h-8" />
+    <div className="w-full min-h-[calc(100vh-140px)] flex items-center justify-center px-4 py-12 relative z-20">
+      <div
+        className="w-full max-w-lg rounded-2xl p-8 sm:p-10 text-center relative overflow-hidden shadow-2xl flex flex-col items-center"
+        style={{
+          background: "rgba(11, 37, 69, 0.70)",
+          backdropFilter: "blur(24px)",
+          WebkitBackdropFilter: "blur(24px)",
+          border: "1px solid rgba(255, 255, 255, 0.14)",
+          boxShadow: "0 20px 50px -10px rgba(0, 0, 0, 0.65), 0 0 45px -10px rgba(20, 184, 166, 0.12), inset 0 1px 0 0 rgba(255, 255, 255, 0.20)",
+        }}
+      >
+        {/* Icon Tile */}
+        <div className="w-14 h-14 rounded-2xl bg-amber-500/15 border border-amber-500/25 text-amber-400 flex items-center justify-center mb-6 shadow-sm">
+          <Lock className="w-7 h-7" />
         </div>
 
-        <div className="space-y-2">
-          <h1 className="text-xl font-semibold tracking-tight text-[var(--foreground)]">
-            403 · Access Restricted
-          </h1>
-          <p className="text-sm text-[var(--foreground-muted)] leading-relaxed">
-            Your corporate account does not have permission to access this portal or administrative resource.
-          </p>
-          <p className="text-xs text-[var(--foreground-subtle)]">
-            If you require reviewer or administrator privileges, please contact your corporate administrator.
-          </p>
-        </div>
+        {/* Heading & Explanation */}
+        <span className="text-[11px] font-semibold uppercase tracking-wider text-amber-400 block mb-1">
+          403 · Access Restricted
+        </span>
+        <h1 className="font-serif text-2xl sm:text-3xl font-normal text-white mb-3 tracking-tight">
+          You don't have access to this page <span className="sr-only">Access Restricted</span>
+        </h1>
+        <p className="text-sm text-[var(--foreground-muted)] mb-8 max-w-sm leading-relaxed">
+          Your account doesn't include permission for this area. If you think this is a mistake, contact your administrator.
+        </p>
 
-        <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3">
-          <Link
-            href="/dashboard"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg text-xs font-semibold bg-[var(--brand-teal)] text-white hover:bg-[var(--brand-teal-hover)] transition-colors shadow-sm"
-          >
-            <Home className="w-3.5 h-3.5" />
-            <span>Return to Dashboard</span>
-          </Link>
+        {/* Action CTAs */}
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 w-full sm:w-auto">
           <Link
             href="/"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg text-xs font-medium border border-[var(--glass-border)] bg-[var(--glass-fill)] hover:bg-[var(--glass-fill-hover)] text-[var(--foreground)] transition-colors"
+            className="w-full sm:w-auto px-6 py-2.5 rounded-lg bg-[var(--brand-teal)] text-[#071426] font-semibold text-xs hover:bg-[var(--brand-teal-hover)] transition-all flex items-center justify-center gap-2 shadow-md"
           >
-            <ArrowLeft className="w-3.5 h-3.5" />
-            <span>Homepage</span>
+            <Home className="w-4 h-4" />
+            <span>Back to home</span>
           </Link>
+          <a
+            href="mailto:admin@harbingergroup.com"
+            className="w-full sm:w-auto px-5 py-2.5 rounded-lg text-white font-medium text-xs transition-colors flex items-center justify-center gap-2 bg-white/5 border border-white/10 hover:bg-white/10"
+          >
+            <Mail className="w-4 h-4 text-[var(--foreground-muted)]" />
+            <span>Contact administrator</span>
+          </a>
         </div>
       </div>
     </div>

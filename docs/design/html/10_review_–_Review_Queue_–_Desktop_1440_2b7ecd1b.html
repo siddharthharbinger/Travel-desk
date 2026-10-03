@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><title>TravelDesk — Harbinger</title><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Newsreader:wght@100..900&display=swap" rel="stylesheet"/><style>@layer base { html, body { margin: 0; padding: 0; } body { overscroll-behavior: none; } main > :first-child { margin-top: 0 !important; } main > :last-child { margin-bottom: 0 !important; } } ::-webkit-scrollbar { display: none; }</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "on-primary-fixed-variant": "#005048", "error-container": "#93000a", "tertiary-fixed-dim": "#ffb957", "on-surface-variant": "#bbcac6", "on-error": "#690005", "on-secondary-container": "#a0b6de", "outline-variant": "#3c4947", "inverse-surface": "#d7e3fc", "on-tertiary-fixed-variant": "#643f00", "outline": "#859490", "tertiary-fixed": "#ffddb5", "surface": "#071426", "surface-container-lowest": "#030e20", "on-tertiary": "#462b00", "on-tertiary-container": "#533400", "on-background": "#d7e3fc", "surface-tint": "#4fdbc8", "tertiary": "#ffb957", "inverse-on-surface": "#253144", "on-primary": "#003731", "on-secondary-fixed": "#001c3b", "surface-bright": "#2e3a4d", "surface-container": "#142032", "on-surface": "#d7e3fc", "on-primary-container": "#00423b", "secondary-fixed-dim": "#b1c7f0", "error": "#ffb4ab", "primary": "#4fdbc8", "surface-container-highest": "#293549", "on-tertiary-fixed": "#2a1800", "background": "#071426", "inverse-primary": "#006b5f", "on-secondary": "#193151", "surface-dim": "#071426", "secondary-fixed": "#d5e3ff", "surface-container-high": "#1e2a3d", "surface-variant": "#293549", "primary-fixed": "#71f8e4", "primary-container": "#14b8a6", "secondary-container": "#314769", "secondary": "#b1c7f0", "surface-container-low": "#0f1c2e", "tertiary-container": "#e1940b", "on-secondary-fixed-variant": "#314769", "primary-fixed-dim": "#4fdbc8", "on-error-container": "#ffdad6", "on-primary-fixed": "#00201c" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "space-md": "1rem", "margin-desktop": "3rem", "gutter": "1.5rem", "margin": "2rem", "space-xs": "0.25rem", "margin-mobile": "1rem", "space-sm": "0.5rem", "space-xl": "2.5rem", "gutter-lg": "2rem", "space-lg": "1.5rem", "gutter-sm": "1rem" }, fontFamily: { "body-lg": ["Inter"], "headline-lg-mobile": ["Newsreader"], "label-sm": ["Inter"], "headline-sm": ["Newsreader"], "label-md": ["Inter"], "headline-xl": ["Newsreader"], "headline-lg": ["Newsreader"], "body-md": ["Inter"], "body-sm": ["Inter"], "title-sm": ["Inter"], "title-md": ["Inter"], "headline-xl-mobile": ["Newsreader"], "headline-md": ["Newsreader"] }, fontSize: { "body-lg": ["16px", { lineHeight: "26px", fontWeight: "400" }], "headline-lg-mobile": ["26px", { lineHeight: "34px", letterSpacing: "-0.01em", fontWeight: "400" }], "label-sm": ["11px", { lineHeight: "14px", letterSpacing: "0.05em", fontWeight: "500" }], "headline-sm": ["20px", { lineHeight: "28px", fontWeight: "500" }], "label-md": ["12px", { lineHeight: "16px", letterSpacing: "0.04em", fontWeight: "600" }], "headline-xl": ["48px", { lineHeight: "56px", letterSpacing: "-0.02em", fontWeight: "400" }], "headline-lg": ["36px", { lineHeight: "44px", letterSpacing: "-0.015em", fontWeight: "400" }], "body-md": ["14px", { lineHeight: "22px", fontWeight: "400" }], "body-sm": ["13px", { lineHeight: "18px", fontWeight: "400" }], "title-sm": ["14px", { lineHeight: "20px", fontWeight: "600" }], "title-md": ["16px", { lineHeight: "24px", letterSpacing: "-0.005em", fontWeight: "600" }], "headline-xl-mobile": ["32px", { lineHeight: "40px", letterSpacing: "-0.01em", fontWeight: "400" }], "headline-md": ["24px", { lineHeight: "32px", fontWeight: "500" }] } } } };</script></head><body class="bg-surface font-body-md text-on-surface min-h-screen relative selection:bg-primary selection:text-on-primary"><div class="fixed inset-0 pointer-events-none z-0 overflow-hidden"><div class="absolute -top-40 -left-40 w-[640px] h-[640px] rounded-full bg-primary/10 blur-[140px]"></div><div class="absolute -top-32 -right-32 w-[600px] h-[600px] rounded-full bg-secondary-container/30 blur-[130px]"></div></div><header class="fixed top-4 left-4 right-4 z-50 flex justify-center pointer-events-none"><div class="pointer-events-auto w-full max-w-[1280px] h-16 rounded-full bg-[rgba(7,20,38,0.70)] backdrop-blur-[24px] border border-white/15 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.18),0_16px_40px_-4px_rgba(0,0,0,0.55)] px-space-md flex items-center justify-between"><div class="flex items-center gap-space-sm"><div class="h-9 w-9 rounded-lg bg-white flex items-center justify-center shadow-sm shrink-0"><span class="text-[#071426] font-title-md font-bold leading-none tracking-tight">H</span></div><span class="font-headline-md text-headline-md text-on-surface tracking-tight ml-space-xs">TravelDesk</span></div><nav class="hidden md:flex items-center gap-space-xs bg-surface-container-low/60 rounded-full p-1 border border-white/5" data-active-classes="bg-primary-container text-on-primary-container font-title-sm shadow-[0_0_12px_rgba(20,184,166,0.25)]"><a class="px-space-md py-1.5 rounded-full font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" data-path="visa-dossiers" href="#">Visas</a><a class="px-space-md py-1.5 rounded-full font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" data-path="flights" href="#">Flights</a><a class="px-space-md py-1.5 rounded-full font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" data-path="hotels" href="#">Hotels</a><a class="px-space-md py-1.5 rounded-full font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" data-path="travel-info" href="#">Travel Info</a><a aria-current="page" class="px-space-md py-1.5 rounded-full transition-colors bg-primary-container text-on-primary-container font-title-sm shadow-[0_0_12px_rgba(20,184,166,0.25)]" data-path="csr-review-queue" href="#">Review</a><a class="px-space-md py-1.5 rounded-full font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" data-path="admin-control" href="#">Admin</a></nav><div class="flex items-center gap-space-sm"><button aria-label="Notifications" class="relative p-2 rounded-full text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors flex items-center justify-center"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-2 right-2 w-1.5 h-1.5 rounded-full bg-primary ring-2 ring-surface"></span></button><div class="flex items-center gap-space-xs pl-space-xs"><div class="w-8 h-8 rounded-full bg-secondary-container border border-white/20 flex items-center justify-center text-on-secondary-container font-label-md text-label-md font-semibold select-none">RV</div><img alt="Profile" class="w-8 h-8 rounded-full object-cover ring-1 ring-white/20" src="https://lh3.googleusercontent.com/aida/AEtjO1U6MOZsSwyG8Nwcdnk-lKLzF_g4-EQVperGLqXeiir4eC6hhdItZc2pXOjKG-Vfc70dOZV9H_xJj_01Z52PukfoARptfHp2Nzm-WQEEx4qs4Sa4rBV0g7-GXQKqJdlkfIzd55_oxPI8IZJcdJhEIVIit6bF_u2ODOLMcoM66wJmbKphtcB1JBJbhoDDCl8JmTvmGyjM3FVYp-gHwrvWjPKs2UUY311MM_0mUmlqUnyOl5-B6VmHK_zPrfj0_YN5L7ZpOQ95YPIsqQ"/></div></div></div></header><main class="relative z-10 w-full pt-20 pb-space-xl px-space-md max-w-[1440px] mx-auto min-h-[calc(100vh-140px)]"><div class="flex flex-col w-full">
+<!-- Dynamic Atmospheric Glows scoped to view container -->
+<div class="relative w-full overflow-hidden">
+<div class="absolute -top-32 left-1/4 w-[500px] h-[350px] bg-primary/10 rounded-full blur-[140px] pointer-events-none"></div>
+<div class="absolute top-20 right-10 w-[420px] h-[300px] bg-secondary-container/25 rounded-full blur-[120px] pointer-events-none"></div>
+<!-- Header Section -->
+<section class="relative pt-space-xs pb-space-lg">
+<div class="flex flex-col lg:flex-row lg:items-end justify-between gap-space-lg">
+<div class="space-y-space-xs max-w-2xl">
+<div class="flex items-center gap-space-sm">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-surface-container-high text-primary font-label-sm text-label-sm uppercase tracking-wider">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+              CSR Review Queue
+            </span>
+<span class="text-on-surface-variant font-label-sm text-label-sm">Audited Batch · Dec 2026</span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-on-surface tracking-tight">Review Applications</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Pre-screened visa applications awaiting human review and document verification.</p>
+</div>
+<!-- Header Actions / Quick Controls -->
+<div class="flex flex-wrap items-center gap-space-sm">
+<div class="relative min-w-[260px]">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px]">search</span>
+<input class="w-full h-11 pl-9 pr-3 rounded-xl bg-surface-container-low/80 backdrop-blur-md text-on-surface placeholder:text-outline text-body-sm font-body-sm focus:outline-none focus:bg-surface-container transition-all" id="quick-filter-input" placeholder="Quick search dossier..." type="text"/>
+</div>
+<button class="h-11 px-space-md rounded-xl bg-surface-container-high/80 backdrop-blur-md text-on-surface font-title-sm text-title-sm hover:bg-surface-bright transition-all flex items-center gap-2 active:scale-95 shadow-sm" id="refresh-queue-btn">
+<span class="material-symbols-outlined text-[18px] text-primary" id="refresh-icon">sync</span>
+<span>Refresh queue</span>
+</button>
+<div class="h-11 p-1 rounded-xl bg-surface-container-low/80 backdrop-blur-md flex items-center">
+<button class="px-3 h-full rounded-lg bg-surface-container-highest text-primary font-label-md text-label-md flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined text-[16px]">view_list</span>
+<span>List</span>
+</button>
+<button class="px-3 h-full rounded-lg text-on-surface-variant hover:text-on-surface font-label-md text-label-md flex items-center gap-1 transition-colors">
+<span class="material-symbols-outlined text-[16px]">grid_view</span>
+<span>Matrix</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Metrics Cards Grid -->
+<section class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-space-md pb-space-lg">
+<!-- Card 1: Pending Review -->
+<div class="relative overflow-hidden rounded-xl bg-surface-container/70 backdrop-blur-[20px] p-space-md shadow-xl transition-all hover:bg-surface-container/90 group">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Pending Review</span>
+<span class="w-2.5 h-2.5 rounded-full bg-tertiary shadow-[0_0_8px_rgba(255,185,87,0.5)]"></span>
+</div>
+<div class="mt-space-sm flex items-baseline gap-space-xs">
+<span class="font-headline-lg text-headline-lg text-on-surface font-medium">12</span>
+<span class="font-label-sm text-label-sm text-tertiary">dossiers</span>
+</div>
+<p class="mt-space-xs font-body-sm text-body-sm text-on-surface-variant">Requires initial CSR check</p>
+<div class="mt-space-sm h-1 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-tertiary rounded-full w-[65%]"></div>
+</div>
+</div>
+<!-- Card 2: Flagged Cases -->
+<div class="relative overflow-hidden rounded-xl bg-surface-container/70 backdrop-blur-[20px] p-space-md shadow-xl transition-all hover:bg-surface-container/90 group">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Flagged Cases</span>
+<span class="w-2.5 h-2.5 rounded-full bg-error shadow-[0_0_8px_rgba(255,180,171,0.5)]"></span>
+</div>
+<div class="mt-space-sm flex items-baseline gap-space-xs">
+<span class="font-headline-lg text-headline-lg text-on-surface font-medium">4</span>
+<span class="font-label-sm text-label-sm text-error">priority items</span>
+</div>
+<p class="mt-space-xs font-body-sm text-body-sm text-on-surface-variant">Critical or warning flags present</p>
+<div class="mt-space-sm h-1 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-error rounded-full w-[22%]"></div>
+</div>
+</div>
+<!-- Card 3: Escalated Cases -->
+<div class="relative overflow-hidden rounded-xl bg-surface-container/70 backdrop-blur-[20px] p-space-md shadow-xl transition-all hover:bg-surface-container/90 group">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Escalated Cases</span>
+<span class="w-2.5 h-2.5 rounded-full bg-secondary shadow-[0_0_8px_rgba(177,199,240,0.5)]"></span>
+</div>
+<div class="mt-space-sm flex items-baseline gap-space-xs">
+<span class="font-headline-lg text-headline-lg text-on-surface font-medium">2</span>
+<span class="font-label-sm text-label-sm text-secondary">in escalation</span>
+</div>
+<p class="mt-space-xs font-body-sm text-body-sm text-on-surface-variant">Awaiting senior counsel / admin input</p>
+<div class="mt-space-sm h-1 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-secondary rounded-full w-[11%]"></div>
+</div>
+</div>
+<!-- Card 4: Avg Review Time -->
+<div class="relative overflow-hidden rounded-xl bg-surface-container/70 backdrop-blur-[20px] p-space-md shadow-xl transition-all hover:bg-surface-container/90 group">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Average Review Time</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-highest text-on-surface font-label-sm text-label-sm">Station Metric</span>
+</div>
+<div class="mt-space-sm flex items-baseline gap-space-xs">
+<span class="font-headline-lg text-headline-lg text-on-surface font-medium">42<span class="font-body-md text-body-md text-on-surface-variant ml-1">m</span></span>
+<span class="font-label-sm text-label-sm text-primary">live telemetry</span>
+</div>
+<p class="mt-space-xs font-body-sm text-body-sm text-on-surface-variant">Calculated per reviewer queue</p>
+<div class="mt-space-sm h-1 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full w-[42%]"></div>
+</div>
+</div>
+</section>
+<!-- Filter & Search Toolbar -->
+<section class="mb-space-md p-space-md rounded-2xl bg-surface-container/60 backdrop-blur-[20px] shadow-xl space-y-space-md">
+<div class="flex flex-col xl:flex-row items-stretch xl:items-center justify-between gap-space-md">
+<!-- Main Search Bar -->
+<div class="relative flex-1">
+<span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">manage_search</span>
+<input class="w-full h-11 pl-11 pr-4 rounded-xl bg-surface-container-lowest/80 text-on-surface placeholder:text-outline font-body-md text-body-md focus:outline-none focus:bg-surface-container-low transition-all" id="table-filter-input" placeholder="Search by applicant name, case ID (#TRV-2026-XXXX)..." type="text"/>
+</div>
+<!-- Filter Dropdowns & Status Group -->
+<div class="flex flex-wrap items-center gap-space-sm">
+<!-- Visa Type Filter -->
+<div class="relative">
+<select class="appearance-none h-11 pl-3.5 pr-9 rounded-xl bg-surface-container-low/90 text-on-surface font-body-sm text-body-sm focus:outline-none cursor-pointer" id="visa-type-filter">
+<option value="all">All Visa Types</option>
+<option value="schengen">Schengen Business (C)</option>
+<option value="usb1">US B-1 Visitor</option>
+</select>
+<span class="material-symbols-outlined pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 text-[18px] text-on-surface-variant">expand_more</span>
+</div>
+<!-- Priority Filter -->
+<div class="relative">
+<select class="appearance-none h-11 pl-3.5 pr-9 rounded-xl bg-surface-container-low/90 text-on-surface font-body-sm text-body-sm focus:outline-none cursor-pointer" id="priority-filter">
+<option value="all">All Priorities</option>
+<option value="high">High Priority</option>
+<option value="normal">Normal Priority</option>
+</select>
+<span class="material-symbols-outlined pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 text-[18px] text-on-surface-variant">expand_more</span>
+</div>
+<!-- Empty State Toggle preview link -->
+<button class="h-11 px-3.5 rounded-xl bg-surface-container-highest/60 hover:bg-surface-container-highest text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-colors flex items-center gap-1.5" id="toggle-empty-state-btn">
+<span class="material-symbols-outlined text-[16px]">visibility</span>
+<span>Simulate Empty</span>
+</button>
+</div>
+</div>
+<!-- Segmented Status Filters -->
+<div class="flex flex-wrap items-center gap-1.5 pt-1 overflow-x-auto scrollbar-none" id="status-filter-group">
+<button class="px-3.5 py-1.5 rounded-lg bg-primary-container text-on-primary-container font-label-md text-label-md transition-all flex items-center gap-2 shadow-sm" data-status="all">
+<span>All</span>
+<span class="px-1.5 py-0.2 rounded-full bg-on-primary-container/20 text-on-primary-container font-label-sm text-label-sm">18</span>
+</button>
+<button class="px-3.5 py-1.5 rounded-lg bg-surface-container-low hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-all flex items-center gap-2" data-status="pending">
+<span>Pending</span>
+<span class="px-1.5 py-0.2 rounded-full bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm">12</span>
+</button>
+<button class="px-3.5 py-1.5 rounded-lg bg-surface-container-low hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-all flex items-center gap-2" data-status="flagged">
+<span>Flagged</span>
+<span class="px-1.5 py-0.2 rounded-full bg-error-container text-error font-label-sm text-label-sm">4</span>
+</button>
+<button class="px-3.5 py-1.5 rounded-lg bg-surface-container-low hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-all flex items-center gap-2" data-status="escalated">
+<span>Escalated</span>
+<span class="px-1.5 py-0.2 rounded-full bg-secondary-container text-secondary font-label-sm text-label-sm">2</span>
+</button>
+<button class="px-3.5 py-1.5 rounded-lg bg-surface-container-low hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-all flex items-center gap-2" data-status="completed">
+<span>Completed</span>
+<span class="px-1.5 py-0.2 rounded-full bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm">0</span>
+</button>
+</div>
+</section>
+<!-- Case Review Table Card Container -->
+<div class="relative rounded-2xl bg-surface-container/60 backdrop-blur-[24px] shadow-2xl overflow-hidden" id="table-card">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse" id="review-table">
+<thead>
+<tr class="bg-surface-container-highest/40 text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">
+<th class="py-3.5 px-space-md">Case ID</th>
+<th class="py-3.5 px-space-md">Applicant</th>
+<th class="py-3.5 px-space-md">Destination & Visa</th>
+<th class="py-3.5 px-space-md">Submission Date</th>
+<th class="py-3.5 px-space-md">Flags / Observations</th>
+<th class="py-3.5 px-space-md">Priority</th>
+<th class="py-3.5 px-space-md">Status</th>
+<th class="py-3.5 px-space-md">Reviewer</th>
+<th class="py-3.5 px-space-md text-right">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y-0 text-on-surface font-body-sm text-body-sm" id="table-body">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-high/40 transition-colors group">
+<td class="py-space-md px-space-md whitespace-nowrap">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-tertiary animate-pulse shrink-0"></span>
+<span class="font-label-md text-label-md font-semibold text-primary">#TRV-2026-0419</span>
+</div>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<div class="flex items-center gap-space-sm">
+<img class="w-9 h-9 rounded-full object-cover shadow-sm shrink-0" data-alt="Close up professional headshot of Rohan Verma, Indian engineering leader in mid-thirties wearing a tailored navy blazer with soft studio rim lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7F9WoKLBHPYfE_dgDhgubc4ZD87gna_yZeDvHW-Hd5PcE891Qr03xJnIUQ_pjlag0wak1zpFMSjRTRRfSh3ew2d0evC2jNsIpJCm1LP2ZO8z8jgTKVgz6i0c7aHbOBcqW9ikmRbVvExJMgD-OR5EEKqibZayRg9ZNrnOdC0HvapeKiN6qB8tCJ5y3pJ7ePHmVYkNUdA3othvCn6xgmhX4rd09meL76EmIPttCGt74-EtFzkTguR6h"/>
+<div class="min-w-0">
+<p class="font-title-sm text-title-sm text-on-surface truncate">Rohan Verma</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant truncate">Engineering Lead</p>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<div class="min-w-0">
+<p class="font-body-sm text-body-sm text-on-surface flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-tertiary">flight_takeoff</span>
+                    Germany (Munich)
+                  </p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Schengen Business (C)</p>
+</div>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap font-body-sm text-body-sm text-on-surface-variant">
+                14 Dec 2026
+              </td>
+<td class="py-space-md px-space-md max-w-xs">
+<div class="inline-flex items-start gap-1.5 px-2.5 py-1 rounded-lg bg-error-container/40 text-error font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[16px] shrink-0 mt-0.5">error</span>
+<span class="line-clamp-2">1 Critical: Missing company seal on host letter</span>
+</div>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<span class="px-2 py-0.5 rounded-full bg-error-container/60 text-error font-label-sm text-label-sm uppercase tracking-wide">High</span>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-tertiary-container/30 text-tertiary font-label-sm text-label-sm font-medium">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+                  In Review
+                </span>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<div class="flex items-center gap-1.5">
+<div class="w-7 h-7 rounded-full bg-primary-container text-on-primary-container font-label-md text-label-md font-bold flex items-center justify-center">
+                    RV
+                  </div>
+<span class="font-body-sm text-body-sm text-on-surface">You (RV)</span>
+</div>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap text-right">
+<button class="px-3.5 py-2 rounded-xl bg-primary-container text-on-primary-container font-title-sm text-title-sm hover:brightness-110 active:scale-95 transition-all shadow-[0_0_16px_rgba(20,184,166,0.3)] inline-flex items-center gap-1.5">
+<span>Open Case Review</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-high/40 transition-colors group">
+<td class="py-space-md px-space-md whitespace-nowrap">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-outline-variant shrink-0"></span>
+<span class="font-label-md text-label-md font-semibold text-primary">#TRV-2026-0422</span>
+</div>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<div class="flex items-center gap-space-sm">
+<img class="w-9 h-9 rounded-full object-cover shadow-sm shrink-0" data-alt="Professional corporate headshot of Priya Sharma, Indian female product manager with gentle warm smile against an architectural corporate interior background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_gwu7YcKUZe1OGlR8adm9GnB8bNkoC7OegdxyrqNgB-pzZIWvdBk5RXQKBJq7YkZI7Bb06ifnKLGBtrNwXN6JhjBBInnOvWpycM5UKC_GTd35EtoR_eZCTJxOw9vONMaIxdYpQYhIiSLo1Oa3btQs25rDSni_q1bQ1MEew94b18jhT4YZXkA3PYc_s0S9Iutmz23DNx1Xq5tmiyY-oLCMEToORXHQdG6E7LjSevsl-7UorOO7UudF"/>
+<div class="min-w-0">
+<p class="font-title-sm text-title-sm text-on-surface truncate">Priya Sharma</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant truncate">Product Manager</p>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<div class="min-w-0">
+<p class="font-body-sm text-body-sm text-on-surface flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-secondary">flight_takeoff</span>
+                    United States (NYC)
+                  </p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">US B-1 Visitor</p>
+</div>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap font-body-sm text-body-sm text-on-surface-variant">
+                15 Dec 2026
+              </td>
+<td class="py-space-md px-space-md max-w-xs">
+<div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-surface-container-highest text-on-surface-variant font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[16px] text-primary shrink-0">info</span>
+<span class="truncate">No critical flags (1 Info flag)</span>
+</div>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<span class="px-2 py-0.5 rounded-full bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wide">Normal</span>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-highest text-on-surface font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-outline"></span>
+                  Pending Review
+                </span>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<span class="font-label-sm text-label-sm text-outline italic">Not yet assigned</span>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap text-right">
+<button class="px-3.5 py-2 rounded-xl bg-surface-container-high hover:bg-surface-bright text-on-surface font-title-sm text-title-sm active:scale-95 transition-all inline-flex items-center gap-1.5">
+<span>Claim & Review</span>
+<span class="material-symbols-outlined text-[16px] text-primary">assignment_ind</span>
+</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-high/40 transition-colors group">
+<td class="py-space-md px-space-md whitespace-nowrap">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-secondary shrink-0"></span>
+<span class="font-label-md text-label-md font-semibold text-primary">#TRV-2026-0415</span>
+</div>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<div class="flex items-center gap-space-sm">
+<img class="w-9 h-9 rounded-full object-cover shadow-sm shrink-0" data-alt="Portrait photograph of Amit Patel, seasoned tech solutions architect with black-framed glasses and graying hair, illuminated by subtle cool ambient office lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBT_FTflanDpntkEArU0VgzQk37bnaJJEuu2dSHyuuE0ZXC4MHPH132GDXtsdR8e9j2C0eudNMlaAv3sFgpuF8I7bxc3a1_HRrwHn-WDNnOGjbXE9LFnjtcx5Y8NBkXVMGda5bvg8E7oI21J0FLuJHoyicHS8DI-UoJ53u-Mee2acB96rCIfvlXwAUA2nZOlIABp6UdljsWkfro1GeMMpXu7nnQeOuAaDxYGk9FM_YXV-lDX7GsgpdH"/>
+<div class="min-w-0">
+<p class="font-title-sm text-title-sm text-on-surface truncate">Amit Patel</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant truncate">Solutions Architect</p>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<div class="min-w-0">
+<p class="font-body-sm text-body-sm text-on-surface flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-tertiary">flight_takeoff</span>
+                    Germany (Frankfurt)
+                  </p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Schengen Business (C)</p>
+</div>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap font-body-sm text-body-sm text-on-surface-variant">
+                13 Dec 2026
+              </td>
+<td class="py-space-md px-space-md max-w-xs">
+<div class="inline-flex items-start gap-1.5 px-2.5 py-1 rounded-lg bg-tertiary-container/30 text-tertiary font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[16px] shrink-0 mt-0.5">warning</span>
+<span class="line-clamp-2">2 Warnings: Accommodation refundable status</span>
+</div>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<span class="px-2 py-0.5 rounded-full bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wide">Normal</span>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-secondary-container/40 text-secondary font-label-sm text-label-sm font-medium">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                  Escalated
+                </span>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<div class="flex items-center gap-1.5">
+<div class="w-7 h-7 rounded-full bg-secondary-container text-secondary font-label-md text-label-md font-bold flex items-center justify-center">
+                    SC
+                  </div>
+<span class="font-body-sm text-body-sm text-on-surface">Senior Reviewer</span>
+</div>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap text-right">
+<button class="px-3.5 py-2 rounded-xl bg-surface-container-high hover:bg-surface-bright text-on-surface font-title-sm text-title-sm active:scale-95 transition-all inline-flex items-center gap-1.5">
+<span>View Case</span>
+<span class="material-symbols-outlined text-[16px]">visibility</span>
+</button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-container-high/40 transition-colors group">
+<td class="py-space-md px-space-md whitespace-nowrap">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-primary shrink-0"></span>
+<span class="font-label-md text-label-md font-semibold text-primary">#TRV-2026-0408</span>
+</div>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<div class="flex items-center gap-space-sm">
+<img class="w-9 h-9 rounded-full object-cover shadow-sm shrink-0" data-alt="Editorial style portrait of Sneha Kulkarni, Indian technical consultant with neat tied back hair in modern navy business attire against a soft-focus glass wall." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDK4ex67oUaY8LUS0Jr_H_1p5E4805jmHPZXzvng7Y_9qqCXHkLreLU_adEWTe4YTPv9vDf4SGVMxeHNYJqP6UaYrjNWZNQqNBYPKkpqbVSbbUon4pKNaOmxLDF8IM3tjgJY-2UtEun18nKkXj6gY2JjFcBwzO_F8om9J00KxKx36Xq3R5peZtgUuMVV2HE0X9PWEaPlrgztN1C8jvcheBxQTAH40NYvZ5y1aAR3qhfCrFW3T4Gwipx"/>
+<div class="min-w-0">
+<p class="font-title-sm text-title-sm text-on-surface truncate">Sneha Kulkarni</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant truncate">Technical Consultant</p>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<div class="min-w-0">
+<p class="font-body-sm text-body-sm text-on-surface flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-secondary">flight_takeoff</span>
+                    United States (SFO)
+                  </p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">US B-1 Visitor</p>
+</div>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap font-body-sm text-body-sm text-on-surface-variant">
+                12 Dec 2026
+              </td>
+<td class="py-space-md px-space-md max-w-xs">
+<div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-surface-container-highest text-on-surface-variant font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[16px] text-primary shrink-0">check_circle</span>
+<span>None (All Cleared)</span>
+</div>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<span class="px-2 py-0.5 rounded-full bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wide">Normal</span>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-primary/10 text-primary font-label-sm text-label-sm font-medium">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                  Review Complete
+                </span>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<div class="flex items-center gap-1.5">
+<div class="w-7 h-7 rounded-full bg-primary-container text-on-primary-container font-label-md text-label-md font-bold flex items-center justify-center">
+                    RV
+                  </div>
+<span class="font-body-sm text-body-sm text-on-surface">You (RV)</span>
+</div>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap text-right">
+<button class="px-3.5 py-2 rounded-xl bg-surface-container-high hover:bg-surface-bright text-on-surface font-title-sm text-title-sm active:scale-95 transition-all inline-flex items-center gap-1.5">
+<span>View Summary</span>
+<span class="material-symbols-outlined text-[16px]">description</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Empty State View (Toggleable) -->
+<div class="hidden py-space-xl px-space-md text-center" id="empty-state-view">
+<div class="mx-auto w-16 h-16 rounded-2xl bg-surface-container-highest flex items-center justify-center text-on-surface-variant mb-space-sm">
+<span class="material-symbols-outlined text-[32px]">folder_off</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">No cases matching your filter criteria</h3>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-md mx-auto mt-1">
+          Adjust the status chips, priority level, or search terms to inspect other sections of the Harbinger visa pre-screen queue.
+        </p>
+<button class="mt-space-md px-4 py-2 rounded-xl bg-surface-container-high hover:bg-surface-bright text-primary font-title-sm text-title-sm transition-all inline-flex items-center gap-2" id="reset-filters-btn">
+<span class="material-symbols-outlined text-[18px]">filter_alt_off</span>
+<span>Reset all filters</span>
+</button>
+</div>
+<!-- Pagination and Batch Summary Bar -->
+<div class="py-space-md px-space-md bg-surface-container-highest/20 flex flex-col sm:flex-row items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-sm">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Showing <span class="font-semibold text-on-surface">1</span> to <span class="font-semibold text-on-surface">4</span> of <span class="font-semibold text-on-surface">18</span> cases</span>
+<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+<span class="font-label-sm text-label-sm text-outline">Consulate Service Queue · Safe Mode Active</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="h-9 px-3 rounded-lg bg-surface-container-low text-outline cursor-not-allowed font-body-sm text-body-sm flex items-center gap-1" disabled="">
+<span class="material-symbols-outlined text-[16px]">chevron_left</span>
+<span>Previous</span>
+</button>
+<div class="flex items-center gap-1 px-1">
+<button class="w-9 h-9 rounded-lg bg-primary-container text-on-primary-container font-label-md text-label-md font-semibold">1</button>
+<button class="w-9 h-9 rounded-lg hover:bg-surface-container-high text-on-surface-variant font-label-md text-label-md transition-colors">2</button>
+<button class="w-9 h-9 rounded-lg hover:bg-surface-container-high text-on-surface-variant font-label-md text-label-md transition-colors">3</button>
+<span class="px-1 text-outline font-label-sm">...</span>
+<button class="w-9 h-9 rounded-lg hover:bg-surface-container-high text-on-surface-variant font-label-md text-label-md transition-colors">5</button>
+</div>
+<button class="h-9 px-3 rounded-lg bg-surface-container-high hover:bg-surface-bright text-on-surface font-body-sm text-body-sm flex items-center gap-1 transition-colors">
+<span>Next</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+  (function initReviewQueue() {
+    const emptyToggleBtn = document.getElementById('toggle-empty-state-btn');
+    const resetFiltersBtn = document.getElementById('reset-filters-btn');
+    const tableBody = document.getElementById('table-body');
+    const emptyStateView = document.getElementById('empty-state-view');
+    const refreshBtn = document.getElementById('refresh-queue-btn');
+    const refreshIcon = document.getElementById('refresh-icon');
+    const statusButtons = document.querySelectorAll('#status-filter-group button');
+    let isEmptySimulated = false;
+
+    function setEmptyView(showEmpty) {
+      isEmptySimulated = showEmpty;
+      if (showEmpty) {
+        tableBody.classList.add('hidden');
+        emptyStateView.classList.remove('hidden');
+        emptyToggleBtn.querySelector('span:last-child').textContent = 'Show Records';
+      } else {
+        tableBody.classList.remove('hidden');
+        emptyStateView.classList.add('hidden');
+        emptyToggleBtn.querySelector('span:last-child').textContent = 'Simulate Empty';
+      }
+    }
+
+    if (emptyToggleBtn) {
+      emptyToggleBtn.addEventListener('click', () => {
+        setEmptyView(!isEmptySimulated);
+      });
+    }
+
+    if (resetFiltersBtn) {
+      resetFiltersBtn.addEventListener('click', () => {
+        setEmptyView(false);
+        const searchInput = document.getElementById('table-filter-input');
+        if (searchInput) searchInput.value = '';
+        statusButtons.forEach((btn, index) => {
+          if (index === 0) {
+            btn.className = 'px-3.5 py-1.5 rounded-lg bg-primary-container text-on-primary-container font-label-md text-label-md transition-all flex items-center gap-2 shadow-sm';
+          } else {
+            btn.className = 'px-3.5 py-1.5 rounded-lg bg-surface-container-low hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-all flex items-center gap-2';
+          }
+        });
+      });
+    }
+
+    if (refreshBtn && refreshIcon) {
+      refreshBtn.addEventListener('click', () => {
+        refreshIcon.classList.add('animate-spin');
+        setTimeout(() => {
+          refreshIcon.classList.remove('animate-spin');
+        }, 600);
+      });
+    }
+
+    statusButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        statusButtons.forEach(b => {
+          b.className = 'px-3.5 py-1.5 rounded-lg bg-surface-container-low hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-all flex items-center gap-2';
+        });
+        btn.className = 'px-3.5 py-1.5 rounded-lg bg-primary-container text-on-primary-container font-label-md text-label-md transition-all flex items-center gap-2 shadow-sm';
+        
+        const status = btn.getAttribute('data-status');
+        if (status === 'completed') {
+          setEmptyView(true);
+        } else {
+          setEmptyView(false);
+        }
+      });
+    });
+  })();
+</script></main><footer class="relative z-10 w-full bg-surface-container-lowest/80 backdrop-blur-md border-t border-white/5 py-space-lg"><div class="max-w-[1280px] mx-auto px-space-md flex flex-col md:flex-row items-center justify-between gap-space-md"><div class="flex items-center gap-space-sm"><div class="h-6 w-6 rounded bg-white flex items-center justify-center shadow-sm shrink-0"><span class="text-[#071426] text-[12px] font-bold leading-none">H</span></div><span class="font-body-sm text-body-sm text-on-surface-variant">AI-assisted pre-screening with human review</span></div><div class="flex items-center gap-space-lg font-body-sm text-body-sm text-on-surface-variant"><a class="hover:text-on-surface transition-colors" href="#">Help & FAQ</a><a class="hover:text-on-surface transition-colors" href="#">Privacy</a><a class="hover:text-on-surface transition-colors" href="#">Terms</a></div><div class="flex flex-col md:items-end text-center md:text-right font-label-sm text-label-sm text-outline"><p>Book via partners: ixigo, MakeMyTrip, Booking.com</p><p class="text-on-surface-variant/80">© 2026 Harbinger Group. Authorized users only.</p></div></div></footer></body></html>

@@ -1,9 +1,11 @@
+import { Suspense } from "react";
 import type { Metadata } from "next";
 import { Newsreader, Inter } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { AIConciergeLauncher } from "@/components/AIConciergeLauncher";
+import { SessionExpiredModal } from "@/components/SessionExpiredModal";
 import { getCurrentUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 
@@ -22,7 +24,7 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "TravelDesk by Harbinger | Corporate Travel & Visa Pre-Screening",
   description:
-    "Enterprise AI-assisted travel and consular visa pre-screening platform engineered for executive mobility and statutory compliance.",
+    "AI-assisted corporate travel and consular visa pre-screening platform engineered for business mobility and regulatory guidance.",
   icons: {
     icon: "/images/harbinger-logo.webp",
   },
@@ -42,7 +44,6 @@ export default async function RootLayout({
         where: { userId: user.id, isRead: false },
       });
     } catch {
-      // Fallback if db is busy
       unreadCount = 0;
     }
   }
@@ -50,30 +51,22 @@ export default async function RootLayout({
   return (
     <html
       lang="en"
-      className={`${newsreader.variable} ${inter.variable} h-full antialiased`}
-      suppressHydrationWarning
+      className={`${newsreader.variable} ${inter.variable} h-full antialiased dark`}
     >
-      <head>
-        {/* Prevent flash of light/dark theme on load */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function() {
-                try {
-                  var stored = localStorage.getItem('traveldesk_theme');
-                  var theme = stored || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-                  document.documentElement.setAttribute('data-theme', theme);
-                } catch (e) {}
-              })();
-            `,
-          }}
-        />
-      </head>
-      <body className="min-h-full flex flex-col bg-[var(--canvas-bg)] text-[var(--foreground)] selection:bg-[var(--brand-teal)]/30 selection:text-[var(--brand-teal)]">
+      <body className="min-h-full flex flex-col bg-[var(--canvas-bg)] text-[var(--foreground)] selection:bg-[var(--brand-teal)]/30 selection:text-[var(--brand-teal)] relative">
+        {/* Ambient Aurora Glow Background */}
+        <div className="aurora-background" aria-hidden="true">
+          <div className="aurora-glow-teal" />
+          <div className="aurora-glow-violet" />
+        </div>
+
         <Navbar user={user} unreadNotificationsCount={unreadCount} />
-        <main className="flex-1 pb-16">{children}</main>
+        <main className="flex-1 pb-16 relative z-10">{children}</main>
         <Footer />
         <AIConciergeLauncher />
+        <Suspense fallback={null}>
+          <SessionExpiredModal />
+        </Suspense>
       </body>
     </html>
   );

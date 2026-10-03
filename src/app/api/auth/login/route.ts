@@ -66,20 +66,51 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: genericAuthError }, { status: 401 });
     }
 
+    // Check account lockout
+    if (user.lockedUntil && user.lockedUntil > new Date()) {
+      const waitMinutes = Math.ceil((user.lockedUntil.getTime() - Date.now()) / 60000);
+      return NextResponse.json(
+        { 
+          error: `Too many attempts, try again in ${waitMinutes} minutes.`,
+          isLocked: true 
+        },
+        { status: 423 }
+      );
+    }
+
     // 4. Password Verification
     const passwordMatch = await verifyPassword(password, user.passwordHash);
     if (!passwordMatch) {
+      const newAttempts = user.failedLoginAttempts + 1;
+      const isNowLocked = newAttempts >= 5;
+      const lockDate = isNowLocked ? new Date(Date.now() + 15 * 60 * 1000) : user.lockedUntil;
+
       await prisma.user.update({
         where: { id: user.id },
-        data: { failedLoginAttempts: { increment: 1 } },
+        data: { 
+          failedLoginAttempts: newAttempts,
+          lockedUntil: lockDate,
+        },
       });
+
       await logAuditEvent({
         actorId: user.id,
         action: "USER_LOGIN_FAILED",
-        details: { email: cleanEmail, reason: "INVALID_PASSWORD" },
+        details: { email: cleanEmail, reason: isNowLocked ? "ACCOUNT_LOCKED" : "INVALID_PASSWORD" },
         ipAddress: ip,
         userAgent,
       });
+
+      if (isNowLocked) {
+        return NextResponse.json(
+          {
+            error: "Too many attempts, try again in 15 minutes.",
+            isLocked: true,
+          },
+          { status: 423 }
+        );
+      }
+
       return NextResponse.json({ error: genericAuthError }, { status: 401 });
     }
 

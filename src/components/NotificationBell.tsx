@@ -13,10 +13,14 @@ interface NotificationItem {
   createdAt: string;
 }
 
-export function NotificationBell() {
+interface NotificationBellProps {
+  initialCount?: number;
+}
+
+export function NotificationBell({ initialCount = 0 }: NotificationBellProps) {
   const [open, setOpen] = useState(false);
   const [notifications, setNotifications] = useState<NotificationItem[]>([]);
-  const [loading, setLoading] = useState(false);
+  const [fetched, setFetched] = useState(false);
 
   const fetchNotifications = async () => {
     try {
@@ -24,6 +28,7 @@ export function NotificationBell() {
       if (res.ok) {
         const data = await res.json();
         setNotifications(data.notifications || []);
+        setFetched(true);
       }
     } catch (err) {
       console.error("Error fetching notifications:", err);
@@ -36,7 +41,9 @@ export function NotificationBell() {
     return () => clearInterval(interval);
   }, []);
 
-  const unreadCount = notifications.filter((n) => !n.isRead).length;
+  const unreadCount = fetched
+    ? notifications.filter((n) => !n.isRead).length
+    : initialCount;
 
   const markAllAsRead = async () => {
     try {
