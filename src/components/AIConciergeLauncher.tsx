@@ -42,7 +42,7 @@ export function AIConciergeLauncher() {
             setIsMinimized(false);
           }}
           className="fixed bottom-6 right-6 z-40 flex items-center gap-2.5 px-4 py-2.5 rounded-full border border-[var(--brand-teal)]/40 bg-[#071426]/90 backdrop-blur-xl shadow-2xl hover:border-[var(--brand-teal)] hover:shadow-[0_0_25px_-5px_rgba(20,184,166,0.35)] transition-all group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand-teal)]"
-          aria-label="Open AI Travel Concierge"
+          aria-label="Open AI Travel & Visa Concierge"
         >
           <span className="relative flex h-2 w-2">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--brand-teal)] opacity-75" />
@@ -57,7 +57,9 @@ export function AIConciergeLauncher() {
 
       {/* Docked Non-Modal Chat Panel Bottom-Right (380px wide, max 560px high, frosted glass, NO dimmed backdrop) */}
       {isOpen && (
-        <aside
+        <div
+          role="dialog"
+          aria-modal="false"
           className={`fixed bottom-6 right-6 z-40 w-[380px] rounded-2xl glass-floating border border-white/15 shadow-2xl transition-all duration-200 flex flex-col ${
             isMinimized ? "h-14" : "h-[540px] max-h-[560px]"
           }`}
@@ -159,7 +161,7 @@ export function AIConciergeLauncher() {
                   <span>Visa Navigator</span>
                 </Link>
                 <Link
-                  href="/interview/start"
+                  href="/interview"
                   onClick={() => setIsOpen(false)}
                   className="flex items-center justify-center gap-1.5 py-2 px-2.5 rounded-lg text-xs font-medium border border-white/15 bg-white/5 text-white hover:bg-white/10 transition-all text-center"
                 >
@@ -169,7 +171,7 @@ export function AIConciergeLauncher() {
               </div>
             </div>
           )}
-        </aside>
+        </div>
       )}
     </>
   );

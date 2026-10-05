@@ -334,7 +334,7 @@ export default function VisaInfoDirectoryPage() {
         </div>
         <Link
           href="/visas"
-          className="px-5 py-2.5 rounded-lg text-xs font-semibold bg-[var(--brand-teal)] text-white hover:bg-[var(--brand-teal-hover)] transition-all shrink-0 inline-flex items-center gap-1.5 shadow-md"
+          className="px-5 py-2.5 rounded-lg text-xs font-semibold bg-[var(--brand-teal)] text-[#071426] hover:bg-[var(--brand-teal-hover)] transition-all shrink-0 inline-flex items-center gap-1.5 shadow-md"
         >
           <span>Open Visa Navigator</span>
           <Compass className="w-4 h-4" />

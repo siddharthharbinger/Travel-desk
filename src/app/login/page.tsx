@@ -2,6 +2,7 @@
 
 import { Suspense, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { AlertCircle, Lock, Eye, EyeOff, FlaskConical, Info } from "lucide-react";
 
@@ -57,8 +58,7 @@ function LoginForm() {
           );
         } else {
           setError(
-            data.error ||
-              "Incorrect email or password. Please try again or contact your administrator."
+            data.error || "Incorrect email or password. Please try again."
           );
         }
         return;
@@ -107,49 +107,47 @@ function LoginForm() {
   };
 
   return (
-    <div
-      className="flex flex-col w-full relative min-h-screen items-center justify-center p-4 md:p-8 overflow-hidden select-none"
-      style={{
-        backgroundImage:
-          "linear-gradient(rgba(7, 20, 38, 0.82) 0%, rgba(7, 20, 38, 0.92) 100%), url('/images/flight_aircraft_sunset.png')",
-        backgroundSize: "cover",
-        backgroundPosition: "center center",
-      }}
-    >
-      {/* Dynamic Atmospheric Aurora Underlays */}
-      <div className="absolute -top-40 -left-40 w-96 h-96 bg-[#4fdbc8]/10 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute top-1/4 -right-48 w-[500px] h-[500px] bg-[#314769]/25 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute -bottom-32 left-1/3 w-[460px] h-[460px] bg-[#e1940b]/10 rounded-full blur-[130px] pointer-events-none" />
+    <div className="relative min-h-screen w-full flex flex-col justify-between items-center select-none overflow-x-hidden p-4 sm:p-6 lg:p-8">
+      {/* Full-bleed Fixed Cinematic Airport Background */}
+      <div
+        className="fixed inset-0 bg-cover bg-center bg-no-repeat -z-10 pointer-events-none"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(7, 20, 38, 0.55) 0%, rgba(7, 20, 38, 0.75) 100%), url('/images/login_screen.png')",
+        }}
+      />
 
-      {/* Subtle Minimal Top Navigation: Logo Only */}
-      <header className="w-full max-w-6xl mx-auto py-6 px-4 flex items-center justify-between z-10">
-        <div className="flex items-center gap-3">
-          <div className="bg-white px-3 py-1.5 rounded-lg flex items-center justify-center shadow-sm">
+      {/* Dynamic Atmospheric Aurora Underlays */}
+      <div className="fixed -top-40 -left-40 w-96 h-96 bg-[#4fdbc8]/10 rounded-full blur-[120px] pointer-events-none -z-10" />
+      <div className="fixed top-1/4 -right-48 w-[500px] h-[500px] bg-[#314769]/25 rounded-full blur-[140px] pointer-events-none -z-10" />
+      <div className="fixed -bottom-32 left-1/3 w-[460px] h-[460px] bg-[#e1940b]/10 rounded-full blur-[130px] pointer-events-none -z-10" />
+
+      {/* Top Header: Corner-Aligned Logo */}
+      <header className="w-full flex items-center justify-between z-20">
+        <Link
+          href="/"
+          className="inline-flex items-center gap-3 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4fdbc8] rounded-lg transition-transform duration-150 hover:scale-102"
+          aria-label="Return to TravelDesk Homepage"
+        >
+          <div className="h-8 sm:h-9 px-2.5 sm:px-3 bg-white rounded-lg flex items-center justify-center shadow-sm">
             <Image
               alt="Harbinger Group"
-              className="h-6 w-auto object-contain"
-              src="/images/harbinger-logo.webp"
-              width={96}
-              height={24}
+              className="h-5 sm:h-5.5 w-auto object-contain"
+              src="/images/harbinger-logo.png"
+              width={92}
+              height={28}
               priority
             />
           </div>
-          <div className="flex items-center gap-1.5 pl-2">
-            <span className="font-serif text-xl tracking-tight text-[#d7e3fc] font-medium">
-              TravelDesk
-            </span>
-          </div>
-        </div>
-        <div className="text-right">
-          <span className="text-[11px] font-medium text-[#859490] tracking-wider uppercase">
-            Indian Passport Pre-Screening
+          <span className="font-sans text-lg sm:text-xl font-bold tracking-tight text-white group-hover:text-white/95 transition-colors">
+            Travel<span className="text-[#4fdbc8] font-semibold">Desk</span>
           </span>
-        </div>
+        </Link>
       </header>
 
       {/* Primary Authentication Glass Container */}
-      <main className="w-full max-w-[480px] z-20 transition-all duration-300">
-        <div
+      <div className="w-full max-w-[460px] z-20 my-auto py-6 flex flex-col gap-4">
+        <main
           className="relative rounded-[20px] p-8 md:p-10 flex flex-col gap-6"
           style={{
             background: "rgba(255, 255, 255, 0.07)",
@@ -160,14 +158,11 @@ function LoginForm() {
               "0 20px 50px -10px rgba(0, 0, 0, 0.65), 0 0 45px -10px rgba(79, 219, 200, 0.12), inset 0 1px 0 0 rgba(255, 255, 255, 0.22)",
           }}
         >
-          {/* Card Branding & Header */}
+          {/* Card Header */}
           <div className="flex flex-col items-start gap-1">
             <h1 className="font-serif text-[36px] leading-[44px] text-[#d7e3fc] tracking-tight font-normal">
               Sign in
             </h1>
-            <p className="text-sm text-[#bbcac6] mt-1">
-              Accounts are created by your administrator.
-            </p>
           </div>
 
           {/* State Banners (Alerts) */}
@@ -307,100 +302,90 @@ function LoginForm() {
               )}
             </button>
           </form>
+        </main>
 
-          {/* Footnote */}
-          <div className="pt-2 text-center">
-            <p className="text-sm text-[#bbcac6]">
-              Forgot password?{" "}
-              <span className="text-[#4fdbc8] hover:underline cursor-pointer">
-                Contact your administrator.
-              </span>
-            </p>
-          </div>
-        </div>
-      </main>
-
-      {/* Demo Accounts Strip (Below Main Card) */}
-      {isDemoMode && (
-        <section className="w-full max-w-[480px] mt-4 z-20">
-          <div className="rounded-xl bg-[#0f1c2e]/70 border border-white/10 backdrop-blur-md p-4 shadow-lg flex flex-col gap-3">
-            <div className="flex items-center justify-between">
-              <span className="text-[11px] font-medium uppercase tracking-wider text-[#859490] flex items-center gap-1.5">
-                <FlaskConical className="w-3.5 h-3.5 text-[#4fdbc8]" /> Demo accounts (testing only)
-              </span>
-            </div>
-            <div className="grid grid-cols-3 gap-2">
-              <button
-                className="flex flex-col items-center justify-center p-2 rounded-lg bg-[#142032]/60 hover:bg-[#293549] transition-all duration-150 group text-center border border-white/5 hover:border-[#4fdbc8]/30 cursor-pointer"
-                type="button"
-                aria-label="Log in as Demo Customer"
-                onClick={() =>
-                  handleDemoLogin(
-                    "CUSTOMER",
-                    process.env.NEXT_PUBLIC_DEMO_CUSTOMER_EMAIL || "customer@harbingergroup.com",
-                    process.env.NEXT_PUBLIC_DEMO_CUSTOMER_PASSWORD || "DemoCustomer2026!",
-                    "Customer (Employee)"
-                  )
-                }
-              >
-                <span className="text-xs font-semibold text-[#d7e3fc] group-hover:text-[#4fdbc8] transition-colors">
-                  Customer
+        {/* Demo Accounts Strip (Below Main Card) */}
+        {isDemoMode && (
+          <section className="w-full">
+            <div className="rounded-xl bg-[#0f1c2e]/70 border border-white/10 backdrop-blur-md p-4 shadow-lg flex flex-col gap-3">
+              <div className="flex items-center justify-between">
+                <span className="text-[11px] font-medium uppercase tracking-wider text-[#859490] flex items-center gap-1.5">
+                  <FlaskConical className="w-3.5 h-3.5 text-[#4fdbc8]" /> Demo accounts (testing only)
                 </span>
-                <span className="text-[11px] text-[#859490]">(Employee)</span>
-              </button>
-
-              <button
-                className="flex flex-col items-center justify-center p-2 rounded-lg bg-[#142032]/60 hover:bg-[#293549] transition-all duration-150 group text-center border border-white/5 hover:border-[#4fdbc8]/30 cursor-pointer"
-                type="button"
-                aria-label="Log in as Demo CSR"
-                onClick={() =>
-                  handleDemoLogin(
-                    "CSR",
-                    process.env.NEXT_PUBLIC_DEMO_CSR_EMAIL || "csr@harbingergroup.com",
-                    process.env.NEXT_PUBLIC_DEMO_CSR_PASSWORD || "DemoCSR2026!",
-                    "CSR (Reviewer)"
-                  )
-                }
-              >
-                <span className="text-xs font-semibold text-[#d7e3fc] group-hover:text-[#4fdbc8] transition-colors">
-                  CSR
-                </span>
-                <span className="text-[11px] text-[#859490]">(Reviewer)</span>
-              </button>
-
-              <button
-                className="flex flex-col items-center justify-center p-2 rounded-lg bg-[#142032]/60 hover:bg-[#293549] transition-all duration-150 group text-center border border-white/5 hover:border-[#4fdbc8]/30 cursor-pointer"
-                type="button"
-                aria-label="Log in as Demo Admin"
-                onClick={() =>
-                  handleDemoLogin(
-                    "ADMIN",
-                    process.env.NEXT_PUBLIC_DEMO_ADMIN_EMAIL || "admin@harbingergroup.com",
-                    process.env.NEXT_PUBLIC_DEMO_ADMIN_PASSWORD || "DemoAdmin2026!",
-                    "Admin (Manager)"
-                  )
-                }
-              >
-                <span className="text-xs font-semibold text-[#d7e3fc] group-hover:text-[#4fdbc8] transition-colors">
-                  Admin
-                </span>
-                <span className="text-[11px] text-[#859490]">(Manager)</span>
-              </button>
-            </div>
-            {demoNotice && (
-              <div
-                className="text-center text-[11px] text-[#4fdbc8] font-medium transition-opacity duration-200 animate-in fade-in"
-                id="demo-notification"
-              >
-                {demoNotice}
               </div>
-            )}
-          </div>
-        </section>
-      )}
+              <div className="grid grid-cols-3 gap-2">
+                <button
+                  className="flex flex-col items-center justify-center p-2 rounded-lg bg-[#142032]/60 hover:bg-[#293549] transition-all duration-150 group text-center border border-white/5 hover:border-[#4fdbc8]/30 cursor-pointer"
+                  type="button"
+                  aria-label="Log in as Demo Customer"
+                  onClick={() =>
+                    handleDemoLogin(
+                      "CUSTOMER",
+                      process.env.NEXT_PUBLIC_DEMO_CUSTOMER_EMAIL || "customer@harbingergroup.com",
+                      process.env.NEXT_PUBLIC_DEMO_CUSTOMER_PASSWORD || "DemoCustomer2026!",
+                      "Customer (Employee)"
+                    )
+                  }
+                >
+                  <span className="text-xs font-semibold text-[#d7e3fc] group-hover:text-[#4fdbc8] transition-colors">
+                    Customer
+                  </span>
+                  <span className="text-[11px] text-[#859490]">(Employee)</span>
+                </button>
 
-      {/* Legal & Regulatory Discrete Footer */}
-      <footer className="mt-8 text-center text-[#859490] text-xs z-10">
+                <button
+                  className="flex flex-col items-center justify-center p-2 rounded-lg bg-[#142032]/60 hover:bg-[#293549] transition-all duration-150 group text-center border border-white/5 hover:border-[#4fdbc8]/30 cursor-pointer"
+                  type="button"
+                  aria-label="Log in as Demo CSR"
+                  onClick={() =>
+                    handleDemoLogin(
+                      "CSR",
+                      process.env.NEXT_PUBLIC_DEMO_CSR_EMAIL || "csr@harbingergroup.com",
+                      process.env.NEXT_PUBLIC_DEMO_CSR_PASSWORD || "DemoCSR2026!",
+                      "CSR (Reviewer)"
+                    )
+                  }
+                >
+                  <span className="text-xs font-semibold text-[#d7e3fc] group-hover:text-[#4fdbc8] transition-colors">
+                    CSR
+                  </span>
+                  <span className="text-[11px] text-[#859490]">(Reviewer)</span>
+                </button>
+
+                <button
+                  className="flex flex-col items-center justify-center p-2 rounded-lg bg-[#142032]/60 hover:bg-[#293549] transition-all duration-150 group text-center border border-white/5 hover:border-[#4fdbc8]/30 cursor-pointer"
+                  type="button"
+                  aria-label="Log in as Demo Admin"
+                  onClick={() =>
+                    handleDemoLogin(
+                      "ADMIN",
+                      process.env.NEXT_PUBLIC_DEMO_ADMIN_EMAIL || "admin@harbingergroup.com",
+                      process.env.NEXT_PUBLIC_DEMO_ADMIN_PASSWORD || "DemoAdmin2026!",
+                      "Admin (Manager)"
+                    )
+                  }
+                >
+                  <span className="text-xs font-semibold text-[#d7e3fc] group-hover:text-[#4fdbc8] transition-colors">
+                    Admin
+                  </span>
+                  <span className="text-[11px] text-[#859490]">(Manager)</span>
+                </button>
+              </div>
+              {demoNotice && (
+                <div
+                  className="text-center text-[11px] text-[#4fdbc8] font-medium transition-opacity duration-200 animate-in fade-in"
+                  id="demo-notification"
+                >
+                  {demoNotice}
+                </div>
+              )}
+            </div>
+          </section>
+        )}
+      </div>
+
+      {/* Discrete Clean Bottom Area */}
+      <footer className="w-full py-2 text-center text-[#859490]/60 text-xs z-10">
         <p>Authorized users only.</p>
       </footer>
     </div>

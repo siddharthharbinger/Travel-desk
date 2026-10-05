@@ -15,8 +15,8 @@ export function Footer() {
 
   return (
     <footer className="mt-auto border-t border-white/10 bg-[#071426]/80 backdrop-blur-xl relative z-10">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-14">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-14">
           {/* Brand & Purpose */}
           <div className="md:col-span-2 space-y-4">
             <Logo />
@@ -104,7 +104,7 @@ export function Footer() {
         </div>
 
         {/* Advisory & Copyright Bar */}
-        <div className="pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[var(--foreground-subtle)]">
+        <div className="pt-10 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[var(--foreground-subtle)]">
           <p>© {currentYear} Harbinger Group. All rights reserved.</p>
           <div className="flex items-center gap-2 text-[var(--foreground-subtle)]">
             <ShieldCheck className="w-3.5 h-3.5 text-[var(--brand-teal)]" />

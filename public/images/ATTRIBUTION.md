@@ -32,7 +32,7 @@ This document records the provenance, licensing, and usage context for all visua
 | `dest_frankfurt.png` | Twilight aerial of Frankfurt skyline with Main river reflections | Destination guide (Frankfurt, Germany), flight routes | Commercial editorial travel photography (Royalty-free) |
 | `dest_paris.png` | Twilight aerial view of Paris / European historic capital with bridges | Destination guide & Schengen visa overview | Commercial editorial travel photography (Royalty-free) |
 | `dest_newyork.png` | Dusk view of Lower Manhattan NYC skyline across harbor with glowing towers | Destination guide (New York, USA), US B-1 / H-1B guides | Commercial editorial travel photography (Royalty-free) |
-| `flight_aircraft_sunset.png` | Golden hour aircraft wing view gliding over twilight clouds | Flights listing hero, travel logistics header | Commercial aerial photography (Royalty-free) |
+| `flight_aircraft_sunset.png` / `flight_aircraft_sunset.webp` | High-resolution 2.5K (2560x1428) golden hour aircraft wing view through oval passenger window gliding over twilight clouds | Homepage hero banner, flights listing hero, travel logistics header | Commercial aerial photography (Royalty-free) |
 
 ---
 

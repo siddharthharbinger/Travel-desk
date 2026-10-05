@@ -122,7 +122,7 @@ export default function FlightsPage() {
         <button
           onClick={() => setShowModifySearch(!showModifySearch)}
           id="modify-flight-search-btn"
-          className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-[var(--border)] bg-[var(--glass-bg)] hover:bg-[var(--glass-border)] text-sm font-medium text-[var(--foreground)] transition-colors self-start md:self-auto"
+          className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-[var(--glass-border)] bg-[var(--glass-fill)] hover:bg-[var(--glass-fill-hover)] text-sm font-medium text-[var(--foreground)] transition-colors self-start md:self-auto"
         >
           <SlidersHorizontal className="w-4 h-4 text-[var(--brand-teal)]" />
           <span>{showModifySearch ? "Close Search Parameters" : "Modify Search Parameters"}</span>
@@ -207,7 +207,7 @@ export default function FlightsPage() {
       {/* Expandable / Collapsible Search Form */}
       {showModifySearch && (
         <div className="glass-panel p-6 space-y-6 animate-in fade-in slide-in-from-top-4 duration-200">
-          <div className="flex items-center justify-between border-b border-[var(--border)] pb-4">
+          <div className="flex items-center justify-between border-b border-[var(--glass-border)] pb-4">
             <h2 className="text-base font-semibold text-[var(--foreground)]">
               Configure Corporate Itinerary & Route
             </h2>
@@ -217,8 +217,8 @@ export default function FlightsPage() {
                 onClick={() => setTripType("round")}
                 className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${
                   tripType === "round"
-                    ? "bg-[var(--brand-teal)] text-white"
-                    : "bg-[var(--background-muted)] text-[var(--foreground-muted)] hover:text-[var(--foreground)]"
+                    ? "bg-[var(--brand-teal)] text-[#071426] font-semibold"
+                    : "bg-[var(--glass-fill)] text-[var(--foreground-muted)] hover:text-[var(--foreground)]"
                 }`}
               >
                 Round Trip
@@ -228,8 +228,8 @@ export default function FlightsPage() {
                 onClick={() => setTripType("oneway")}
                 className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${
                   tripType === "oneway"
-                    ? "bg-[var(--brand-teal)] text-white"
-                    : "bg-[var(--background-muted)] text-[var(--foreground-muted)] hover:text-[var(--foreground)]"
+                    ? "bg-[var(--brand-teal)] text-[#071426] font-semibold"
+                    : "bg-[var(--glass-fill)] text-[var(--foreground-muted)] hover:text-[var(--foreground)]"
                 }`}
               >
                 One-Way
@@ -247,7 +247,7 @@ export default function FlightsPage() {
                 id="flight-origin-select"
                 value={origin}
                 onChange={(e) => setOrigin(e.target.value)}
-                className="w-full px-3.5 py-2.5 rounded-xl border border-[var(--border)] bg-[var(--glass-bg)] text-sm text-[var(--foreground)] focus:outline-none focus:ring-2 focus:ring-[var(--brand-teal)]"
+                className="w-full px-3.5 py-2.5 rounded-xl border border-[var(--glass-border)] bg-[var(--glass-fill)] text-sm text-[var(--foreground)] focus:outline-none focus:ring-2 focus:ring-[var(--brand-teal)]"
               >
                 {AIRPORTS.filter((a) => a.country === "India").map((a) => (
                   <option key={a.code} value={a.code}>
@@ -266,7 +266,7 @@ export default function FlightsPage() {
                 id="flight-destination-select"
                 value={destination}
                 onChange={(e) => setDestination(e.target.value)}
-                className="w-full px-3.5 py-2.5 rounded-xl border border-[var(--border)] bg-[var(--glass-bg)] text-sm text-[var(--foreground)] focus:outline-none focus:ring-2 focus:ring-[var(--brand-teal)]"
+                className="w-full px-3.5 py-2.5 rounded-xl border border-[var(--glass-border)] bg-[var(--glass-fill)] text-sm text-[var(--foreground)] focus:outline-none focus:ring-2 focus:ring-[var(--brand-teal)]"
               >
                 {AIRPORTS.filter((a) => a.country !== "India").map((a) => (
                   <option key={a.code} value={a.code}>
@@ -287,7 +287,7 @@ export default function FlightsPage() {
                 min={defaultDates.todayStr}
                 value={departureDate}
                 onChange={(e) => setDepartureDate(e.target.value)}
-                className="w-full px-3.5 py-2.5 rounded-xl border border-[var(--border)] bg-[var(--glass-bg)] text-sm text-[var(--foreground)] focus:outline-none focus:ring-2 focus:ring-[var(--brand-teal)]"
+                className="w-full px-3.5 py-2.5 rounded-xl border border-[var(--glass-border)] bg-[var(--glass-fill)] text-sm text-[var(--foreground)] focus:outline-none focus:ring-2 focus:ring-[var(--brand-teal)]"
               />
             </div>
 
@@ -303,7 +303,7 @@ export default function FlightsPage() {
                 min={departureDate || defaultDates.todayStr}
                 value={returnDate}
                 onChange={(e) => setReturnDate(e.target.value)}
-                className={`w-full px-3.5 py-2.5 rounded-xl border border-[var(--border)] bg-[var(--glass-bg)] text-sm text-[var(--foreground)] focus:outline-none focus:ring-2 focus:ring-[var(--brand-teal)] ${
+                className={`w-full px-3.5 py-2.5 rounded-xl border border-[var(--glass-border)] bg-[var(--glass-fill)] text-sm text-[var(--foreground)] focus:outline-none focus:ring-2 focus:ring-[var(--brand-teal)] ${
                   tripType === "oneway" ? "opacity-50 cursor-not-allowed" : ""
                 }`}
               />
@@ -329,7 +329,7 @@ export default function FlightsPage() {
                     className={`p-2.5 rounded-xl border text-left transition-colors ${
                       cabinClass === c.id
                         ? "border-[var(--brand-teal)] bg-[var(--brand-teal)]/10 text-[var(--foreground)]"
-                        : "border-[var(--border)] bg-[var(--glass-bg)] text-[var(--foreground-muted)] hover:text-[var(--foreground)]"
+                        : "border-[var(--glass-border)] bg-[var(--glass-fill)] text-[var(--foreground-muted)] hover:text-[var(--foreground)]"
                     }`}
                   >
                     <div className="text-xs font-semibold">{c.label}</div>
@@ -347,7 +347,7 @@ export default function FlightsPage() {
               <select
                 value={passengers}
                 onChange={(e) => setPassengers(Number(e.target.value))}
-                className="w-full px-3.5 py-2.5 rounded-xl border border-[var(--border)] bg-[var(--glass-bg)] text-sm text-[var(--foreground)] focus:outline-none focus:ring-2 focus:ring-[var(--brand-teal)]"
+                className="w-full px-3.5 py-2.5 rounded-xl border border-[var(--glass-border)] bg-[var(--glass-fill)] text-sm text-[var(--foreground)] focus:outline-none focus:ring-2 focus:ring-[var(--brand-teal)]"
               >
                 <option value={1}>1 Corporate Traveller (Employee)</option>
                 <option value={2}>2 Travellers (Employee + Colleague)</option>
@@ -428,7 +428,7 @@ export default function FlightsPage() {
                 type="button"
                 id={`search-flights-${partner.id}-btn`}
                 onClick={() => handleOpenRedirect(partner)}
-                className="w-full py-2.5 px-4 rounded-xl bg-[var(--brand-teal)] text-white text-xs font-semibold hover:bg-[var(--brand-teal-light)] transition-colors shadow-sm flex items-center justify-center gap-2"
+                className="w-full py-2.5 px-4 rounded-xl bg-[var(--brand-teal)] text-[#071426] text-xs font-semibold hover:bg-[var(--brand-teal-hover)] transition-colors shadow-sm flex items-center justify-center gap-2"
               >
                 <span>Search Flights on {partner.name.split(" ")[0]}</span>
                 <ExternalLink className="w-3.5 h-3.5" />
@@ -447,19 +447,19 @@ export default function FlightsPage() {
           </h2>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-xs text-[var(--foreground-muted)] leading-relaxed pt-2">
-          <div className="space-y-1.5 p-4 rounded-xl bg-[var(--background-muted)]/50 border border-[var(--border)]">
+          <div className="space-y-1.5 p-4 rounded-xl bg-[var(--glass-fill-nested)] border border-[var(--glass-border)]">
             <h4 className="font-semibold text-[var(--foreground)]">1. Flight Duration & Cabin Tier</h4>
             <p>
               Journeys under 8 continuous flight hours are restricted to Economy. Premium Economy is permissible on non-stop intercontinental routes exceeding 8 hours (e.g. BOM-MUC / BOM-FRA). Business Class requires VP of Mobility authorization.
             </p>
           </div>
-          <div className="space-y-1.5 p-4 rounded-xl bg-[var(--background-muted)]/50 border border-[var(--border)]">
+          <div className="space-y-1.5 p-4 rounded-xl bg-[var(--glass-fill-nested)] border border-[var(--glass-border)]">
             <h4 className="font-semibold text-[var(--foreground)]">2. Checked Baggage Compliance</h4>
             <p>
               Corporate bookings must include at least one checked bag (23 kg / 50 lbs minimum). Employees should not purchase unbundled &ldquo;hand-baggage only&rdquo; fares on long-haul routes to prevent excess baggage surcharge claims.
             </p>
           </div>
-          <div className="space-y-1.5 p-4 rounded-xl bg-[var(--background-muted)]/50 border border-[var(--border)]">
+          <div className="space-y-1.5 p-4 rounded-xl bg-[var(--glass-fill-nested)] border border-[var(--glass-border)]">
             <h4 className="font-semibold text-[var(--foreground)]">3. Invoicing & GST Credit</h4>
             <p>
               Select airline-direct or corporate agency invoicing to include Harbinger Group&apos;s corporate GSTIN/VAT registration on all airline tickets. Keep e-tickets and boarding passes for expense audit reconciliation.

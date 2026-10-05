@@ -473,7 +473,7 @@ function VisaNavigatorContent() {
               <div className="pt-4">
                 <Link
                   href={evaluation.interviewUrl}
-                  className="w-full py-3.5 px-6 rounded-lg text-sm font-semibold bg-[var(--brand-teal)] hover:bg-[var(--brand-teal-hover)] text-white flex items-center justify-center gap-2 transition-all shadow-lg active:scale-[0.99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand-teal)]"
+                  className="w-full py-3.5 px-6 rounded-lg text-sm font-semibold bg-[var(--brand-teal)] hover:bg-[var(--brand-teal-hover)] text-[#071426] flex items-center justify-center gap-2 transition-all shadow-lg active:scale-[0.99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand-teal)]"
                 >
                   <span>Launch Pre-Screening Interview for {evaluation.category.split("(")[0].trim()}</span>
                   <ArrowRight className="w-4 h-4" />

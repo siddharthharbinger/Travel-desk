@@ -44,7 +44,7 @@ export default function TravelInfoPage() {
           onClick={() => setSelectedCity("MUNICH")}
           className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-semibold transition-all ${
             selectedCity === "MUNICH"
-              ? "bg-[var(--brand-teal)] text-white shadow-md"
+              ? "bg-[var(--brand-teal)] text-[#071426] shadow-md"
               : "border border-[var(--glass-border)] bg-[var(--glass-fill)] hover:bg-[var(--glass-fill-hover)] text-[var(--foreground-muted)]"
           }`}
         >
@@ -57,7 +57,7 @@ export default function TravelInfoPage() {
           onClick={() => setSelectedCity("NEW_YORK")}
           className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-semibold transition-all ${
             selectedCity === "NEW_YORK"
-              ? "bg-[var(--brand-teal)] text-white shadow-md"
+              ? "bg-[var(--brand-teal)] text-[#071426] shadow-md"
               : "border border-[var(--glass-border)] bg-[var(--glass-fill)] hover:bg-[var(--glass-fill-hover)] text-[var(--foreground-muted)]"
           }`}
         >
@@ -175,7 +175,7 @@ export default function TravelInfoPage() {
             </div>
             <Link
               href="/visas?prompt=Munich%20Germany%20client%20meetings"
-              className="px-4 py-2 rounded-lg text-xs font-semibold bg-[var(--brand-teal)] text-white hover:bg-[var(--brand-teal-hover)] transition-all shrink-0 inline-flex items-center gap-1.5 shadow-md"
+              className="px-4 py-2 rounded-lg text-xs font-semibold bg-[var(--brand-teal)] text-[#071426] hover:bg-[var(--brand-teal-hover)] transition-all shrink-0 inline-flex items-center gap-1.5 shadow-md"
             >
               <span>Check Munich Visa Rules</span>
               <ArrowRight className="w-3.5 h-3.5" />
@@ -293,7 +293,7 @@ export default function TravelInfoPage() {
             </div>
             <Link
               href="/visas?prompt=New%20York%20City%20corporate%20tech%20conference"
-              className="px-4 py-2 rounded-lg text-xs font-semibold bg-[var(--brand-teal)] text-white hover:bg-[var(--brand-teal-hover)] transition-all shrink-0 inline-flex items-center gap-1.5 shadow-md"
+              className="px-4 py-2 rounded-lg text-xs font-semibold bg-[var(--brand-teal)] text-[#071426] hover:bg-[var(--brand-teal-hover)] transition-all shrink-0 inline-flex items-center gap-1.5 shadow-md"
             >
               <span>Check US B-1 Rules</span>
               <ArrowRight className="w-3.5 h-3.5" />

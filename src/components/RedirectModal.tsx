@@ -57,7 +57,7 @@ export function RedirectModal({
           </div>
           <button
             onClick={onClose}
-            className="p-1.5 rounded-lg text-[var(--foreground-muted)] hover:text-[var(--foreground)] hover:bg-[var(--glass-bg)] transition-colors"
+            className="p-1.5 rounded-lg text-[var(--foreground-muted)] hover:text-[var(--foreground)] hover:bg-[var(--glass-fill)] transition-colors"
             aria-label="Close redirect modal"
           >
             <X className="w-5 h-5" />
@@ -65,7 +65,7 @@ export function RedirectModal({
         </div>
 
         {/* Search Parameter Summary Card */}
-        <div className="p-4 rounded-xl bg-[var(--background-muted)]/50 border border-[var(--border)] space-y-2 text-xs">
+        <div className="p-4 rounded-xl bg-[var(--glass-fill-nested)] border border-[var(--glass-border)] space-y-2 text-xs">
           <div className="flex justify-between items-center text-[var(--foreground-muted)]">
             <span>Routing</span>
             <span className="font-semibold text-[var(--foreground)]">
@@ -106,7 +106,7 @@ export function RedirectModal({
           <button
             type="button"
             onClick={onClose}
-            className="flex-1 py-2.5 px-4 rounded-xl border border-[var(--border)] text-sm font-medium text-[var(--foreground-muted)] hover:text-[var(--foreground)] hover:bg-[var(--glass-bg)] transition-colors text-center"
+            className="flex-1 py-2.5 px-4 rounded-xl border border-[var(--glass-border)] text-sm font-medium text-[var(--foreground-muted)] hover:text-[var(--foreground)] hover:bg-[var(--glass-fill)] transition-colors text-center"
           >
             Cancel & Return
           </button>
@@ -114,7 +114,7 @@ export function RedirectModal({
             type="button"
             id="confirm-partner-redirect-btn"
             onClick={handleContinue}
-            className="flex-1 py-2.5 px-4 rounded-xl bg-[var(--brand-teal)] text-white text-sm font-medium hover:bg-[var(--brand-teal-light)] transition-colors shadow-sm flex items-center justify-center gap-2"
+            className="flex-1 py-2.5 px-4 rounded-xl bg-[var(--brand-teal)] text-[#071426] text-sm font-semibold hover:bg-[var(--brand-teal-hover)] transition-colors shadow-sm flex items-center justify-center gap-2"
           >
             <span>Proceed to {partnerName}</span>
             <ExternalLink className="w-4 h-4" />

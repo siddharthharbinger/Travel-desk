@@ -18,7 +18,7 @@ This document records the provenance, licensing, and usage context for all visua
 | :--- | :--- | :--- | :--- |
 | `dest_munich.png` | Architectural dusk view of Munich Marienplatz & Bavarian Neues Rathaus square | Destination guide (Munich, Germany), visa navigator | Commercial editorial travel photography (Royalty-free) |
 | `dest_newyork.png` | Dusk view of Lower Manhattan NYC skyline with Empire State Building across harbor | Destination guide (New York, USA), US B-1 / H-1B guides | Commercial editorial travel photography (Royalty-free) |
-| `flight_aircraft_sunset.png` | Golden hour aircraft wing view gliding over twilight clouds | Flights listing hero, travel logistics header | Commercial aerial photography (Royalty-free) |
+| `flight_aircraft_sunset.png` / `flight_aircraft_sunset.webp` | High-resolution 2.5K (2560x1428) golden hour aircraft wing view through oval passenger window gliding over twilight clouds | Homepage hero banner, flights listing hero, travel logistics header | Commercial aerial photography (Royalty-free) |
 | `stitch_asset_*.png` | Supporting UI contextual textures and partner visual assets | Search hubs and informational modules | Royalty-free design assets |
 
 ---

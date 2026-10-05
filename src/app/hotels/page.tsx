@@ -130,7 +130,7 @@ export default function HotelsPage() {
         <button
           onClick={() => setShowModifySearch(!showModifySearch)}
           id="modify-hotel-search-btn"
-          className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-[var(--border)] bg-[var(--glass-bg)] hover:bg-[var(--glass-border)] text-sm font-medium text-[var(--foreground)] transition-colors self-start md:self-auto"
+          className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-[var(--glass-border)] bg-[var(--glass-fill)] hover:bg-[var(--glass-fill-hover)] text-sm font-medium text-[var(--foreground)] transition-colors self-start md:self-auto"
         >
           <SlidersHorizontal className="w-4 h-4 text-[var(--brand-teal)]" />
           <span>{showModifySearch ? "Close Lodging Parameters" : "Modify Lodging Parameters"}</span>
@@ -231,7 +231,7 @@ export default function HotelsPage() {
                 id="hotel-destination-select"
                 value={destinationId}
                 onChange={(e) => setDestinationId(e.target.value)}
-                className="w-full px-3.5 py-2.5 rounded-xl border border-[var(--border)] bg-[var(--glass-bg)] text-sm text-[var(--foreground)] focus:outline-none focus:ring-2 focus:ring-[var(--brand-teal)]"
+                className="w-full px-3.5 py-2.5 rounded-xl border border-[var(--glass-border)] bg-[var(--glass-fill)] text-sm text-[var(--foreground)] focus:outline-none focus:ring-2 focus:ring-[var(--brand-teal)]"
               >
                 {DESTINATIONS.map((d) => (
                   <option key={d.id} value={d.id}>
@@ -252,7 +252,7 @@ export default function HotelsPage() {
                 min={defaultDates.todayStr}
                 value={checkInDate}
                 onChange={(e) => setCheckInDate(e.target.value)}
-                className="w-full px-3.5 py-2.5 rounded-xl border border-[var(--border)] bg-[var(--glass-bg)] text-sm text-[var(--foreground)] focus:outline-none focus:ring-2 focus:ring-[var(--brand-teal)]"
+                className="w-full px-3.5 py-2.5 rounded-xl border border-[var(--glass-border)] bg-[var(--glass-fill)] text-sm text-[var(--foreground)] focus:outline-none focus:ring-2 focus:ring-[var(--brand-teal)]"
               />
             </div>
 
@@ -267,7 +267,7 @@ export default function HotelsPage() {
                 min={checkInDate || defaultDates.todayStr}
                 value={checkOutDate}
                 onChange={(e) => setCheckOutDate(e.target.value)}
-                className="w-full px-3.5 py-2.5 rounded-xl border border-[var(--border)] bg-[var(--glass-bg)] text-sm text-[var(--foreground)] focus:outline-none focus:ring-2 focus:ring-[var(--brand-teal)]"
+                className="w-full px-3.5 py-2.5 rounded-xl border border-[var(--glass-border)] bg-[var(--glass-fill)] text-sm text-[var(--foreground)] focus:outline-none focus:ring-2 focus:ring-[var(--brand-teal)]"
               />
             </div>
 
@@ -283,7 +283,7 @@ export default function HotelsPage() {
                   setRooms(r);
                   setGuests(g);
                 }}
-                className="w-full px-3.5 py-2.5 rounded-xl border border-[var(--border)] bg-[var(--glass-bg)] text-sm text-[var(--foreground)] focus:outline-none focus:ring-2 focus:ring-[var(--brand-teal)]"
+                className="w-full px-3.5 py-2.5 rounded-xl border border-[var(--glass-border)] bg-[var(--glass-fill)] text-sm text-[var(--foreground)] focus:outline-none focus:ring-2 focus:ring-[var(--brand-teal)]"
               >
                 <option value="1-1">1 Room · 1 Guest (Single Employee)</option>
                 <option value="2-2">2 Rooms · 2 Guests (Separate Rooms)</option>
@@ -295,7 +295,7 @@ export default function HotelsPage() {
       )}
 
       {/* Consulate & Safety Advisory Box */}
-      <div className="p-5 rounded-2xl bg-[var(--background-muted)]/60 border border-[var(--border)] space-y-2">
+      <div className="p-5 rounded-2xl bg-[var(--glass-fill-nested)] border border-[var(--glass-border)] space-y-2">
         <div className="flex items-center gap-2.5 font-semibold text-sm text-[var(--foreground)]">
           <MapPin className="w-5 h-5 text-[var(--brand-teal)] shrink-0" />
           <span>Consulate & Corporate Office Proximity Advisory for {currentDestination.city}</span>
@@ -364,7 +364,7 @@ export default function HotelsPage() {
                 type="button"
                 id={`search-hotels-${partner.id}-btn`}
                 onClick={() => setSelectedPartner(partner)}
-                className="w-full py-2.5 px-4 rounded-xl bg-[var(--brand-teal)] text-white text-xs font-semibold hover:bg-[var(--brand-teal-light)] transition-colors shadow-sm flex items-center justify-center gap-2"
+                className="w-full py-2.5 px-4 rounded-xl bg-[var(--brand-teal)] text-[#071426] text-xs font-semibold hover:bg-[var(--brand-teal-hover)] transition-colors shadow-sm flex items-center justify-center gap-2"
               >
                 <span>Search Hotels on {partner.name.split(" ")[0]}</span>
                 <ExternalLink className="w-3.5 h-3.5" />
@@ -383,19 +383,19 @@ export default function HotelsPage() {
           </h2>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-xs text-[var(--foreground-muted)] leading-relaxed pt-2">
-          <div className="space-y-1.5 p-4 rounded-xl bg-[var(--background-muted)]/50 border border-[var(--border)]">
+          <div className="space-y-1.5 p-4 rounded-xl bg-[var(--glass-fill-nested)] border border-[var(--glass-border)]">
             <h4 className="font-semibold text-[var(--foreground)]">1. Maximum Nightly Room Rates</h4>
             <p>
               Reimbursement is capped at the pre-approved destination limits: Munich (€180/night), Frankfurt (€175/night), New York City ($250/night), and Pune (₹6,000/night). Any seasonal excess requires documented managerial exception approval prior to check-in.
             </p>
           </div>
-          <div className="space-y-1.5 p-4 rounded-xl bg-[var(--background-muted)]/50 border border-[var(--border)]">
+          <div className="space-y-1.5 p-4 rounded-xl bg-[var(--glass-fill-nested)] border border-[var(--glass-border)]">
             <h4 className="font-semibold text-[var(--foreground)]">2. Non-Reimbursable Charges</h4>
             <p>
               Room mini-bar purchases, pay-per-view media, laundry services for stays under 4 consecutive nights, and spa/fitness personal services are strictly non-reimbursable personal expenses and must be settled separately at checkout.
             </p>
           </div>
-          <div className="space-y-1.5 p-4 rounded-xl bg-[var(--background-muted)]/50 border border-[var(--border)]">
+          <div className="space-y-1.5 p-4 rounded-xl bg-[var(--glass-fill-nested)] border border-[var(--glass-border)]">
             <h4 className="font-semibold text-[var(--foreground)]">3. Valid Tax Invoice Requirement</h4>
             <p>
               The checkout folio must explicitly show the employee&apos;s name and company billing name <strong>Harbinger Group Holdings Ltd</strong>, with itemized local VAT/occupancy tax breakdown for corporate accounting audits.

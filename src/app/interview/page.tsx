@@ -552,7 +552,7 @@ function InterviewCockpitContent() {
                     id="submit-interview-answer-btn"
                     disabled={!currentAnswer.trim() || submittingAnswer}
                     onClick={handleAnswerSubmit}
-                    className="px-5 py-2.5 rounded-lg text-xs font-semibold bg-[var(--brand-teal)] hover:bg-[var(--brand-teal-hover)] text-white shadow-md disabled:opacity-50 disabled:pointer-events-none transition-all inline-flex items-center gap-2"
+                    className="px-5 py-2.5 rounded-lg text-xs font-semibold bg-[var(--brand-teal)] hover:bg-[var(--brand-teal-hover)] text-[#071426] shadow-md disabled:opacity-50 disabled:pointer-events-none transition-all inline-flex items-center gap-2"
                   >
                     <span>{submittingAnswer ? "Recording..." : "Save Answer"}</span>
                     <ArrowRight className="w-3.5 h-3.5" />
@@ -683,7 +683,7 @@ function InterviewCockpitContent() {
               id="submit-case-to-csr-btn"
               onClick={handleSubmitToCsr}
               disabled={submittingCase || application.status === "SUBMITTED" || application.status === "VERIFIED"}
-              className="w-full py-3 rounded-lg text-xs font-semibold bg-[var(--brand-teal)] hover:bg-[var(--brand-teal-hover)] text-white shadow-md disabled:opacity-50 disabled:pointer-events-none transition-all flex items-center justify-center gap-2"
+              className="w-full py-3 rounded-lg text-xs font-semibold bg-[var(--brand-teal)] hover:bg-[var(--brand-teal-hover)] text-[#071426] shadow-md disabled:opacity-50 disabled:pointer-events-none transition-all flex items-center justify-center gap-2"
             >
               <span>{submittingCase ? "Submitting..." : application.status === "SUBMITTED" ? "Case Submitted to CSR" : "Submit Case to CSR Operations"}</span>
               <ArrowRight className="w-3.5 h-3.5" />

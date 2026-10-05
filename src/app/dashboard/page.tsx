@@ -151,7 +151,7 @@ export default function DashboardPage() {
           type="button"
           id="new-application-btn"
           onClick={() => setIsModalOpen(true)}
-          className="px-4 py-2.5 rounded-lg text-xs font-semibold bg-[var(--brand-teal)] hover:bg-[var(--brand-teal-hover)] text-white inline-flex items-center gap-2 transition-all shadow-md active:scale-95"
+          className="px-4 py-2.5 rounded-lg text-xs font-semibold bg-[var(--brand-teal)] hover:bg-[var(--brand-teal-hover)] text-[#071426] inline-flex items-center gap-2 transition-all shadow-md active:scale-95"
         >
           <Plus className="w-4 h-4" />
           <span>New Visa Pre-Screening</span>
@@ -186,7 +186,7 @@ export default function DashboardPage() {
             <button
               type="button"
               onClick={() => setIsModalOpen(true)}
-              className="px-4 py-2 rounded-lg text-xs font-semibold bg-[var(--brand-teal)] text-white hover:bg-[var(--brand-teal-hover)] transition-all shadow-sm"
+              className="px-4 py-2 rounded-lg text-xs font-semibold bg-[var(--brand-teal)] text-[#071426] hover:bg-[var(--brand-teal-hover)] transition-all shadow-sm"
             >
               Start First Pre-Screening
             </button>
@@ -309,7 +309,7 @@ export default function DashboardPage() {
                 <div className="flex flex-wrap items-center justify-end gap-3 pt-2">
                   <Link
                     href={`/interview?caseId=${app.id}`}
-                    className="px-4 py-2 rounded-lg text-xs font-semibold bg-[var(--brand-teal)] hover:bg-[var(--brand-teal-hover)] text-white inline-flex items-center gap-1.5 transition-all shadow-sm"
+                    className="px-4 py-2 rounded-lg text-xs font-semibold bg-[var(--brand-teal)] hover:bg-[var(--brand-teal-hover)] text-[#071426] inline-flex items-center gap-1.5 transition-all shadow-sm"
                   >
                     <span>{app.status === "DRAFT" || app.status === "INTERVIEW_IN_PROGRESS" ? "Continue Pre-Screening" : "View Interview Dossier"}</span>
                     <ArrowRight className="w-3.5 h-3.5" />
@@ -433,7 +433,7 @@ export default function DashboardPage() {
                   type="submit"
                   id="confirm-create-application-btn"
                   disabled={creating}
-                  className="px-5 py-2 rounded-lg text-xs font-semibold bg-[var(--brand-teal)] hover:bg-[var(--brand-teal-hover)] text-white shadow-md disabled:opacity-50"
+                  className="px-5 py-2 rounded-lg text-xs font-semibold bg-[var(--brand-teal)] hover:bg-[var(--brand-teal-hover)] text-[#071426] shadow-md disabled:opacity-50"
                 >
                   {creating ? "Creating Case..." : "Launch Interview"}
                 </button>

@@ -194,7 +194,7 @@ export default function PassportPage() {
         </div>
         <Link
           href="/visas"
-          className="px-4 py-2 rounded-lg text-xs font-semibold bg-[var(--brand-teal)] text-white hover:bg-[var(--brand-teal-hover)] transition-all inline-flex items-center gap-1.5 shadow-md"
+          className="px-4 py-2 rounded-lg text-xs font-semibold bg-[var(--brand-teal)] text-[#071426] hover:bg-[var(--brand-teal-hover)] transition-all inline-flex items-center gap-1.5 shadow-md"
         >
           <span>Evaluate Route</span>
           <Compass className="w-3.5 h-3.5" />

@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   description:
     "AI-assisted corporate travel and consular visa pre-screening platform engineered for business mobility and regulatory guidance.",
   icons: {
-    icon: "/images/harbinger-logo.webp",
+    icon: "/images/harbinger-logo.png",
   },
 };
 
@@ -61,7 +61,7 @@ export default async function RootLayout({
         </div>
 
         <Navbar user={user} unreadNotificationsCount={unreadCount} />
-        <main className="flex-1 pb-16 relative z-10">{children}</main>
+        <main className="flex-1 relative z-10">{children}</main>
         <Footer />
         <AIConciergeLauncher />
         <Suspense fallback={null}>

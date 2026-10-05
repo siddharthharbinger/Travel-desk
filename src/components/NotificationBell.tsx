@@ -95,11 +95,11 @@ export function NotificationBell({ initialCount = 0 }: NotificationBellProps) {
 
       {open && (
         <div 
-          className="absolute right-0 mt-2 w-80 sm:w-96 glass-panel p-4 shadow-2xl border border-[var(--border)] z-50 text-xs animate-in fade-in slide-in-from-top-2 duration-150"
+          className="absolute right-0 mt-2 w-80 sm:w-96 glass-panel p-4 shadow-2xl border border-[var(--glass-border)] z-50 text-xs animate-in fade-in slide-in-from-top-2 duration-150"
           role="region"
           aria-label="Notification center"
         >
-          <div className="flex items-center justify-between pb-3 border-b border-[var(--border)] mb-2">
+          <div className="flex items-center justify-between pb-3 border-b border-[var(--glass-border)] mb-2">
             <div className="flex items-center gap-2">
               <span className="font-semibold text-sm text-[var(--foreground)]">Notifications</span>
               {unreadCount > 0 && (
@@ -121,11 +121,11 @@ export function NotificationBell({ initialCount = 0 }: NotificationBellProps) {
             )}
           </div>
 
-          <div className="max-h-80 overflow-y-auto divide-y divide-[var(--border)]">
+          <div className="max-h-80 overflow-y-auto divide-y divide-[var(--glass-border)]">
             {notifications.length === 0 ? (
               <div className="py-8 text-center text-[var(--foreground-muted)] space-y-2">
                 <Inbox className="w-8 h-8 mx-auto opacity-40" />
-                <p>No operational notifications yet.</p>
+                <p>No operational alerts yet.</p>
               </div>
             ) : (
               notifications.map((n) => (
