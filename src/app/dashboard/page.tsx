@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { 
@@ -12,12 +12,12 @@ import {
   CheckCircle2, 
   AlertTriangle, 
   Compass, 
-  Building2, 
   Calendar, 
   FileText,
-  Upload,
   RefreshCw,
-  Bell
+  Search,
+  ChevronDown,
+  ChevronUp
 } from "lucide-react";
 
 interface Application {
@@ -45,11 +45,16 @@ export default function DashboardPage() {
   const [creating, setCreating] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  // Minimal UI Controls
+  const [filter, setFilter] = useState<"ALL" | "IN_PROGRESS" | "VERIFIED">("ALL");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [expandedId, setExpandedId] = useState<string | null>(null);
+
   // New Application Modal State
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [visaType, setVisaType] = useState("SCHENGEN_BUSINESS");
   const [destinationCountry, setDestinationCountry] = useState("Germany");
-  const [travelPurpose, setTravelPurpose] = useState("Client Consultations & Commercial Meetings");
+  const [travelPurpose, setTravelPurpose] = useState("Commercial Meetings & Consultations");
   const [departureDate, setDepartureDate] = useState("");
   const [returnDate, setReturnDate] = useState("");
 
@@ -102,7 +107,6 @@ export default function DashboardPage() {
       }
 
       setIsModalOpen(false);
-      // Navigate straight to interview cockpit
       router.push(`/interview?caseId=${data.application.id}`);
     } catch {
       setError("An unexpected error occurred while creating case.");
@@ -111,39 +115,73 @@ export default function DashboardPage() {
     }
   };
 
-  const getStatusBadge = (status: string) => {
-    switch (status) {
-      case "VERIFIED":
-        return { label: "Verified by CSR", class: "bg-emerald-500/15 text-emerald-400 border-emerald-500/30", icon: CheckCircle2 };
-      case "SUBMITTED":
-        return { label: "Submitted for Review", class: "bg-blue-500/15 text-blue-400 border-blue-500/30", icon: Clock };
-      case "IN_REVIEW":
-        return { label: "CSR Under Review", class: "bg-amber-500/15 text-amber-400 border-amber-500/30", icon: RefreshCw };
-      case "MORE_INFO_REQUESTED":
-        return { label: "More Info Requested", class: "bg-amber-500/15 text-amber-400 border-amber-500/30", icon: AlertTriangle };
-      case "ESCALATED":
-        return { label: "Escalated to Legal", class: "bg-[var(--brand-ruby)]/15 text-[var(--brand-ruby)] border-[var(--brand-ruby)]/30", icon: AlertCircle };
-      case "INTERVIEW_IN_PROGRESS":
-        return { label: "Interview in Progress", class: "bg-[var(--brand-teal)]/15 text-[var(--brand-teal)] border-[var(--brand-teal)]/30", icon: Compass };
+  const formatVisaType = (type: string) => {
+    switch (type) {
+      case "SCHENGEN_BUSINESS":
+        return "Schengen Business Visa (Type C)";
+      case "GERMAN_D_VISA":
+        return "German Employment Visa (Type D)";
+      case "US_B1":
+        return "US B-1 Business Visitor";
+      case "US_L1":
+        return "US L-1 Intra-Company Transferee";
+      case "US_H1B":
+        return "US H-1B Specialty Occupation";
       default:
-        return { label: "Draft Application", class: "bg-slate-500/15 text-slate-400 border-slate-500/30", icon: FileText };
+        return type.replace(/_/g, " ");
     }
   };
 
+  const getStatusBadge = (status: string) => {
+    switch (status) {
+      case "VERIFIED":
+        return { label: "Verified", class: "bg-emerald-500/15 text-emerald-400 border-emerald-500/30", dot: "bg-emerald-400" };
+      case "SUBMITTED":
+        return { label: "Submitted", class: "bg-blue-500/15 text-blue-400 border-blue-500/30", dot: "bg-blue-400" };
+      case "IN_REVIEW":
+        return { label: "Under Review", class: "bg-amber-500/15 text-amber-400 border-amber-500/30", dot: "bg-amber-400" };
+      case "MORE_INFO_REQUESTED":
+        return { label: "Action Needed", class: "bg-amber-500/15 text-amber-400 border-amber-500/30", dot: "bg-amber-400 animate-pulse" };
+      case "ESCALATED":
+        return { label: "Special Review", class: "bg-[var(--brand-ruby)]/15 text-[var(--brand-ruby)] border-[var(--brand-ruby)]/30", dot: "bg-[var(--brand-ruby)]" };
+      case "INTERVIEW_IN_PROGRESS":
+        return { label: "In Progress", class: "bg-[var(--brand-teal)]/15 text-[var(--brand-teal)] border-[var(--brand-teal)]/30", dot: "bg-[var(--brand-teal)]" };
+      default:
+        return { label: "Draft", class: "bg-slate-500/15 text-slate-400 border-slate-500/30", dot: "bg-slate-400" };
+    }
+  };
+
+  const inProgressCount = applications.filter((a) => a.status !== "VERIFIED").length;
+  const verifiedCount = applications.filter((a) => a.status === "VERIFIED").length;
+
+  const filteredApplications = useMemo(() => {
+    return applications.filter((app) => {
+      if (filter === "IN_PROGRESS" && app.status === "VERIFIED") return false;
+      if (filter === "VERIFIED" && app.status !== "VERIFIED") return false;
+
+      if (searchQuery.trim()) {
+        const q = searchQuery.toLowerCase().trim();
+        const matchCase = app.caseNumber.toLowerCase().includes(q);
+        const matchCountry = app.destinationCountry.toLowerCase().includes(q);
+        const matchVisa = app.visaType.toLowerCase().includes(q);
+        const matchPurpose = app.travelPurpose.toLowerCase().includes(q);
+        return matchCase || matchCountry || matchVisa || matchPurpose;
+      }
+
+      return true;
+    });
+  }, [applications, filter, searchQuery]);
+
   return (
-    <div className="max-w-6xl mx-auto px-4 sm:px-6 py-10 space-y-8">
-      {/* Header */}
+    <div className="max-w-5xl mx-auto px-4 sm:px-6 py-8 space-y-6">
+      {/* Minimal Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[var(--brand-teal)]/30 bg-[var(--brand-teal)]/10 text-[var(--brand-teal)] text-xs font-semibold uppercase tracking-wider mb-2">
-            <Building2 className="w-3.5 h-3.5" />
-            <span>Corporate Travel Portal</span>
-          </div>
-          <h1 className="font-serif text-3xl font-medium text-[var(--foreground)] tracking-tight">
-            Customer Application Dashboard
+          <h1 className="text-2xl sm:text-3xl font-serif font-medium text-white tracking-tight">
+            My Applications
           </h1>
-          <p className="text-xs text-[var(--foreground-muted)] max-w-xl">
-            Track case status, view statutory readiness scores, and complete AI pre-screening interviews.
+          <p className="text-xs text-[var(--foreground-muted)] mt-1">
+            Track and manage your corporate visa pre-screenings and clearances.
           </p>
         </div>
 
@@ -151,170 +189,246 @@ export default function DashboardPage() {
           type="button"
           id="new-application-btn"
           onClick={() => setIsModalOpen(true)}
-          className="px-4 py-2.5 rounded-lg text-xs font-semibold bg-[var(--brand-teal)] hover:bg-[var(--brand-teal-hover)] text-[#071426] inline-flex items-center gap-2 transition-all shadow-md active:scale-95"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold bg-[var(--brand-teal)] hover:bg-[var(--brand-teal-hover)] text-[#071426] transition-all shadow-md active:scale-95 cursor-pointer self-start sm:self-auto"
         >
-          <Plus className="w-4 h-4" />
-          <span>New Visa Pre-Screening</span>
+          <Plus className="w-3.5 h-3.5" />
+          <span>New Application</span>
         </button>
       </div>
 
       {error && (
-        <div className="p-3.5 rounded-lg border border-[var(--brand-ruby)]/40 bg-[var(--brand-ruby)]/10 text-[var(--brand-ruby)] text-xs flex items-center gap-2">
+        <div className="p-3 rounded-lg border border-[var(--brand-ruby)]/40 bg-[var(--brand-ruby)]/10 text-[var(--brand-ruby)] text-xs flex items-center gap-2">
           <AlertCircle className="w-4 h-4 shrink-0" />
           <span>{error}</span>
         </div>
       )}
 
-      {/* Case List */}
-      {loading ? (
-        <div className="glass-panel p-12 text-center text-xs text-[var(--foreground-muted)]">
-          <RefreshCw className="w-5 h-5 animate-spin mx-auto mb-2 text-[var(--brand-teal)]" />
-          <span>Loading corporate applications...</span>
+      {/* Filter Tabs & Quick Search */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-1">
+        {/* Minimal Tabs */}
+        <div className="inline-flex items-center gap-1 p-1 rounded-xl bg-white/5 border border-white/10 self-start">
+          <button
+            type="button"
+            onClick={() => setFilter("ALL")}
+            className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
+              filter === "ALL"
+                ? "bg-[var(--brand-teal)]/15 text-[var(--brand-teal)] border border-[var(--brand-teal)]/30 font-semibold"
+                : "text-white/60 hover:text-white"
+            }`}
+          >
+            All ({applications.length})
+          </button>
+          <button
+            type="button"
+            onClick={() => setFilter("IN_PROGRESS")}
+            className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
+              filter === "IN_PROGRESS"
+                ? "bg-[var(--brand-teal)]/15 text-[var(--brand-teal)] border border-[var(--brand-teal)]/30 font-semibold"
+                : "text-white/60 hover:text-white"
+            }`}
+          >
+            In Progress ({inProgressCount})
+          </button>
+          <button
+            type="button"
+            onClick={() => setFilter("VERIFIED")}
+            className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
+              filter === "VERIFIED"
+                ? "bg-[var(--brand-teal)]/15 text-[var(--brand-teal)] border border-[var(--brand-teal)]/30 font-semibold"
+                : "text-white/60 hover:text-white"
+            }`}
+          >
+            Verified ({verifiedCount})
+          </button>
         </div>
-      ) : applications.length === 0 ? (
-        <div className="glass-panel p-12 text-center space-y-4 border border-[var(--glass-border)]">
-          <div className="w-12 h-12 rounded-xl bg-[var(--brand-teal)]/10 text-[var(--brand-teal)] flex items-center justify-center mx-auto">
-            <FileCheck2 className="w-6 h-6" />
+
+        {/* Minimal Search Input */}
+        {applications.length > 3 && (
+          <div className="relative w-full sm:w-60">
+            <Search className="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-white/40" />
+            <input
+              type="text"
+              placeholder="Search applications..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full pl-8 pr-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-xs text-white placeholder-white/35 focus:outline-none focus:border-[var(--brand-teal)] transition-colors"
+            />
+          </div>
+        )}
+      </div>
+
+      {/* Application List */}
+      {loading ? (
+        <div className="glass-panel p-12 text-center text-xs text-[var(--foreground-muted)] rounded-2xl">
+          <RefreshCw className="w-5 h-5 animate-spin mx-auto mb-2 text-[var(--brand-teal)]" />
+          <span>Loading your applications...</span>
+        </div>
+      ) : filteredApplications.length === 0 ? (
+        <div className="glass-panel p-10 text-center space-y-3 rounded-2xl border border-white/10">
+          <div className="w-10 h-10 rounded-xl bg-[var(--brand-teal)]/10 text-[var(--brand-teal)] flex items-center justify-center mx-auto">
+            <FileCheck2 className="w-5 h-5" />
           </div>
           <div className="space-y-1">
-            <h3 className="text-base font-semibold text-[var(--foreground)]">No Active Visa Applications</h3>
+            <h3 className="text-sm font-semibold text-white">
+              {filter === "ALL" ? "No applications found" : `No ${filter.toLowerCase().replace("_", " ")} applications`}
+            </h3>
             <p className="text-xs text-[var(--foreground-muted)] max-w-sm mx-auto">
-              You do not have any travel cases currently registered. Start a new pre-screening to evaluate your itinerary and check compliance.
+              {filter === "ALL" 
+                ? "Start a new visa pre-screening to evaluate your itinerary and travel compliance."
+                : "Switch tabs or create a new application to get started."}
             </p>
           </div>
-          <div className="pt-2">
-            <button
-              type="button"
-              onClick={() => setIsModalOpen(true)}
-              className="px-4 py-2 rounded-lg text-xs font-semibold bg-[var(--brand-teal)] text-[#071426] hover:bg-[var(--brand-teal-hover)] transition-all shadow-sm"
-            >
-              Start First Pre-Screening
-            </button>
-          </div>
+          {filter === "ALL" && (
+            <div className="pt-1">
+              <button
+                type="button"
+                onClick={() => setIsModalOpen(true)}
+                className="px-4 py-2 rounded-lg text-xs font-semibold bg-[var(--brand-teal)] text-[#071426] hover:bg-[var(--brand-teal-hover)] transition-all shadow-sm"
+              >
+                Create Application
+              </button>
+            </div>
+          )}
         </div>
       ) : (
-        <div className="space-y-4">
-          {applications.map((app) => {
+        <div className="space-y-3">
+          {filteredApplications.map((app) => {
             const badge = getStatusBadge(app.status);
-            const StatusIcon = badge.icon;
             const activeFlags = app.flags.filter((f) => !f.isResolved);
             const latestDecision = app.decisions[0];
+            const isExpanded = expandedId === app.id;
 
             return (
               <div 
                 key={app.id}
-                className="glass-panel p-6 border border-[var(--glass-border)] space-y-5 hover:border-[var(--brand-teal)]/40 transition-all"
+                className="glass-panel rounded-xl border border-white/10 hover:border-white/20 transition-all p-4 sm:p-5 flex flex-col gap-3 group"
               >
-                {/* Top Row: Case Number & Status */}
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-[var(--glass-border)]">
-                  <div className="flex items-center gap-3">
-                    <span className="font-mono text-xs font-bold text-[var(--brand-teal)] px-2.5 py-1 rounded bg-[var(--brand-teal)]/10 border border-[var(--brand-teal)]/20">
-                      {app.caseNumber}
-                    </span>
-                    <span className="text-sm font-semibold text-[var(--foreground)]">
-                      {app.visaType.replace(/_/g, " ")} · {app.destinationCountry}
-                    </span>
-                  </div>
-
-                  <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold border ${badge.class}`}>
-                    <StatusIcon className="w-3.5 h-3.5" />
-                    <span>{badge.label}</span>
-                  </span>
-                </div>
-
-                {/* Details Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-4 text-xs">
-                  <div>
-                    <span className="text-[11px] font-semibold uppercase tracking-wider text-[var(--foreground-subtle)] block mb-1">
-                      Travel Purpose
-                    </span>
-                    <p className="text-[var(--foreground)] font-medium line-clamp-1">{app.travelPurpose}</p>
-                  </div>
-
-                  <div>
-                    <span className="text-[11px] font-semibold uppercase tracking-wider text-[var(--foreground-subtle)] block mb-1">
-                      Travel Dates
-                    </span>
-                    <p className="text-[var(--foreground)] font-medium">
-                      {app.departureDate ? new Date(app.departureDate).toLocaleDateString() : "Pending"}
-                      {app.returnDate ? ` → ${new Date(app.returnDate).toLocaleDateString()}` : ""}
-                    </p>
-                  </div>
-
-                  <div>
-                    <span className="text-[11px] font-semibold uppercase tracking-wider text-[var(--foreground-subtle)] block mb-1">
-                      Uploaded Documents
-                    </span>
-                    <p className="text-[var(--foreground)] font-medium">
-                      {app.documents.length} document{app.documents.length === 1 ? "" : "s"} on file
-                    </p>
-                  </div>
-
-                  <div>
-                    <div className="flex items-center justify-between mb-1">
-                      <span className="text-[11px] font-semibold uppercase tracking-wider text-[var(--foreground-subtle)]">
-                        Readiness Score
+                {/* Main Horizontal Summary Row */}
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                  {/* Left: Destination, Visa Type, Case #, Dates */}
+                  <div className="space-y-1">
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <h3 className="text-sm sm:text-base font-semibold text-white">
+                        {app.destinationCountry}
+                      </h3>
+                      <span className="text-xs text-[var(--foreground-muted)]">
+                        · {formatVisaType(app.visaType)}
                       </span>
-                      <span className="font-mono font-bold text-[var(--brand-teal)]">{app.readinessScore}%</span>
+                      <span className="font-mono text-[10px] text-[var(--foreground-subtle)] bg-white/5 px-2 py-0.5 rounded border border-white/10">
+                        {app.caseNumber}
+                      </span>
                     </div>
-                    {/* Progress Bar */}
-                    <div className="w-full h-2 rounded-full bg-[var(--canvas-bg-alt)] overflow-hidden">
-                      <div 
-                        className={`h-full transition-all duration-500 ${
-                          app.readinessScore >= 80 
-                            ? "bg-emerald-500" 
-                            : app.readinessScore >= 50 
-                            ? "bg-[var(--brand-teal)]" 
-                            : "bg-[var(--brand-amber)]"
-                        }`}
-                        style={{ width: `${app.readinessScore}%` }}
-                      />
+
+                    <div className="flex items-center gap-3 text-xs text-[var(--foreground-subtle)]">
+                      <span className="flex items-center gap-1.5">
+                        <Calendar className="w-3.5 h-3.5 text-white/40" />
+                        <span>
+                          {app.departureDate ? (
+                            `${new Date(app.departureDate).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}${app.returnDate ? ` – ${new Date(app.returnDate).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}` : ""}`
+                          ) : (
+                            "Dates pending"
+                          )}
+                        </span>
+                      </span>
+
+                      {app.documents.length > 0 && (
+                        <span className="hidden sm:inline">
+                          · {app.documents.length} doc{app.documents.length === 1 ? "" : "s"}
+                        </span>
+                      )}
                     </div>
                   </div>
-                </div>
 
-                {/* Readiness Formula Transparent Breakdown */}
-                {app.readinessDetails && (
-                  <div className="p-2.5 rounded-lg bg-[var(--canvas-bg-alt)]/40 border border-[var(--glass-border)] text-[11px] text-[var(--foreground-subtle)] font-mono">
-                    {app.readinessDetails}
-                  </div>
-                )}
-
-                {/* Flags Warning if active */}
-                {activeFlags.length > 0 && (
-                  <div className="p-3 rounded-lg bg-[var(--brand-amber)]/10 border border-[var(--brand-amber)]/30 text-xs text-[var(--brand-amber)] space-y-1">
-                    <div className="font-semibold flex items-center gap-1.5">
-                      <AlertTriangle className="w-3.5 h-3.5 shrink-0" />
-                      <span>{activeFlags.length} Pre-Screening Flag(s) Detected:</span>
-                    </div>
-                    <ul className="space-y-1 pl-5 list-disc text-[11px]">
-                      {activeFlags.map((f) => (
-                        <li key={f.id}>{f.message}</li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-
-                {/* Latest CSR Feedback if present */}
-                {latestDecision && (
-                  <div className="p-3 rounded-lg bg-[var(--canvas-bg-alt)]/60 border border-[var(--glass-border)] text-xs space-y-1">
-                    <span className="text-[11px] font-semibold text-[var(--brand-teal)] uppercase tracking-wider">
-                      CSR Operations Update ({new Date(latestDecision.createdAt).toLocaleDateString()}):
+                  {/* Right: Status badge, Readiness Score & Action Button */}
+                  <div className="flex items-center gap-3 self-end sm:self-center">
+                    {/* Status Pill */}
+                    <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium border ${badge.class}`}>
+                      <span className={`w-1.5 h-1.5 rounded-full ${badge.dot}`} />
+                      <span>{badge.label}</span>
                     </span>
-                    <p className="text-[var(--foreground)]">{latestDecision.notes}</p>
+
+                    {/* Clean Readiness */}
+                    <div className="hidden md:flex items-center gap-1.5 text-xs">
+                      <span className="text-[var(--foreground-subtle)]">Ready:</span>
+                      <span className="font-mono font-semibold text-[var(--brand-teal)]">{app.readinessScore}%</span>
+                    </div>
+
+                    {/* Primary Action Button */}
+                    <Link
+                      href={`/interview?caseId=${app.id}`}
+                      className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold inline-flex items-center gap-1.5 transition-all shadow-sm ${
+                        app.status === "VERIFIED"
+                          ? "border border-white/15 bg-white/5 hover:bg-white/10 text-white"
+                          : "bg-[var(--brand-teal)] hover:bg-[var(--brand-teal-hover)] text-[#071426]"
+                      }`}
+                    >
+                      <span>{app.status === "VERIFIED" ? "View Case" : "Continue"}</span>
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </Link>
+
+                    {/* Optional Details Toggle */}
+                    {(latestDecision || activeFlags.length > 0 || app.travelPurpose) && (
+                      <button
+                        type="button"
+                        onClick={() => setExpandedId(isExpanded ? null : app.id)}
+                        className="p-1.5 text-white/40 hover:text-white rounded-lg transition-colors cursor-pointer"
+                        title={isExpanded ? "Collapse details" : "Expand details"}
+                        aria-label="Toggle details"
+                      >
+                        {isExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+                      </button>
+                    )}
+                  </div>
+                </div>
+
+                {/* Collapsible Details Drawer (Only shown when expanded) */}
+                {isExpanded && (
+                  <div className="pt-3 mt-1 border-t border-white/10 text-xs space-y-2.5 animate-in fade-in duration-150">
+                    {app.travelPurpose && (
+                      <div>
+                        <span className="text-[10px] uppercase tracking-wider text-[var(--foreground-subtle)] font-semibold">Purpose</span>
+                        <p className="text-[var(--foreground)] mt-0.5">{app.travelPurpose}</p>
+                      </div>
+                    )}
+
+                    {/* Action banner if More Info Requested */}
+                    {app.status === "MORE_INFO_REQUESTED" && latestDecision && (
+                      <div className="p-3 rounded-lg bg-[var(--brand-amber)]/10 border border-[var(--brand-amber)]/30 text-[var(--brand-amber)] flex items-start gap-2">
+                        <AlertTriangle className="w-4 h-4 shrink-0 mt-0.5" />
+                        <div className="space-y-0.5">
+                          <span className="font-semibold block">Action Requested:</span>
+                          <p className="text-[11px]">{latestDecision.notes}</p>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Reviewer note if present */}
+                    {latestDecision?.notes && app.status !== "MORE_INFO_REQUESTED" && (
+                      <div className="p-2.5 rounded-lg bg-white/5 border border-white/10 text-[11px] text-[var(--foreground-muted)] flex items-start gap-2">
+                        <CheckCircle2 className="w-3.5 h-3.5 shrink-0 text-emerald-400 mt-0.5" />
+                        <div>
+                          <span className="text-[10px] uppercase text-[var(--foreground-subtle)] font-semibold block">Reviewer Note</span>
+                          <span>{latestDecision.notes}</span>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Active Flags if any */}
+                    {activeFlags.length > 0 && (
+                      <div className="p-2.5 rounded-lg bg-[var(--brand-ruby)]/10 border border-[var(--brand-ruby)]/25 text-[11px] space-y-1">
+                        <span className="text-[var(--brand-ruby)] font-semibold flex items-center gap-1.5">
+                          <AlertTriangle className="w-3.5 h-3.5" />
+                          <span>Pre-Screening Flags ({activeFlags.length}):</span>
+                        </span>
+                        <ul className="list-disc list-inside space-y-0.5 text-[var(--foreground-muted)] pl-1">
+                          {activeFlags.map((f) => (
+                            <li key={f.id}>{f.message}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
                   </div>
                 )}
-
-                {/* Action Buttons */}
-                <div className="flex flex-wrap items-center justify-end gap-3 pt-2">
-                  <Link
-                    href={`/interview?caseId=${app.id}`}
-                    className="px-4 py-2 rounded-lg text-xs font-semibold bg-[var(--brand-teal)] hover:bg-[var(--brand-teal-hover)] text-[#071426] inline-flex items-center gap-1.5 transition-all shadow-sm"
-                  >
-                    <span>{app.status === "DRAFT" || app.status === "INTERVIEW_IN_PROGRESS" ? "Continue Pre-Screening" : "View Interview Dossier"}</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </Link>
-                </div>
               </div>
             );
           })}
@@ -324,23 +438,23 @@ export default function DashboardPage() {
       {/* New Application Creation Modal */}
       {isModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-150">
-          <div className="glass-panel p-6 sm:p-8 max-w-lg w-full space-y-5 border border-[var(--glass-border)] shadow-2xl relative">
-            <div className="flex items-center justify-between pb-3 border-b border-[var(--glass-border)]">
-              <h2 className="text-lg font-serif font-semibold text-[var(--foreground)]">
-                Initiate Visa Pre-Screening
+          <div className="glass-panel p-6 sm:p-7 max-w-md w-full space-y-4 border border-white/15 rounded-2xl shadow-2xl relative">
+            <div className="flex items-center justify-between pb-3 border-b border-white/10">
+              <h2 className="text-base font-serif font-semibold text-white">
+                New Visa Pre-Screening
               </h2>
               <button
                 type="button"
                 onClick={() => setIsModalOpen(false)}
-                className="text-xs text-[var(--foreground-subtle)] hover:text-[var(--foreground)]"
+                className="text-xs text-white/50 hover:text-white cursor-pointer"
               >
                 ✕
               </button>
             </div>
 
-            <form onSubmit={handleCreateApplication} className="space-y-4">
+            <form onSubmit={handleCreateApplication} className="space-y-3.5">
               <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider text-[var(--foreground-muted)] mb-1">
+                <label className="block text-[11px] font-semibold uppercase tracking-wider text-[var(--foreground-muted)] mb-1">
                   Destination Country
                 </label>
                 <select
@@ -359,7 +473,7 @@ export default function DashboardPage() {
               </div>
 
               <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider text-[var(--foreground-muted)] mb-1">
+                <label className="block text-[11px] font-semibold uppercase tracking-wider text-[var(--foreground-muted)] mb-1">
                   Visa Category
                 </label>
                 <select
@@ -383,7 +497,7 @@ export default function DashboardPage() {
               </div>
 
               <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider text-[var(--foreground-muted)] mb-1">
+                <label className="block text-[11px] font-semibold uppercase tracking-wider text-[var(--foreground-muted)] mb-1">
                   Commercial Travel Purpose
                 </label>
                 <input
@@ -398,7 +512,7 @@ export default function DashboardPage() {
 
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-xs font-semibold uppercase tracking-wider text-[var(--foreground-muted)] mb-1">
+                  <label className="block text-[11px] font-semibold uppercase tracking-wider text-[var(--foreground-muted)] mb-1">
                     Departure Date
                   </label>
                   <input
@@ -409,7 +523,7 @@ export default function DashboardPage() {
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-semibold uppercase tracking-wider text-[var(--foreground-muted)] mb-1">
+                  <label className="block text-[11px] font-semibold uppercase tracking-wider text-[var(--foreground-muted)] mb-1">
                     Return Date
                   </label>
                   <input
@@ -421,11 +535,11 @@ export default function DashboardPage() {
                 </div>
               </div>
 
-              <div className="pt-4 flex items-center justify-end gap-3 border-t border-[var(--glass-border)]">
+              <div className="pt-3 flex items-center justify-end gap-3 border-t border-white/10">
                 <button
                   type="button"
                   onClick={() => setIsModalOpen(false)}
-                  className="px-4 py-2 rounded-lg text-xs font-medium text-[var(--foreground-muted)] hover:bg-[var(--glass-fill)]"
+                  className="px-3.5 py-1.5 rounded-lg text-xs font-medium text-[var(--foreground-muted)] hover:bg-white/5 cursor-pointer"
                 >
                   Cancel
                 </button>
@@ -433,7 +547,7 @@ export default function DashboardPage() {
                   type="submit"
                   id="confirm-create-application-btn"
                   disabled={creating}
-                  className="px-5 py-2 rounded-lg text-xs font-semibold bg-[var(--brand-teal)] hover:bg-[var(--brand-teal-hover)] text-[#071426] shadow-md disabled:opacity-50"
+                  className="px-4 py-1.5 rounded-lg text-xs font-semibold bg-[var(--brand-teal)] hover:bg-[var(--brand-teal-hover)] text-[#071426] shadow-md disabled:opacity-50 cursor-pointer"
                 >
                   {creating ? "Creating Case..." : "Launch Interview"}
                 </button>
@@ -445,3 +559,4 @@ export default function DashboardPage() {
     </div>
   );
 }
+

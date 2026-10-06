@@ -53,6 +53,7 @@ html {
 }
 
 body {
+  zoom: 0.8;
   background-color: var(--canvas-bg);
   color: var(--foreground);
   font-family: var(--font-sans), sans-serif;
@@ -92,6 +93,17 @@ body {
   height: 50vw;
   background: radial-gradient(circle, rgba(99, 102, 241, 0.06) 0%, rgba(99, 102, 241, 0) 70%);
   filter: blur(160px);
+  border-radius: 9999px;
+}
+
+.aurora-glow-bottom {
+  position: absolute;
+  bottom: -10vw;
+  left: 20vw;
+  width: 60vw;
+  height: 35vw;
+  background: radial-gradient(circle, rgba(20, 184, 166, 0.07) 0%, rgba(99, 102, 241, 0.05) 50%, transparent 70%);
+  filter: blur(150px);
   border-radius: 9999px;
 }
 

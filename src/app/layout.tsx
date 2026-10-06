@@ -58,6 +58,7 @@ export default async function RootLayout({
         <div className="aurora-background" aria-hidden="true">
           <div className="aurora-glow-teal" />
           <div className="aurora-glow-violet" />
+          <div className="aurora-glow-bottom" />
         </div>
 
         <Navbar user={user} unreadNotificationsCount={unreadCount} />

@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense, useState, useEffect } from "react";
+import { Suspense, useState, useEffect, useRef } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { 
@@ -27,12 +27,67 @@ function VisaNavigatorContent() {
   const searchParams = useSearchParams();
   const promptParam = searchParams.get("prompt") || searchParams.get("q") || "";
 
+  // Dual background refs & section anchor
+  const primaryBgRef = useRef<HTMLDivElement>(null);
+  const secondaryBgRef = useRef<HTMLDivElement>(null);
+  const directorySectionRef = useRef<HTMLElement>(null);
+
   // Wizard state
   const [destination, setDestination] = useState<Destination>("GERMANY");
   const [purpose, setPurpose] = useState<Purpose>("MEETINGS");
   const [duration, setDuration] = useState<Duration>("SHORT_STAY");
   const [tenure, setTenure] = useState<Tenure>("OVER_ONE_YEAR");
   const [analyzedPrompt, setAnalyzedPrompt] = useState<string>("");
+
+  // Smooth scroll animation for dual background images:
+  // Primary image zooms gently and slides with parallax in the top section
+  // Transition seamlessly crossfades / slides into the secondary airport lounge image as user explores down into the directory
+  useEffect(() => {
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReducedMotion) return;
+
+    let ticking = false;
+
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const scrollY = window.pageYOffset || document.documentElement.scrollTop;
+          const maxScroll = Math.max(document.documentElement.scrollHeight - window.innerHeight, 800);
+          const scrollRatio = Math.min(Math.max(scrollY / maxScroll, 0), 1);
+
+          // Primary image subtle zoom and parallax translation
+          if (primaryBgRef.current) {
+            const primaryScale = 1.0 + scrollRatio * 0.18;
+            const primaryTranslateY = scrollY * 0.28;
+            const primaryOpacity = Math.max(1 - scrollRatio * 1.4, 0);
+            primaryBgRef.current.style.transform = `translate3d(0, ${primaryTranslateY.toFixed(2)}px, 0) scale(${primaryScale.toFixed(4)})`;
+            primaryBgRef.current.style.opacity = primaryOpacity.toFixed(3);
+          }
+
+          // Secondary image emerges smoothly as user scrolls towards the bottom sections
+          if (secondaryBgRef.current) {
+            const secondaryScale = 1.15 - (1 - scrollRatio) * 0.12;
+            const secondaryTranslateY = -((1 - scrollRatio) * 60);
+            const secondaryOpacity = Math.min(Math.max((scrollRatio - 0.2) * 1.5, 0), 0.95);
+            secondaryBgRef.current.style.transform = `translate3d(0, ${secondaryTranslateY.toFixed(2)}px, 0) scale(${secondaryScale.toFixed(4)})`;
+            secondaryBgRef.current.style.opacity = secondaryOpacity.toFixed(3);
+          }
+
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleScroll, { passive: true });
+    handleScroll();
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
+    };
+  }, []);
 
   // Parse prompt prefill if present
   useEffect(() => {
@@ -184,16 +239,71 @@ function VisaNavigatorContent() {
   const evaluation = evaluateRoute();
 
   return (
-    <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 space-y-12">
-      {/* Header */}
-      <div className="text-center max-w-3xl mx-auto space-y-4">
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[var(--brand-teal)]/30 bg-[var(--brand-teal)]/10 text-[var(--brand-teal)] text-xs font-semibold uppercase tracking-wider">
-          <Compass className="w-3.5 h-3.5" />
-          <span>Statutory Route Pre-Screening</span>
+    <div className="relative flex flex-col w-full min-h-screen">
+      {/* CINEMATIC DUAL AIRPORT LOUNGE BACKGROUND CANVASES WITH SCROLL ANIMATION */}
+      <div 
+        className="fixed inset-0 pointer-events-none z-0 overflow-hidden" 
+        aria-hidden="true"
+      >
+        {/* Primary Visa Lounge Image (visa_page.png) */}
+        <div
+          id="visa-primary-bg"
+          ref={primaryBgRef}
+          className="absolute inset-0 w-full h-full will-change-transform select-none transition-opacity duration-300"
+          style={{
+            transformOrigin: "center 40%",
+            transform: "translate3d(0, 0, 0) scale(1)",
+            backfaceVisibility: "hidden",
+            WebkitBackfaceVisibility: "hidden",
+          }}
+        >
+          <img
+            src="/images/visa_page.png"
+            alt=""
+            className="w-full h-full object-cover object-[center_35%] pointer-events-none brightness-90"
+            decoding="async"
+            loading="eager"
+          />
         </div>
-        <h1 className="font-serif text-3xl sm:text-4xl font-normal text-[var(--foreground)] tracking-tight">
-          Visa Category Navigator & Eligibility Engine
-        </h1>
+
+        {/* Secondary Executive Lounge Image (visa_page_secondary.png) below / crossfading on scroll */}
+        <div
+          id="visa-secondary-bg"
+          ref={secondaryBgRef}
+          className="absolute inset-0 w-full h-full will-change-transform select-none transition-opacity duration-300"
+          style={{
+            transformOrigin: "center 60%",
+            transform: "translate3d(0, 0, 0) scale(1.05)",
+            opacity: 0,
+            backfaceVisibility: "hidden",
+            WebkitBackfaceVisibility: "hidden",
+          }}
+        >
+          <img
+            src="/images/visa_page_secondary.png"
+            alt=""
+            className="w-full h-full object-cover object-[center_50%] pointer-events-none brightness-85"
+            decoding="async"
+            loading="lazy"
+          />
+        </div>
+
+        {/* Scrim & atmospheric gradient layers: preserve contrast, text legibility and deep dark aesthetic */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#071426]/85 via-[#071426]/60 to-[#071426]/90 pointer-events-none" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_25%,_#071426_94%)] pointer-events-none" />
+      </div>
+
+      {/* Main Visa Navigator Content Container */}
+      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 py-12 space-y-12 w-full">
+        {/* Header */}
+        <div className="text-center max-w-3xl mx-auto space-y-4">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[var(--brand-teal)]/30 bg-[var(--brand-teal)]/10 text-[var(--brand-teal)] text-xs font-semibold uppercase tracking-wider backdrop-blur-md">
+            <Compass className="w-3.5 h-3.5" />
+            <span>Statutory Route Pre-Screening</span>
+          </div>
+          <h1 className="font-serif text-3xl sm:text-4xl font-normal text-[var(--foreground)] tracking-tight">
+            Visa Category Navigator & Eligibility Engine
+          </h1>
         <p className="text-sm text-[var(--foreground-muted)] leading-relaxed">
           Determine the correct consular visa classification for corporate business travel to Germany (Schengen Area) and the United States. All rules, fees, and timelines are cross-referenced with official consular portals.
         </p>
@@ -219,14 +329,15 @@ function VisaNavigatorContent() {
         </div>
       )}
 
-      {/* Main Grid: Inputs (Left) and Evaluation Output (Right) */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      {/* Main Grid: Inputs (Left) and Evaluation Output (Right) Side-by-Side */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
         {/* Left Column: Interactive Wizard Controls */}
-        <div className="lg:col-span-5 glass-panel p-6 sm:p-7 space-y-6 border border-[var(--glass-border)]">
-          <div className="flex items-center justify-between pb-4 border-b border-[var(--glass-border)]">
-            <h2 className="text-sm font-semibold uppercase tracking-wider text-[var(--foreground)] flex items-center gap-2">
-              <span>Travel Parameters</span>
-            </h2>
+        <div className="lg:col-span-5 glass-panel p-6 sm:p-7 space-y-6 border border-[var(--glass-border)] flex flex-col justify-between h-full">
+          <div className="space-y-6">
+            <div className="flex items-center justify-between pb-4 border-b border-[var(--glass-border)]">
+              <h2 className="text-sm font-semibold uppercase tracking-wider text-[var(--foreground)] flex items-center gap-2">
+                <span>Travel Parameters</span>
+              </h2>
             <button
               type="button"
               onClick={() => {
@@ -367,6 +478,7 @@ function VisaNavigatorContent() {
                 </button>
               ))}
             </div>
+          </div>
           </div>
         </div>
 
@@ -581,6 +693,7 @@ function VisaNavigatorContent() {
           </div>
         </div>
       </section>
+      </div>
     </div>
   );
 }

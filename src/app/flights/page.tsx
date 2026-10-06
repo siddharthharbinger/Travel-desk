@@ -117,16 +117,6 @@ export default function FlightsPage() {
             Search commercial corridors connecting Indian corporate hubs (Mumbai/Pune) with European and North American destinations. Zero markup search-and-redirect with statutory transit validation.
           </p>
         </div>
-
-        {/* Action Toggle */}
-        <button
-          onClick={() => setShowModifySearch(!showModifySearch)}
-          id="modify-flight-search-btn"
-          className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-[var(--glass-border)] bg-[var(--glass-fill)] hover:bg-[var(--glass-fill-hover)] text-sm font-medium text-[var(--foreground)] transition-colors self-start md:self-auto"
-        >
-          <SlidersHorizontal className="w-4 h-4 text-[var(--brand-teal)]" />
-          <span>{showModifySearch ? "Close Search Parameters" : "Modify Search Parameters"}</span>
-        </button>
       </div>
 
       {/* Summary Header Pill Strip (matching reference screen layout) */}
@@ -204,159 +194,195 @@ export default function FlightsPage() {
         </div>
       </div>
 
-      {/* Expandable / Collapsible Search Form */}
-      {showModifySearch && (
-        <div className="glass-panel p-6 space-y-6 animate-in fade-in slide-in-from-top-4 duration-200">
-          <div className="flex items-center justify-between border-b border-[var(--glass-border)] pb-4">
-            <h2 className="text-base font-semibold text-[var(--foreground)]">
-              Configure Corporate Itinerary & Route
+      {/* Corporate Search & Dispatch Card (Parameters visible upfront with redirection links on card) */}
+      <div className="glass-panel p-6 sm:p-8 space-y-6">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[var(--glass-border)] pb-5">
+          <div>
+            <h2 className="text-lg font-semibold text-[var(--foreground)]">
+              Configure Corporate Itinerary & Booking Route
             </h2>
-            <div className="flex items-center gap-2">
-              <button
-                type="button"
-                onClick={() => setTripType("round")}
-                className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${
-                  tripType === "round"
-                    ? "bg-[var(--brand-teal)] text-[#071426] font-semibold"
-                    : "bg-[var(--glass-fill)] text-[var(--foreground-muted)] hover:text-[var(--foreground)]"
-                }`}
-              >
-                Round Trip
-              </button>
-              <button
-                type="button"
-                onClick={() => setTripType("oneway")}
-                className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${
-                  tripType === "oneway"
-                    ? "bg-[var(--brand-teal)] text-[#071426] font-semibold"
-                    : "bg-[var(--glass-fill)] text-[var(--foreground-muted)] hover:text-[var(--foreground)]"
-                }`}
-              >
-                One-Way
-              </button>
-            </div>
+            <p className="text-xs text-[var(--foreground-muted)] mt-0.5">
+              Input flight parameters below to dispatch searches directly to verified partner engines.
+            </p>
           </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            {/* Origin Airport */}
-            <div className="space-y-1.5">
-              <label className="text-xs font-medium text-[var(--foreground-muted)]">
-                Origin City / Airport
-              </label>
-              <select
-                id="flight-origin-select"
-                value={origin}
-                onChange={(e) => setOrigin(e.target.value)}
-                className="w-full px-3.5 py-2.5 rounded-xl border border-[var(--glass-border)] bg-[var(--glass-fill)] text-sm text-[var(--foreground)] focus:outline-none focus:ring-2 focus:ring-[var(--brand-teal)]"
-              >
-                {AIRPORTS.filter((a) => a.country === "India").map((a) => (
-                  <option key={a.code} value={a.code}>
-                    {a.city} ({a.code}) - {a.airport}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            {/* Destination Airport */}
-            <div className="space-y-1.5">
-              <label className="text-xs font-medium text-[var(--foreground-muted)]">
-                Destination City / Airport
-              </label>
-              <select
-                id="flight-destination-select"
-                value={destination}
-                onChange={(e) => setDestination(e.target.value)}
-                className="w-full px-3.5 py-2.5 rounded-xl border border-[var(--glass-border)] bg-[var(--glass-fill)] text-sm text-[var(--foreground)] focus:outline-none focus:ring-2 focus:ring-[var(--brand-teal)]"
-              >
-                {AIRPORTS.filter((a) => a.country !== "India").map((a) => (
-                  <option key={a.code} value={a.code}>
-                    {a.city} ({a.code}) - {a.airport}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            {/* Departure Date */}
-            <div className="space-y-1.5">
-              <label className="text-xs font-medium text-[var(--foreground-muted)]">
-                Departure Date (Min: Today)
-              </label>
-              <input
-                type="date"
-                id="flight-departure-date"
-                min={defaultDates.todayStr}
-                value={departureDate}
-                onChange={(e) => setDepartureDate(e.target.value)}
-                className="w-full px-3.5 py-2.5 rounded-xl border border-[var(--glass-border)] bg-[var(--glass-fill)] text-sm text-[var(--foreground)] focus:outline-none focus:ring-2 focus:ring-[var(--brand-teal)]"
-              />
-            </div>
-
-            {/* Return Date */}
-            <div className="space-y-1.5">
-              <label className="text-xs font-medium text-[var(--foreground-muted)]">
-                Return Date {tripType === "oneway" && "(Disabled for One-Way)"}
-              </label>
-              <input
-                type="date"
-                id="flight-return-date"
-                disabled={tripType === "oneway"}
-                min={departureDate || defaultDates.todayStr}
-                value={returnDate}
-                onChange={(e) => setReturnDate(e.target.value)}
-                className={`w-full px-3.5 py-2.5 rounded-xl border border-[var(--glass-border)] bg-[var(--glass-fill)] text-sm text-[var(--foreground)] focus:outline-none focus:ring-2 focus:ring-[var(--brand-teal)] ${
-                  tripType === "oneway" ? "opacity-50 cursor-not-allowed" : ""
-                }`}
-              />
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-            {/* Cabin Class Selection */}
-            <div className="space-y-1.5">
-              <label className="text-xs font-medium text-[var(--foreground-muted)]">
-                Authorized Cabin Class
-              </label>
-              <div className="grid grid-cols-3 gap-2">
-                {[
-                  { id: "economy", label: "Economy", note: "Standard policy" },
-                  { id: "premium", label: "Prem Economy", note: "Flights > 8h" },
-                  { id: "business", label: "Business", note: "VP Pre-approval" },
-                ].map((c) => (
-                  <button
-                    key={c.id}
-                    type="button"
-                    onClick={() => setCabinClass(c.id)}
-                    className={`p-2.5 rounded-xl border text-left transition-colors ${
-                      cabinClass === c.id
-                        ? "border-[var(--brand-teal)] bg-[var(--brand-teal)]/10 text-[var(--foreground)]"
-                        : "border-[var(--glass-border)] bg-[var(--glass-fill)] text-[var(--foreground-muted)] hover:text-[var(--foreground)]"
-                    }`}
-                  >
-                    <div className="text-xs font-semibold">{c.label}</div>
-                    <div className="text-[10px] text-[var(--foreground-muted)]">{c.note}</div>
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* Passenger Count */}
-            <div className="space-y-1.5">
-              <label className="text-xs font-medium text-[var(--foreground-muted)]">
-                Corporate Travellers
-              </label>
-              <select
-                value={passengers}
-                onChange={(e) => setPassengers(Number(e.target.value))}
-                className="w-full px-3.5 py-2.5 rounded-xl border border-[var(--glass-border)] bg-[var(--glass-fill)] text-sm text-[var(--foreground)] focus:outline-none focus:ring-2 focus:ring-[var(--brand-teal)]"
-              >
-                <option value={1}>1 Corporate Traveller (Employee)</option>
-                <option value={2}>2 Travellers (Employee + Colleague)</option>
-                <option value={3}>3 Travellers (Project Team Delegation)</option>
-              </select>
-            </div>
+          <div className="flex items-center gap-2 self-start sm:self-auto">
+            <button
+              type="button"
+              onClick={() => setTripType("round")}
+              className={`px-3.5 py-1.5 rounded-lg text-xs font-medium transition-colors ${
+                tripType === "round"
+                  ? "bg-[var(--brand-teal)] text-[#071426] font-semibold shadow-sm"
+                  : "bg-[var(--glass-fill)] text-[var(--foreground-muted)] hover:text-[var(--foreground)] border border-[var(--glass-border)]"
+              }`}
+            >
+              Round Trip
+            </button>
+            <button
+              type="button"
+              onClick={() => setTripType("oneway")}
+              className={`px-3.5 py-1.5 rounded-lg text-xs font-medium transition-colors ${
+                tripType === "oneway"
+                  ? "bg-[var(--brand-teal)] text-[#071426] font-semibold shadow-sm"
+                  : "bg-[var(--glass-fill)] text-[var(--foreground-muted)] hover:text-[var(--foreground)] border border-[var(--glass-border)]"
+              }`}
+            >
+              One-Way
+            </button>
           </div>
         </div>
-      )}
+
+        {/* Input Form Fields */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          {/* Origin Airport */}
+          <div className="space-y-1.5">
+            <label className="text-xs font-medium text-[var(--foreground-muted)]">
+              Origin City / Airport
+            </label>
+            <select
+              id="flight-origin-select"
+              value={origin}
+              onChange={(e) => setOrigin(e.target.value)}
+              className="w-full px-3.5 py-2.5 rounded-xl border border-[var(--glass-border)] bg-[var(--glass-fill)] text-sm text-[var(--foreground)] focus:outline-none focus:ring-2 focus:ring-[var(--brand-teal)]"
+            >
+              {AIRPORTS.filter((a) => a.country === "India").map((a) => (
+                <option key={a.code} value={a.code}>
+                  {a.city} ({a.code}) - {a.airport}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          {/* Destination Airport */}
+          <div className="space-y-1.5">
+            <label className="text-xs font-medium text-[var(--foreground-muted)]">
+              Destination City / Airport
+            </label>
+            <select
+              id="flight-destination-select"
+              value={destination}
+              onChange={(e) => setDestination(e.target.value)}
+              className="w-full px-3.5 py-2.5 rounded-xl border border-[var(--glass-border)] bg-[var(--glass-fill)] text-sm text-[var(--foreground)] focus:outline-none focus:ring-2 focus:ring-[var(--brand-teal)]"
+            >
+              {AIRPORTS.filter((a) => a.country !== "India").map((a) => (
+                <option key={a.code} value={a.code}>
+                  {a.city} ({a.code}) - {a.airport}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          {/* Departure Date */}
+          <div className="space-y-1.5">
+            <label className="text-xs font-medium text-[var(--foreground-muted)]">
+              Departure Date
+            </label>
+            <input
+              type="date"
+              id="flight-departure-date"
+              min={defaultDates.todayStr}
+              value={departureDate}
+              onChange={(e) => setDepartureDate(e.target.value)}
+              className="w-full px-3.5 py-2.5 rounded-xl border border-[var(--glass-border)] bg-[var(--glass-fill)] text-sm text-[var(--foreground)] focus:outline-none focus:ring-2 focus:ring-[var(--brand-teal)]"
+            >
+            </input>
+          </div>
+
+          {/* Return Date */}
+          <div className="space-y-1.5">
+            <label className="text-xs font-medium text-[var(--foreground-muted)]">
+              Return Date {tripType === "oneway" && "(Disabled for One-Way)"}
+            </label>
+            <input
+              type="date"
+              id="flight-return-date"
+              disabled={tripType === "oneway"}
+              min={departureDate || defaultDates.todayStr}
+              value={returnDate}
+              onChange={(e) => setReturnDate(e.target.value)}
+              className={`w-full px-3.5 py-2.5 rounded-xl border border-[var(--glass-border)] bg-[var(--glass-fill)] text-sm text-[var(--foreground)] focus:outline-none focus:ring-2 focus:ring-[var(--brand-teal)] ${
+                tripType === "oneway" ? "opacity-50 cursor-not-allowed" : ""
+              }`}
+            />
+          </div>
+        </div>
+
+        {/* Cabin Class and Passengers */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
+          {/* Cabin Class Selection */}
+          <div className="space-y-1.5">
+            <label className="text-xs font-medium text-[var(--foreground-muted)]">
+              Authorized Cabin Class
+            </label>
+            <div className="grid grid-cols-3 gap-2">
+              {[
+                { id: "economy", label: "Economy", note: "Standard policy" },
+                { id: "premium", label: "Prem Economy", note: "Flights > 8h" },
+                { id: "business", label: "Business", note: "VP Pre-approval" },
+              ].map((c) => (
+                <button
+                  key={c.id}
+                  type="button"
+                  onClick={() => setCabinClass(c.id)}
+                  className={`p-2.5 rounded-xl border text-left transition-colors ${
+                    cabinClass === c.id
+                      ? "border-[var(--brand-teal)] bg-[var(--brand-teal)]/10 text-[var(--foreground)] ring-1 ring-[var(--brand-teal)]"
+                      : "border-[var(--glass-border)] bg-[var(--glass-fill)] text-[var(--foreground-muted)] hover:text-[var(--foreground)]"
+                  }`}
+                >
+                  <div className="text-xs font-semibold">{c.label}</div>
+                  <div className="text-[10px] text-[var(--foreground-muted)]">{c.note}</div>
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Passenger Count */}
+          <div className="space-y-1.5">
+            <label className="text-xs font-medium text-[var(--foreground-muted)]">
+              Corporate Travellers
+            </label>
+            <select
+              value={passengers}
+              onChange={(e) => setPassengers(Number(e.target.value))}
+              className="w-full px-3.5 py-2.5 rounded-xl border border-[var(--glass-border)] bg-[var(--glass-fill)] text-sm text-[var(--foreground)] focus:outline-none focus:ring-2 focus:ring-[var(--brand-teal)]"
+            >
+              <option value={1}>1 Corporate Traveller (Employee)</option>
+              <option value={2}>2 Travellers (Employee + Colleague)</option>
+              <option value={3}>3 Travellers (Project Team Delegation)</option>
+            </select>
+          </div>
+        </div>
+
+        {/* Redirection Links Section directly on this search card */}
+        <div className="pt-5 border-t border-[var(--glass-border)] space-y-3">
+          <div className="flex items-center justify-between">
+            <span className="text-xs font-semibold uppercase tracking-wider text-[var(--brand-teal)]">
+              Dispatch Search to Authorized Corporate Engines
+            </span>
+            <span className="text-[11px] text-[var(--foreground-subtle)]">
+              Zero-markup search redirection with pre-validated parameters
+            </span>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            {PARTNERS.map((partner) => (
+              <button
+                key={partner.id}
+                type="button"
+                id={`search-flights-${partner.id}-btn`}
+                onClick={() => handleOpenRedirect(partner)}
+                className="py-3 px-4 rounded-xl bg-[var(--brand-teal)]/15 border border-[var(--brand-teal)]/30 hover:bg-[var(--brand-teal)] text-[var(--brand-teal)] hover:text-[#071426] text-xs font-semibold transition-all duration-200 shadow-sm flex items-center justify-between group active:scale-98"
+              >
+                <div className="text-left">
+                  <div className="font-semibold text-xs">{partner.name}</div>
+                  <div className="text-[10px] opacity-80 group-hover:opacity-100">{partner.badge}</div>
+                </div>
+                <ExternalLink className="w-4 h-4 shrink-0 transition-transform group-hover:translate-x-0.5" />
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
 
       {/* Statutory Transit Advisory Banner (crucial for Indian passport business travelers) */}
       <div className="p-5 rounded-2xl bg-amber-500/10 border border-amber-500/20 space-y-2">
@@ -374,17 +400,15 @@ export default function FlightsPage() {
         </div>
       </div>
 
-      {/* Search & Redirect Partner Dispatch Grid */}
+      {/* Partner Engine Details & Capabilities */}
       <div className="space-y-4">
-        <div className="flex items-center justify-between">
-          <div>
-            <h2 className="text-lg font-semibold text-[var(--foreground)]">
-              Authorized Corporate Booking Engines
-            </h2>
-            <p className="text-xs text-[var(--foreground-muted)]">
-              Select a verified partner to initiate search with zero markup. A redirection notice will verify your routing parameters before leaving TravelDesk.
-            </p>
-          </div>
+        <div>
+          <h2 className="text-lg font-semibold text-[var(--foreground)]">
+            Booking Engine Profiles & Policy Compliance
+          </h2>
+          <p className="text-xs text-[var(--foreground-muted)]">
+            Detailed overview of verified flight search aggregators and supported corporate invoicing options.
+          </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -426,7 +450,6 @@ export default function FlightsPage() {
 
               <button
                 type="button"
-                id={`search-flights-${partner.id}-btn`}
                 onClick={() => handleOpenRedirect(partner)}
                 className="w-full py-2.5 px-4 rounded-xl bg-[var(--brand-teal)] text-[#071426] text-xs font-semibold hover:bg-[var(--brand-teal-hover)] transition-colors shadow-sm flex items-center justify-center gap-2"
               >

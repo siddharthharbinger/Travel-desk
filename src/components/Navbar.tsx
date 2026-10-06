@@ -123,8 +123,8 @@ export function Navbar({ user, unreadNotificationsCount = 0 }: NavbarProps) {
             : "bg-transparent"
         }`}
       >
-        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 h-16 sm:h-[68px] flex items-center justify-between">
-          {/* Left: Brand Logo & Wordmark */}
+        <div className="w-full px-4 sm:px-6 lg:px-8 h-16 sm:h-[68px] flex items-center justify-between">
+          {/* Left: Brand Logo & Wordmark (Corner-aligned) */}
           <div className="flex items-center">
             <Logo />
           </div>

@@ -34,34 +34,32 @@ export function AIConciergeLauncher() {
 
   return (
     <>
-      {/* Floating Launcher Pill Bottom-Right */}
+      {/* Floating Launcher Icon Bottom-Right (Fixed to bottom-right corner) */}
       {!isOpen && (
         <button
           onClick={() => {
             setIsOpen(true);
             setIsMinimized(false);
           }}
-          className="fixed bottom-6 right-6 z-40 flex items-center gap-2.5 px-4 py-2.5 rounded-full border border-[var(--brand-teal)]/40 bg-[#071426]/90 backdrop-blur-xl shadow-2xl hover:border-[var(--brand-teal)] hover:shadow-[0_0_25px_-5px_rgba(20,184,166,0.35)] transition-all group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand-teal)]"
+          className="fixed bottom-5 right-5 z-50 flex items-center justify-center w-12 h-12 rounded-full border border-[var(--brand-teal)]/40 bg-[#071426]/95 backdrop-blur-xl shadow-[0_4px_24px_rgba(0,0,0,0.5),0_0_15px_rgba(20,184,166,0.3)] hover:border-[var(--brand-teal)] hover:shadow-[0_0_25px_rgba(20,184,166,0.5)] hover:scale-105 active:scale-95 transition-all group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand-teal)] cursor-pointer"
           aria-label="Open AI Travel & Visa Concierge"
+          title="Open AI Concierge"
         >
-          <span className="relative flex h-2 w-2">
+          <span className="absolute top-1.5 right-1.5 flex h-2.5 w-2.5 pointer-events-none">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--brand-teal)] opacity-75" />
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-[var(--brand-teal)]" />
+            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[var(--brand-teal)]" />
           </span>
-          <span className="text-xs font-semibold tracking-wider uppercase text-white group-hover:text-[var(--brand-teal)] transition-colors">
-            AI Concierge
-          </span>
-          <Sparkles className="w-3.5 h-3.5 text-[var(--brand-teal)]" />
+          <Bot className="w-5 h-5 text-[var(--brand-teal)] group-hover:text-white transition-colors" />
         </button>
       )}
 
-      {/* Docked Non-Modal Chat Panel Bottom-Right (380px wide, max 560px high, frosted glass, NO dimmed backdrop) */}
+      {/* Docked Non-Modal Chat Panel Bottom-Right (Aligned to bottom-right corner) */}
       {isOpen && (
         <div
           role="dialog"
           aria-modal="false"
-          className={`fixed bottom-6 right-6 z-40 w-[380px] rounded-2xl glass-floating border border-white/15 shadow-2xl transition-all duration-200 flex flex-col ${
-            isMinimized ? "h-14" : "h-[540px] max-h-[560px]"
+          className={`fixed bottom-5 right-5 z-50 w-[360px] sm:w-[380px] max-w-[calc(100vw-2.5rem)] rounded-2xl glass-floating border border-white/15 shadow-2xl transition-all duration-200 flex flex-col ${
+            isMinimized ? "h-14" : "h-[520px] max-h-[calc(100vh-3.5rem)]"
           }`}
           aria-label="AI Travel Concierge Assistant"
         >

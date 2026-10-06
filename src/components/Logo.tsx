@@ -5,9 +5,10 @@ interface LogoProps {
   className?: string;
   href?: string;
   showBadge?: boolean;
+  showPartnerIcon?: boolean;
 }
 
-export function Logo({ className = "", href = "/", showBadge = false }: LogoProps) {
+export function Logo({ className = "", href = "/", showBadge = false, showPartnerIcon = true }: LogoProps) {
   return (
     <Link
       href={href}
@@ -15,16 +16,18 @@ export function Logo({ className = "", href = "/", showBadge = false }: LogoProp
       aria-label="TravelDesk - Return to homepage"
     >
       {/* Crisp White Rounded Pill Container for Harbinger Corporate Lockup */}
-      <div className="h-8 sm:h-9 px-2.5 sm:px-3 bg-white rounded-lg flex items-center justify-center shadow-sm transition-transform duration-200 group-hover:scale-105">
-        <Image
-          src="/images/harbinger-logo.png"
-          alt="Harbinger Group"
-          width={88}
-          height={28}
-          className="h-5 sm:h-5.5 w-auto object-contain"
-          priority
-        />
-      </div>
+      {showPartnerIcon && (
+        <div className="h-8 sm:h-9 px-2.5 sm:px-3 bg-white rounded-lg flex items-center justify-center shadow-sm transition-transform duration-200 group-hover:scale-105">
+          <Image
+            src="/images/harbinger-logo.png"
+            alt="Harbinger Group"
+            width={88}
+            height={28}
+            className="h-5 sm:h-5.5 w-auto object-contain"
+            priority
+          />
+        </div>
+      )}
 
       {/* Wordmark */}
       <span className="font-sans text-lg sm:text-xl font-bold tracking-tight text-white group-hover:text-white/95 transition-colors duration-200">
